@@ -20,11 +20,6 @@
 
 #include "InfoBoxClass.h"
 
-//#ifndef moc_InfoBoxClass
-//#include "moc_QT_InfoBoxClass.cpp"
-//#define moc_InfoBoxClass
-//#endif
-
 InfoBoxClass::InfoBoxClass(QApplication *app)
 {
 }

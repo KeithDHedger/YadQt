@@ -14,10 +14,10 @@ int main(int argc, char **argv)
 		{
 			{{"t","title"},"Title.","YadQt"},
 			{{"b","body"},"Body.","Information"},
-			{"width","Dialog Width.","100"},
-			{"height","Dialog Height.","100"},
-			{"buttons","Buttons.","buttonstouse"},
-			{"type","Box Type.","0"},
+			{"width","Dialog Width.","640"},
+			{"height","Dialog Height.","400"},
+			{"buttons","Buttons.","Ok"},
+			{"type","Box Type.","about"},
 	});
 
 	app.setWindowIcon(QIcon::fromTheme("user-info"));
