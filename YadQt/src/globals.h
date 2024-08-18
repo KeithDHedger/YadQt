@@ -17,7 +17,7 @@ class DataClass;
 
 #include "LFSTKUtilityClass.h"
 #include "DataClass.h"
-#include "QT_InfoBoxClass.h"
+#include "InfoBoxClass.h"
 
 enum {ABOUT=0,ABOUTQT,WHAT,INFO,WARN,FATAL};
 

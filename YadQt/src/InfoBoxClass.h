@@ -19,15 +19,13 @@
 */
 
 
-#ifndef _QTINFOBOXCLASS_
-#define _QTINFOBOXCLASS_
+#ifndef _INFOBOXCLASS_
+#define _INFOBOXCLASS_
 
 #include "globals.h"
 
-class InfoBoxClass : public QObject
+class InfoBoxClass
 {
-	Q_OBJECT
-
 	public:
 		InfoBoxClass(QApplication *app);
 		~InfoBoxClass();

@@ -6,10 +6,3 @@ cd "YadQt/src"
 rm moc_* &>/dev/null||true
 csrclst=$(echo "../src/*.c" "../src/*.cpp")
 echo COMMONSRC = $csrclst > ../sources
-
-while read
-	do
-		outfile=${REPLY#./*}
-		outfile=moc_${outfile%*.h}.cpp
-		moc $REPLY -o $outfile
-	done < <(find -name "QT_*Class.h")

@@ -50,3 +50,12 @@ m4/lt~obsolete.m4
 # can automatically generate from config.status script
 # (which is called by configure script))
 Makefile
+
+AUTHORS
+COPYING
+INSTALL
+NEWS
+YadQt/app/yadqt
+*.o
+config.h
+YadQt/sources

@@ -14,8 +14,8 @@ int main(int argc, char **argv)
 		{
 			{{"t","title"},"Title.","YadQt"},
 			{{"b","body"},"Body.","Information"},
-			{{"w","width"},"Dialog Width.","100"},
-			{{"h","height"},"Dialog Height.","100"},
+			{"width","Dialog Width.","100"},
+			{"height","Dialog Height.","100"},
 			{"buttons","Buttons.","buttonstouse"},
 			{"type","Box Type.","0"},
 	});
