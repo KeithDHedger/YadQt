@@ -16,16 +16,18 @@ Usage: yadqt [options]
 Options:
   -h, --help                   Displays help on commandline options.
   --help-all                   Displays help including Qt specific options.
+  -v, --version                Displays version information.
   -t, --title <YadQt>          Title.
   -b, --body <Information>     Body.
   -d, --default <keithhedger>  Default text.
   --width <640>                Dialog width.
   --height <400>               Dialog height.
+  --opseparator <|>            Separator for multi item output ( use "newline"
+                               to use '\n' ).
   --multiple                   Select multiple items.
   --btntoerr                   Print button to stderr.
   --buttons <Ok>               Buttons.
-  --type <about>               Box Type.
-
+  --type <aboutqt>             Box Type.
 ````
 yadqt --type=fatal -t "my title" -b "some info"  -d "some info" --buttons="abort" --btntoerr 2>/dev/pts/2;echo $?<br>
 yadqt --type=aboutqt<br>
