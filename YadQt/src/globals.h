@@ -20,7 +20,9 @@ class DataClass;
 #include "DataClass.h"
 #include "InfoBoxClass.h"
 #include "InputDialogsClass.h"
+#include "FormsClass.h"
 
-enum {ABOUT=0,ABOUTQT,WHAT,INFO,WARN,FATAL,GETTEXT,GETITEM};
+enum {ABOUT=0,ABOUTQT,WHAT,INFO,WARN,FATAL,GETTEXT,GETITEM,GETFORM};
+
 
 #endif

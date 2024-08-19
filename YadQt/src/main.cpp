@@ -8,6 +8,7 @@ int main(int argc, char **argv)
 	InfoBoxClass			info(&app);
 	DataClass			data;
 	InputDialogsClass	input(&app,&data);
+	FormsClass			forms(&app,&data);
 
 	unsigned				retval=0;
 
@@ -61,6 +62,13 @@ int main(int argc, char **argv)
 							retval=input.getItem();
 						}
 						break;
+//forms
+					case GETFORM:
+						{
+							retval=forms.getForm();
+						}
+						break;
+
 				}
 		}
 	else

@@ -1,6 +1,13 @@
 # YadQt
 This is an app to produce simple Qt dialogs from the command line, similar to YAD for gtk.<br>
 
+To build/install:
+````console
+./autogen.sh --prefix=/usr
+make
+make install
+````
+
 QUICK USE:<br>
 yadqt -h
 ```console
@@ -23,9 +30,12 @@ yadqt --type=aboutqt<br>
 yadqt --type=getitem -t "my title" -b "some input"  -d "one|three|two|end" --btntoerr 2>/dev/pts/2;echo $?<br>
 yadqt --type=gettext -t "my title" -b "some input"  -d "default input txt";echo $?<br>
 yadqt --type=info -t "my title" -b "some info"  -d "some info" --buttons="abort" --btntoerr 2>/dev/pts/2;echo $?<br>
+yadqt --type=form -t "Simple Form" -b "Entry 1|Boxe Two|Data 3|Last Box" --btntoerr --default="default 1|box 2|box n"  2>/dev/pts/2;echo $?<br>
+
 <br>
 Some options are not yet implemented<br>
 <br>
 TODO<br>
 documentation :(<br>
 more boxes<br>
+set i/p and o/p seperator for data.

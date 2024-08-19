@@ -100,4 +100,9 @@ void DataClass::getBoxType()
 		this->boxType=GETTEXT;
 	if(str.compare("getitem",Qt::CaseInsensitive)==0)
 		this->boxType=GETITEM;
+
+//forms
+	if(str.compare("form",Qt::CaseInsensitive)==0)
+		this->boxType=GETFORM;
+
 }
