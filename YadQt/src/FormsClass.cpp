@@ -102,12 +102,12 @@ unsigned FormsClass::getForm(void)
 	if(res==1)
 		{
 			QString op="";
-			for(long unsigned int j=0;j<form.boxes.size()-1;j++)
+			for(int j=0;j<form.boxes.size()-1;j++)
 				op+=form.boxes[j]->text()+"|";
 			op+=form.boxes[form.boxes.size()-1]->text();
 
 			QTextStream(stdout) <<op<< Qt::endl;
-			return(QMessageBox::Ok);		
+			return(QMessageBox::Apply);		
 		}
 
 	return(QMessageBox::Cancel);
