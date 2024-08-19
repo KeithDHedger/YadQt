@@ -3,7 +3,7 @@ This is an app to produce simple Qt dialogs from the command line, similar to YA
 
 QUICK USE:<br>
 yadqt -h
-```sh
+```console
 Usage: ./yadqt [options]
 
 Options:
