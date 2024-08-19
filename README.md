@@ -32,6 +32,9 @@ yadqt --type=gettext -t "my title" -b "some input"  -d "default input txt";echo 
 yadqt --type=info -t "my title" -b "some info"  -d "some info" --buttons="abort" --btntoerr 2>/dev/pts/2;echo $?<br>
 yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box" --btntoerr --default="default 1|box 2|box n"  2>/dev/pts/2;echo $?<br>
 yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box"  --default="default 1|box 2|box n" --width=300<br>
+yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab|tr '\n' '|')" --multiple --btntoerr --width=600 --height=350 2>/dev/pts/2;echo $?<br>
+yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  ;echo $?<br>
+
 <br>
 Some options are not yet implemented<br>
 <br>
