@@ -44,5 +44,5 @@ Some options are not yet implemented<br>
 TODO<br>
 documentation :(<br>
 more boxes<br>
-set o/p separator for data.DONE
-set i/p separator for data.
+set o/p separator for data.DONE<br>
+set i/p separator for data.<br>
