@@ -21,9 +21,11 @@ Options:
   -d, --default <keithhedger>  Default text.
   --width <640>                Dialog width.
   --height <400>               Dialog height.
+  --multiple                   Select multiple items.
   --btntoerr                   Print button to stderr.
   --buttons <Ok>               Buttons.
   --type <about>               Box Type.
+
 ````
 yadqt --type=fatal -t "my title" -b "some info"  -d "some info" --buttons="abort" --btntoerr 2>/dev/pts/2;echo $?<br>
 yadqt --type=aboutqt<br>
