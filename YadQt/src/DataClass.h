@@ -32,8 +32,8 @@ class DataClass
 		QString						title;
 		QString						body;
 		QString						defaultText;
-		int							width=100;
-		int							height=100;
+		int							width=0;
+		int							height=0;
 		int							boxType=-1;
 
 		QMessageBox::StandardButtons	buttons=QMessageBox::NoButton;

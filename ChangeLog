@@ -1,4 +1,5 @@
 0.0.1
+Set width/height of form dialog from opts.
 Added simple form box.
 Added item box.
 Added input box.
