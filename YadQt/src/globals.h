@@ -10,6 +10,7 @@
 #include <QCommandLineParser>
 #include <QDebug>
 #include <QIcon>
+#include <QtWidgets>
 
 #include <vector>
 
@@ -18,7 +19,8 @@ class DataClass;
 #include "LFSTKUtilityClass.h"
 #include "DataClass.h"
 #include "InfoBoxClass.h"
+#include "InputDialogsClass.h"
 
-enum {ABOUT=0,ABOUTQT,WHAT,INFO,WARN,FATAL};
+enum {ABOUT=0,ABOUTQT,WHAT,INFO,WARN,FATAL,GETTEXT,GETITEM};
 
 #endif

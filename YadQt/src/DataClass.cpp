@@ -81,7 +81,7 @@ void DataClass::setButtons(void)
 void DataClass::getBoxType()
 {
 	QString	str=this->parser.value("type");
-
+//info boxes
 	if(str.compare("about",Qt::CaseInsensitive)==0)
 		this->boxType=ABOUT;
 	if(str.compare("aboutqt",Qt::CaseInsensitive)==0)
@@ -94,4 +94,10 @@ void DataClass::getBoxType()
 		this->boxType=WARN;
 	if(str.compare("fatal",Qt::CaseInsensitive)==0)
 		this->boxType=FATAL;
+
+//input boxes
+	if(str.compare("gettext",Qt::CaseInsensitive)==0)
+		this->boxType=GETTEXT;
+	if(str.compare("getitem",Qt::CaseInsensitive)==0)
+		this->boxType=GETITEM;
 }

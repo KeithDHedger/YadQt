@@ -28,9 +28,9 @@ InfoBoxClass::~InfoBoxClass()
 {
 }
 
-int InfoBoxClass::showDialog(void)
+unsigned InfoBoxClass::showDialog(void)
 {
-	int retval=-1;
+	unsigned retval=0;
 
 	switch(data->boxType)
 		{

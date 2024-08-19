@@ -1,8 +1,8 @@
 /*
  *
- * ©K. D. Hedger. Sat 17 Aug 16:43:30 BST 2024 keithdhedger@gmail.com
+ * ©K. D. Hedger. Sun 18 Aug 15:36:11 BST 2024 keithdhedger@gmail.com
 
- * This file (DataClass.h) is part of YadQt.
+ * This file (InputDialogsClass.h) is part of YadQt.
 
  * YadQt is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,30 +18,21 @@
  * along with YadQt.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _DATACLASS_
-#define _DATACLASS_
+#ifndef _INPUTDIALOGSCLASS_
+#define _INPUTDIALOGSCLASS_
 
 #include "globals.h"
 
-class DataClass
+class InputDialogsClass
 {
 	public:
-		DataClass();
-		~DataClass();
+		InputDialogsClass(QApplication *app,DataClass *data);
+		~InputDialogsClass();
 
-		QString						title;
-		QString						body;
-		QString						defaultText;
-		int							width=100;
-		int							height=100;
-		int							boxType=-1;
+		DataClass	*data;
 
-		QMessageBox::StandardButtons	buttons=QMessageBox::NoButton;
-		QCommandLineParser			parser;
-
-		void							setButtons(void);
-		void							getBoxType(void);
-		
+		unsigned		getTextInput(void);
+		unsigned		getItem(void);
 };
 
 #endif

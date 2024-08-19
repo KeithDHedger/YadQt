@@ -32,7 +32,7 @@ class InfoBoxClass
 
 		DataClass	*data;
 
-		int			showDialog(void);
+		unsigned		showDialog(void);
 
 };
 
