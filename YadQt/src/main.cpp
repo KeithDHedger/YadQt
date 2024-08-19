@@ -9,6 +9,7 @@ int main(int argc, char **argv)
 	DataClass			data;
 	InputDialogsClass	input(&app,&data);
 	FormsClass			forms(&app,&data);
+	ListBoxClass			list(&app,&data);
 
 	unsigned				retval=0;
 
@@ -20,6 +21,7 @@ int main(int argc, char **argv)
 			{{"d","default"},"Default text.",QDir::home().dirName()},
 			{"width","Dialog width.","640"},
 			{"height","Dialog height.","400"},
+			{"multiple","Select multiple items."},
 			{"btntoerr","Print button to stderr."},
 			{"buttons","Buttons.","Ok"},
 			{"type","Box Type.","about"},
@@ -66,6 +68,12 @@ int main(int argc, char **argv)
 					case GETFORM:
 						{
 							retval=forms.getForm();
+						}
+						break;
+//list
+					case GETLIST:
+						{
+							retval=list.getList();
 						}
 						break;
 
