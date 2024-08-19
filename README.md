@@ -11,7 +11,7 @@ make install
 QUICK USE:<br>
 yadqt -h
 ```console
-Usage: ./yadqt [options]
+Usage: yadqt [options]
 
 Options:
   -h, --help                   Displays help on commandline options.
@@ -36,6 +36,7 @@ yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box" --btntoe
 yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box"  --default="default 1|box 2|box n" --width=300<br>
 yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab|tr '\n' '|')" --multiple --btntoerr --width=600 --height=350 2>/dev/pts/2;echo $?<br>
 yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  ;echo $?<br>
+yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  --opseparator="newline";echo $?<br>
 
 <br>
 Some options are not yet implemented<br>
@@ -43,4 +44,5 @@ Some options are not yet implemented<br>
 TODO<br>
 documentation :(<br>
 more boxes<br>
-set i/p and o/p seperator for data.
+set o/p separator for data.DONE
+set i/p separator for data.

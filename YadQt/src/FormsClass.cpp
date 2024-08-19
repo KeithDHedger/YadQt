@@ -107,7 +107,7 @@ unsigned FormsClass::getForm(void)
 		{
 			QString op="";
 			for(int j=0;j<form.boxes.size()-1;j++)
-				op+=form.boxes[j]->text()+"|";
+				op+=form.boxes[j]->text()+data->opsep;
 			op+=form.boxes[form.boxes.size()-1]->text();
 
 			QTextStream(stdout) <<op<< Qt::endl;

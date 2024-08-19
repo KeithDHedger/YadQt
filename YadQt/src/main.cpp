@@ -1,5 +1,6 @@
 
 #include "globals.h"
+#include "config.h"
 
 int main(int argc, char **argv)
 {
@@ -13,7 +14,9 @@ int main(int argc, char **argv)
 
 	unsigned				retval=0;
 
+	app.setApplicationVersion(VERSION);
 	data.parser.addHelpOption();
+	data.parser.addVersionOption();
 	data.parser.addOptions(
 		{
 			{{"t","title"},"Title.","YadQt"},
@@ -21,10 +24,11 @@ int main(int argc, char **argv)
 			{{"d","default"},"Default text.",QDir::home().dirName()},
 			{"width","Dialog width.","640"},
 			{"height","Dialog height.","400"},
+			{"opseparator","Separator for multi item output ( use \"newline\" to use '\\n' ).","|"},
 			{"multiple","Select multiple items."},
 			{"btntoerr","Print button to stderr."},
 			{"buttons","Buttons.","Ok"},
-			{"type","Box Type.","about"},
+			{"type","Box Type.","aboutqt"},
 	});
 
 	app.setWindowIcon(QIcon::fromTheme("user-info"));
@@ -34,6 +38,10 @@ int main(int argc, char **argv)
 	data.body=data.parser.value("body");
 	data.width=data.parser.value("width").toInt();
 	data.height=data.parser.value("height").toInt();
+	if(data.parser.value("opseparator").compare("newline")==0)
+		data.opsep="\n";
+	else
+		data.opsep=data.parser.value("opseparator");
 	if(data.parser.isSet("type"))
 		{
 			data.getBoxType();
@@ -81,9 +89,9 @@ int main(int argc, char **argv)
 		}
 	else
 		{
-		
-			qDebug()<<"You need to set a box type ...";
-			return(-1);
+			data.boxType=ABOUTQT;
+			info.data=&data;
+			retval=info.showDialog();
 		}
 
 	if(data.parser.isSet("btntoerr"))

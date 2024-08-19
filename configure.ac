@@ -1,6 +1,6 @@
 #
 #
-AC_INIT([YadQt],[0.0.1],[PROJ],[YadQt])
+AC_INIT([YadQt],[0.0.5],[PROJ],[YadQt])
 
 AC_CONFIG_HEADER([config.h])
 AC_PROG_CXX

@@ -35,6 +35,7 @@ class DataClass
 		int							width=0;
 		int							height=0;
 		int							boxType=-1;
+		QString						opsep="|";
 
 		QMessageBox::StandardButtons	buttons=QMessageBox::NoButton;
 		QCommandLineParser			parser;

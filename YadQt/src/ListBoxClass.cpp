@@ -87,7 +87,7 @@ unsigned ListBoxClass::getList(void)
 			QList	l=listwidget->selectedItems();
 
 			for(int j=0;j<l.size()-1;j++)
-				textstrings+=l.at(j)->text()+"|";
+				textstrings+=l.at(j)->text()+data->opsep;
 			textstrings+=l.at(l.size()-1)->text();
 
 			QTextStream(stdout) <<textstrings<< Qt::endl;
