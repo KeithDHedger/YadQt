@@ -68,7 +68,7 @@ unsigned FilesClass::showTextFile(void)
 	theDialog->setWindowTitle(this->data->title);
 
 
-	if((this->data->width!=0) || (this->data->height!=0))
+	if(this->data->customSize==true)
 		theDialog->resize(QSize(this->data->width,this->data->height));
 
 	theDialog->exec();
@@ -110,7 +110,6 @@ unsigned FilesClass::showImageFile(void)
 	theDialog->setLayout(docvlayout);
 	theDialog->setWindowTitle(this->data->title);
 
-//	if((this->data->width!=0) || (this->data->height!=0))
 	if(this->data->customSize==true)
 		theDialog->resize(QSize(this->data->width,this->data->height));
 

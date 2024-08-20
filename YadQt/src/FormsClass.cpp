@@ -76,7 +76,7 @@ miniPrefsReturnStruct FormsClass::miniPrefsDialog(QStringList items)
 	prefs.theDialog->setWindowTitle(this->data->title);
 
 
-	if((this->data->width!=0) || (this->data->height!=0))
+	if(this->data->customSize==true)
 		prefs.theDialog->resize(QSize(this->data->width,this->data->height));
 
 	return(prefs);
