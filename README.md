@@ -31,17 +31,36 @@ Options:
 ````
 Examples:<br>
 yadqt --type=fatal -t "my title" -b "some info"  -d "some info" --buttons="abort" --btntoerr 2>/dev/pts/2;echo $?<br>
+![fatal](screenshots/fatal.png "yadqt --type=fatal")<br>
+
 yadqt --type=aboutqt<br>
+
 yadqt --type=getitem -t "my title" -b "some input"  -d "one|three|two|end" --btntoerr 2>/dev/pts/2;echo $?<br>
+![fatal](screenshots/getitem.png "yadqt --type=getitem")<br>
+
 yadqt --type=gettext -t "my title" -b "some input"  -d "default input txt";echo $?<br>
+![fatal](screenshots/gettext.png "yadqt --type=gettext")<br>
+
 yadqt --type=info -t "my title" -b "some info"  -d "some info" --buttons="abort" --btntoerr 2>/dev/pts/2;echo $?<br>
+![fatal](screenshots/info.png "yadqt --type=info")<br>
+
 yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box" --btntoerr --default="default 1|box 2|box n"  2>/dev/pts/2;echo $?<br>
-yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box"  --default="default 1|box 2|box n" --width=300<br>
+![fatal](screenshots/form.png "yadqt --type=form")<br>
+
+yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box"  --default="default 1|box 2|box n" --width=300 --height=0<br>
+![fatal](screenshots/form2.png "yadqt --type=form")<br>
+
 yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab|tr '\n' '|')" --multiple --btntoerr --width=600 --height=350 2>/dev/pts/2;echo $?<br>
 yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  ;echo $?<br>
+![fatal](screenshots/list1.png "yadqt --type=list")<br>
+
 yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  --opseparator="newline";echo $?<br>
+
 yadqt --type=textfile --width=800 --height=400 -b /usr/include/linux/limits.h  --btntoerr  2>/dev/pts/3;echo $?<br>
-yadqt --type=imagefile -b '/media/RedDwarf/OddStuff/COTEOT/COTEOT.tiff' --height=420 --width=640<br>
+![fatal](screenshots/textfile.png "yadqt --type=textfile")<br>
+
+yadqt --type=imagefile -b '/home/keithhedger/Backgrounds/bc3.png' --height=420 --width=640<br>
+![fatal](screenshots/image.png "yadqt --type=imagefile")<br>
 yadqt --type=imagefile -b '/home/keithhedger/WallpapersByCatagory/AllHallows/halloween-graveyard.gif'<br>
 
 <br>
