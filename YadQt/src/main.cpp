@@ -23,8 +23,8 @@ int main(int argc, char **argv)
 			{{"t","title"},"Title.","YadQt"},
 			{{"b","body"},"Body.","Information"},
 			{{"d","default"},"Default text.",QDir::home().dirName()},
-			{"width","Dialog width.","0"},
-			{"height","Dialog height.","0"},
+			{"width","Dialog width.","640"},
+			{"height","Dialog height.","320"},
 			{"opseparator","Separator for multi item output ( use \"newline\" to use '\\n' ).","|"},
 			{"multiple","Select multiple items."},
 			{"btntoerr","Print button to stderr."},
@@ -37,8 +37,16 @@ int main(int argc, char **argv)
 	data.title=data.parser.value("title");
 	data.defaultText=data.parser.value("default");
 	data.body=data.parser.value("body");
-	data.width=data.parser.value("width").toInt();
-	data.height=data.parser.value("height").toInt();
+	if(data.parser.isSet("width"))
+		{
+			data.customSize=true;
+			data.width=data.parser.value("width").toInt();
+		}
+	if(data.parser.isSet("height"))
+		{
+			data.customSize=true;
+			data.height=data.parser.value("height").toInt();
+		}
 	if(data.parser.isSet("opseparator"))
 		{
 			if(data.parser.value("opseparator").compare("newline")==0)
@@ -92,6 +100,11 @@ int main(int argc, char **argv)
 					case SHOWTEXTFILE:
 						{
 							retval=files.showTextFile();
+						}
+						break;
+					case SHOWIMAGEFILE:
+						{
+							retval=files.showImageFile();
 						}
 						break;
 				}

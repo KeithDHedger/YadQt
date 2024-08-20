@@ -108,7 +108,10 @@ void DataClass::getBoxType()
 //list
 	if(str.compare("list",Qt::CaseInsensitive)==0)
 		this->boxType=GETLIST;
-//textfile
+//files
 	if(str.compare("textfile",Qt::CaseInsensitive)==0)
 		this->boxType=SHOWTEXTFILE;
+	if(str.compare("imagefile",Qt::CaseInsensitive)==0)
+		this->boxType=SHOWIMAGEFILE;
+
 }

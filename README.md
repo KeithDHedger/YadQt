@@ -29,6 +29,7 @@ Options:
   --buttons <Ok>               Buttons.
   --type <aboutqt>             Box Type.
 ````
+Examples:<br>
 yadqt --type=fatal -t "my title" -b "some info"  -d "some info" --buttons="abort" --btntoerr 2>/dev/pts/2;echo $?<br>
 yadqt --type=aboutqt<br>
 yadqt --type=getitem -t "my title" -b "some input"  -d "one|three|two|end" --btntoerr 2>/dev/pts/2;echo $?<br>
@@ -40,6 +41,9 @@ yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab|tr '\n' '|')" --m
 yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  ;echo $?<br>
 yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  --opseparator="newline";echo $?<br>
 yadqt --type=textfile --width=800 --height=400 -b /usr/include/linux/limits.h  --btntoerr  2>/dev/pts/3;echo $?<br>
+yadqt --type=imagefile -b '/media/RedDwarf/OddStuff/COTEOT/COTEOT.tiff' --height=420 --width=640<br>
+yadqt --type=imagefile -b '/home/keithhedger/WallpapersByCatagory/AllHallows/halloween-graveyard.gif'<br>
+
 <br>
 Some options are not yet implemented<br>
 <br>

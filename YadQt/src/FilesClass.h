@@ -30,6 +30,8 @@ class FilesClass
 		~FilesClass();
 
 		unsigned		showTextFile(void);
+		unsigned		showImageFile(void);
+
 	private:
 		DataClass	*data;
 };

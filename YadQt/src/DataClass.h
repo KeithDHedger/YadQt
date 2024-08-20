@@ -32,8 +32,9 @@ class DataClass
 		QString						title;
 		QString						body;
 		QString						defaultText;
-		int							width=0;
-		int							height=0;
+		int							width=640;
+		int							height=320;
+		bool							customSize=false;
 		int							boxType=-1;
 		QString						opsep="|";
 

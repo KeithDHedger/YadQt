@@ -1,4 +1,5 @@
 0.0.7
+Added image file view ( qt6 seems to support more image formats ).
 Fixed default output separator.
 Tided up build scripts.
 Added --enable-qt6 to configure options.

@@ -74,3 +74,47 @@ unsigned FilesClass::showTextFile(void)
 	theDialog->exec();
 	return(QMessageBox::Ok);		
 }
+
+unsigned FilesClass::showImageFile(void)
+{
+	QGraphicsScene		scene;
+	QGraphicsView		view(&scene);
+	QPixmap				pm(this->data->body);
+	QGraphicsPixmapItem	item(pm);
+  	QDialog				*theDialog;
+	QWidget				*hbox;
+	QVBoxLayout			*docvlayout=new QVBoxLayout;
+	QHBoxLayout			*hlayout;
+	QPushButton			*okbutton=new QPushButton("&Ok");
+
+    scene.addItem(&item);
+	theDialog=new QDialog();
+
+	QObject::connect(okbutton,&QPushButton::clicked,[this,theDialog]()
+		{
+			theDialog->accept();
+		});
+
+ 	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
+	docvlayout->addWidget(&view);
+	
+	hbox=new QWidget;
+	hlayout=new QHBoxLayout;
+	hlayout->setContentsMargins(0,0,0,0);
+	hbox->setLayout(hlayout);
+	hlayout->addStretch(1);
+	hlayout->addWidget(okbutton);
+
+	docvlayout->addWidget(hbox);
+
+	theDialog->setLayout(docvlayout);
+	theDialog->setWindowTitle(this->data->title);
+
+//	if((this->data->width!=0) || (this->data->height!=0))
+	if(this->data->customSize==true)
+		theDialog->resize(QSize(this->data->width,this->data->height));
+
+	theDialog->exec();
+	return(QMessageBox::Ok);
+}
+
