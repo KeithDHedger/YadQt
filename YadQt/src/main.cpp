@@ -11,6 +11,7 @@ int main(int argc, char **argv)
 	InputDialogsClass	input(&app,&data);
 	FormsClass			forms(&app,&data);
 	ListBoxClass			list(&app,&data);
+	FilesClass			files(&app,&data);
 
 	unsigned				retval=0;
 
@@ -22,8 +23,8 @@ int main(int argc, char **argv)
 			{{"t","title"},"Title.","YadQt"},
 			{{"b","body"},"Body.","Information"},
 			{{"d","default"},"Default text.",QDir::home().dirName()},
-			{"width","Dialog width.","640"},
-			{"height","Dialog height.","400"},
+			{"width","Dialog width.","0"},
+			{"height","Dialog height.","0"},
 			{"opseparator","Separator for multi item output ( use \"newline\" to use '\\n' ).","|"},
 			{"multiple","Select multiple items."},
 			{"btntoerr","Print button to stderr."},
@@ -38,10 +39,13 @@ int main(int argc, char **argv)
 	data.body=data.parser.value("body");
 	data.width=data.parser.value("width").toInt();
 	data.height=data.parser.value("height").toInt();
-	if(data.parser.value("opseparator").compare("newline")==0)
-		data.opsep="\n";
-	else
-		data.opsep=data.parser.value("opseparator");
+	if(data.parser.isSet("opseparator"))
+		{
+			if(data.parser.value("opseparator").compare("newline")==0)
+				data.opsep="\n";
+			else
+				data.opsep=data.parser.value("opseparator");
+		}
 	if(data.parser.isSet("type"))
 		{
 			data.getBoxType();
@@ -84,7 +88,12 @@ int main(int argc, char **argv)
 							retval=list.getList();
 						}
 						break;
-
+//files
+					case SHOWTEXTFILE:
+						{
+							retval=files.showTextFile();
+						}
+						break;
 				}
 		}
 	else

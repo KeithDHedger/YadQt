@@ -69,6 +69,7 @@ miniPrefsReturnStruct FormsClass::miniPrefsDialog(QStringList items)
 	hlayout->addStretch(0);
 	hlayout->addWidget(okbutton);
 
+	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
 	docvlayout->addWidget(hbox);
 
 	prefs.theDialog->setLayout(docvlayout);

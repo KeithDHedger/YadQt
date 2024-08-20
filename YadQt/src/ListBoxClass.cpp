@@ -61,6 +61,7 @@ unsigned ListBoxClass::getList(void)
 		listwidget->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
 	listwidget->addItems(items);
+	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
 	docvlayout->addWidget(listwidget);
 
 	hbox=new QWidget;

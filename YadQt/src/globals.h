@@ -14,6 +14,8 @@
 
 #include <vector>
 
+#define MARGINS 4
+
 class DataClass;
 
 #include "LFSTKUtilityClass.h"
@@ -22,8 +24,9 @@ class DataClass;
 #include "InputDialogsClass.h"
 #include "FormsClass.h"
 #include "ListBoxClass.h"
+#include "FilesClass.h"
 
-enum {ABOUT=0,ABOUTQT,WHAT,INFO,WARN,FATAL,GETTEXT,GETITEM,GETFORM,GETLIST};
+enum {ABOUT=0,ABOUTQT,WHAT,INFO,WARN,FATAL,GETTEXT,GETITEM,GETFORM,GETLIST,SHOWTEXTFILE};
 
 
 #endif

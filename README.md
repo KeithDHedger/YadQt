@@ -20,8 +20,8 @@ Options:
   -t, --title <YadQt>          Title.
   -b, --body <Information>     Body.
   -d, --default <keithhedger>  Default text.
-  --width <640>                Dialog width.
-  --height <400>               Dialog height.
+  --width <0>                  Dialog width.
+  --height <0>                 Dialog height.
   --opseparator <|>            Separator for multi item output ( use "newline"
                                to use '\n' ).
   --multiple                   Select multiple items.
@@ -39,7 +39,7 @@ yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box"  --defau
 yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab|tr '\n' '|')" --multiple --btntoerr --width=600 --height=350 2>/dev/pts/2;echo $?<br>
 yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  ;echo $?<br>
 yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  --opseparator="newline";echo $?<br>
-
+yadqt --type=textfile --width=800 --height=400 -b /usr/include/linux/limits.h  --btntoerr  2>/dev/pts/3;echo $?<br>
 <br>
 Some options are not yet implemented<br>
 <br>

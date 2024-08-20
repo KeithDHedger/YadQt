@@ -20,9 +20,13 @@ man1_MANS = ../resources/man/yadqt.1
 install-exec-hook:
 	install -D ../resources/pixmaps/YadQt.png $(DESTDIR)${prefix}/share/pixmaps/YadQt.png
 	install -D ../resources/pixmaps/YadQt.desktop $(DESTDIR)${prefix}/share/applications/YadQt.desktop
+	strip --strip-all $(DESTDIR)${bindir}/yadqt
 
 uninstall-hook:
 	rm -f $(DESTDIR)${prefix}/share/applications/YadQt.desktop
 	rm -f $(DESTDIR)${prefix}/share/pixmaps/YadQt.png
 	rm -fr $(pkgdatadir)
 
+all:
+	strip --strip-all yadqt
+	

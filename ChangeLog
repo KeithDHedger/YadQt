@@ -1,4 +1,10 @@
+0.0.7
+Fixed default output separator.
+Tided up build scripts.
+Added --enable-qt6 to configure options.
+
 0.0.5
+Added textfile view.
 Added output separator to options for multiple selections.
 Added list box.
 
