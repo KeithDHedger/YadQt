@@ -7,6 +7,7 @@ To build/install:
 make
 make install
 ````
+
 **`QUICK USE:`** <br>
 yadqt -h
 ```console
