@@ -15,22 +15,7 @@ int main(int argc, char **argv)
 	OrphanDialogClass	orphans(&app,&data);
 
 	unsigned				retval=0;
-/*
- -h, --help                   Displays help on commandline options.
-  --help-all                   Displays help including Qt specific options.
-  -v, --version                Displays version information.
-  -t, --title <YadQt>          Title.
-  -b, --body <Information>     Body.
-  -d, --default <keithhedger>  Default text ( lists, forms etc ).
-  --width <640>                Dialog width ( set to 0 for default size for dialog ).
-  --height <320>               Dialog height ( set to 0 for default size for dialog ).
-  --opseparator <|>            Separator for multi item output ( use "newline"
-                               to use '\n' ).
-  --multiple                   Select multiple items ( lists ).
-  --btntoerr                   Print button to stderr.
-  --buttons <Ok>               Buttons ( for info boxes ).
-  --type <aboutqt>             Box Type.
-*/
+
 	app.setApplicationVersion(VERSION);
 	data.parser.addHelpOption();
 	data.parser.addVersionOption();
