@@ -1,4 +1,5 @@
 0.1.0
+Added font dialog.
 Added "--ipseparator" to options ( for default text ).
 Added "--fromstdin" to options to set default data from stdin.
 

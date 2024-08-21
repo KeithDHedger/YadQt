@@ -117,5 +117,7 @@ void DataClass::getBoxType()
 //orphans
 	if(str.compare("colour",Qt::CaseInsensitive)==0)
 		this->boxType=GETCOLOUR;
+	if(str.compare("font",Qt::CaseInsensitive)==0)
+		this->boxType=GETFONT;
 
 }

@@ -132,7 +132,9 @@ int main(int argc, char **argv)
 							retval=orphans.getColour();
 						}
 						break;
-
+					case GETFONT:
+						retval=orphans.getFont();
+						break;
 				}
 		}
 	else

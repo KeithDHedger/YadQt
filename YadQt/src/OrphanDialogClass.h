@@ -31,6 +31,7 @@ class OrphanDialogClass
 		~OrphanDialogClass();
 
 		unsigned getColour(void);
+		unsigned getFont(void);
 
 	private:
 		DataClass	*data;

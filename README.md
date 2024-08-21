@@ -74,6 +74,9 @@ yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>
 ![fatal](screenshots/colour.png "yadqt --type=colour")<br>
 yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|xargs yadqt --type=gettext -t "Results" -b "Colour Selected"  -d <br>
 
+yadqt --type=font -d "Monospace,20"<br>
+![fatal](screenshots/font.png "yadqt --type=font")<br>
+
 **Simple search in current folder:**<br>
 Searches files for text and opens in default app.
 ```console

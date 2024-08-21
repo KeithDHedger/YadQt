@@ -33,8 +33,7 @@ OrphanDialogClass::~OrphanDialogClass()
 unsigned OrphanDialogClass::getColour(void)
 {
 	QColor	initcol(this->data->defaultText);
-	QColor	colour;//=QColorDialog::getColor(initcol,nullptr,this->data->title,QColorDialog::ShowAlphaChannel);
-
+	QColor	colour;
 	if(this->data->defaultText.length()>7)
 		colour=QColorDialog::getColor(initcol,nullptr,this->data->title,QColorDialog::ShowAlphaChannel);
 	else
@@ -48,5 +47,22 @@ unsigned OrphanDialogClass::getColour(void)
 				QTextStream(stdout) <<colour.name()<< Qt::endl;
 			return(QMessageBox::Ok);	
 		}
+	return(QMessageBox::Cancel);	
+}
+
+unsigned OrphanDialogClass::getFont(void)
+{
+	bool		ok;
+	QFont	tfont;
+	QFont	font;
+
+	tfont.fromString(this->data->defaultText);
+	font=QFontDialog::getFont(&ok,tfont,nullptr,this->data->title);
+	if(ok==true)
+		{
+			QTextStream(stdout) <<font.toString()<< Qt::endl;
+			return(QMessageBox::Ok);	
+		}
+
 	return(QMessageBox::Cancel);	
 }
