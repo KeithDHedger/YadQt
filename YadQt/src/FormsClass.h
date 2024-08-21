@@ -36,11 +36,10 @@ class FormsClass
 		FormsClass(QApplication *app,DataClass *data);
 		~FormsClass();
 
-		DataClass	*data;
-
-		unsigned		getForm(void);
+		unsigned					getForm(void);
 
 	private:
+		DataClass				*data;
 		miniPrefsReturnStruct	miniPrefsDialog(QStringList items);
 
 };

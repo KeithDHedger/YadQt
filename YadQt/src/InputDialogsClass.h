@@ -29,10 +29,12 @@ class InputDialogsClass
 		InputDialogsClass(QApplication *app,DataClass *data);
 		~InputDialogsClass();
 
-		DataClass	*data;
-
 		unsigned		getTextInput(void);
 		unsigned		getItem(void);
+
+	private:
+		DataClass	*data;
+
 };
 
 #endif

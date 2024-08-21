@@ -30,7 +30,7 @@ Options:
   --type <aboutqt>             Box Type.
 ````
 Examples:<br>
-yadqt --type=fatal -t "my title" -b "some info"  -d "some info" --buttons="abort" --btntoerr 2>/dev/pts/2;echo $?<br>
+yadqt --type=fatal -t "DANGER!" -b "BSOD!" --buttons="abort|Ignore" --btntoerr 2>/dev/pts/2;echo $?<br>
 ![fatal](screenshots/fatal.png "yadqt --type=fatal")<br>
 
 yadqt --type=aboutqt<br>
@@ -41,7 +41,7 @@ yadqt --type=getitem -t "my title" -b "some input"  -d "one|three|two|end" --btn
 yadqt --type=gettext -t "my title" -b "some input"  -d "default input txt";echo $?<br>
 ![fatal](screenshots/gettext.png "yadqt --type=gettext")<br>
 
-yadqt --type=info -t "my title" -b "some info"  -d "some info" --buttons="abort" --btntoerr 2>/dev/pts/2;echo $?<br>
+yadqt --type=info -b "Some info for you" --buttons="ok" --btntoerr 2>/dev/pts/2;echo $?<br>
 ![fatal](screenshots/info.png "yadqt --type=info")<br>
 
 yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box" --btntoerr --default="default 1|box 2|box n"  2>/dev/pts/2;echo $?<br>

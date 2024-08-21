@@ -6,8 +6,8 @@ int main(int argc, char **argv)
 {
 	QApplication			app(argc,argv);
 
-	InfoBoxClass			info(&app);
 	DataClass			data;
+	InfoBoxClass			info(&app,&data);
 	InputDialogsClass	input(&app,&data);
 	FormsClass			forms(&app,&data);
 	ListBoxClass			list(&app,&data);
@@ -69,7 +69,6 @@ int main(int argc, char **argv)
 					case FATAL:
 						{
 							data.setButtons();
-							info.data=&data;
 							retval=info.showDialog();
 						}
 						break;
@@ -120,7 +119,6 @@ int main(int argc, char **argv)
 	else
 		{
 			data.boxType=ABOUTQT;
-			info.data=&data;
 			retval=info.showDialog();
 		}
 
@@ -141,13 +139,13 @@ int main(int argc, char **argv)
 			case QMessageBox::Yes:
 			case QMessageBox::YesToAll:
 			case QMessageBox::Retry:
+			case QMessageBox::Ignore:
 				retval=0;
 				break;
 			case QMessageBox::Cancel:
 			case QMessageBox::No:
 			case QMessageBox::NoToAll:
 			case QMessageBox::Abort:
-			case QMessageBox::Ignore:
 				retval=1;
 				break;
 			default:

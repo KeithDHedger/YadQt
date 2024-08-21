@@ -20,8 +20,9 @@
 
 #include "InfoBoxClass.h"
 
-InfoBoxClass::InfoBoxClass(QApplication *app)
+InfoBoxClass::InfoBoxClass(QApplication *app,DataClass *data)
 {
+	this->data=data;
 }
 
 InfoBoxClass::~InfoBoxClass()

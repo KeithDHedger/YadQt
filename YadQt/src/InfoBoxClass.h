@@ -27,13 +27,13 @@
 class InfoBoxClass
 {
 	public:
-		InfoBoxClass(QApplication *app);
+		InfoBoxClass(QApplication *app,DataClass *data);
 		~InfoBoxClass();
-
-		DataClass	*data;
 
 		unsigned		showDialog(void);
 
+	private:
+		DataClass	*data;
 };
 
 #endif

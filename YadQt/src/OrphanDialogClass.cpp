@@ -21,15 +21,15 @@
 #include "OrphanDialogClass.h"
 #include<QColor>
 
-OrphanDialogClass::~OrphanDialogClass()
-{
-}
-
 OrphanDialogClass::OrphanDialogClass(QApplication *app,DataClass *data)
 {
 	this->data=data;
 }
-//QColor QColorDialog::getColor(const QColor &initial = Qt::white, QWidget *parent = nullptr, const QString &title = QString(), ColorDialogOptions options = ColorDialogOptions())
+
+OrphanDialogClass::~OrphanDialogClass()
+{
+}
+
 unsigned OrphanDialogClass::getColour(void)
 {
 	QColor	initcol(this->data->defaultText);

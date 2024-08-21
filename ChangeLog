@@ -1,4 +1,5 @@
 0.0.7
+Tided up class inits.
 Display results of colour chooser from desktopfile.
 Added a desktop file for the colour chooser.
 Auto detect whether to include alpha channel in colour dialog based on start colour.
