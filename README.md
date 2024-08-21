@@ -67,6 +67,14 @@ yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>
 ![fatal](screenshots/colour.png "yadqt --type=colour")<br>
 yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|xargs yadqt --type=gettext -t "Results" -b "Colour Selected"  -d <br>
 
+**Simple search in current folder:**<br>
+Searches files for text and opens in default app.
+```console
+find .  -print0 |xargs -0 grep -s --binary-files=without-match --ignore-case --binary-files=without-match --line-number "$(yadqt --type=gettext -t Search -b "Search for")"|xargs yadqt --type=list -t "Found" --width 800 --default="$(cat -|tr '\n' '|')"|awk -F: '{print $1}'|xargs xdg-open
+````
+![fatal](screenshots/search1.png "Search example")<br>
+![fatal](screenshots/search2.png "Search example")<br>
+
 <br>
 Some options are not yet implemented<br>
 <br>
