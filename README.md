@@ -33,8 +33,7 @@ Options:
   --buttons <Ok>               Buttons ( for info boxes ).
   --type <aboutqt>             Box Type ( no type will display aboutbox for Qt ).
 ````
-**Examples:**
-<br>
+**Examples:** <br>
 yadqt --type=fatal -t "DANGER!" -b "BSOD!" --buttons="abort|Ignore" --btntoerr 2>/dev/pts/2;echo $?<br>
 ![fatal](screenshots/fatal.png "yadqt --type=fatal")<br>
 
