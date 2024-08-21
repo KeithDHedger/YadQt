@@ -47,7 +47,7 @@ unsigned FilesClass::showTextFile(void)
 
 	thetext=new QPlainTextEdit(nullptr);
 	thetext->setReadOnly(true);
-	QFile file(this->data->body);
+	QFile file(this->data->defaultText);
 	file.open(QFile::ReadOnly | QFile::Text);
 	thetext->setPlainText(file.readAll());
 	file.close();
@@ -78,7 +78,7 @@ unsigned FilesClass::showImageFile(void)
 {
 	QGraphicsScene		scene;
 	QGraphicsView		view(&scene);
-	QPixmap				pm(this->data->body);
+	QPixmap				pm(this->data->defaultText);
 	QGraphicsPixmapItem	item(pm);
   	QDialog				*theDialog;
 	QWidget				*hbox;

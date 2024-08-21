@@ -15,7 +15,22 @@ int main(int argc, char **argv)
 	OrphanDialogClass	orphans(&app,&data);
 
 	unsigned				retval=0;
-
+/*
+ -h, --help                   Displays help on commandline options.
+  --help-all                   Displays help including Qt specific options.
+  -v, --version                Displays version information.
+  -t, --title <YadQt>          Title.
+  -b, --body <Information>     Body.
+  -d, --default <keithhedger>  Default text ( lists, forms etc ).
+  --width <640>                Dialog width ( set to 0 for default size for dialog ).
+  --height <320>               Dialog height ( set to 0 for default size for dialog ).
+  --opseparator <|>            Separator for multi item output ( use "newline"
+                               to use '\n' ).
+  --multiple                   Select multiple items ( lists ).
+  --btntoerr                   Print button to stderr.
+  --buttons <Ok>               Buttons ( for info boxes ).
+  --type <aboutqt>             Box Type.
+*/
 	app.setApplicationVersion(VERSION);
 	data.parser.addHelpOption();
 	data.parser.addVersionOption();
@@ -23,14 +38,14 @@ int main(int argc, char **argv)
 		{
 			{{"t","title"},"Title.","YadQt"},
 			{{"b","body"},"Body.","Information"},
-			{{"d","default"},"Default text.",QDir::home().dirName()},
-			{"width","Dialog width.","640"},
-			{"height","Dialog height.","320"},
+			{{"d","default"},"Default text ( lists, forms etc ).",QDir::home().dirName()},
+			{"width","Dialog width ( set to 0 for default size for dialog ).","640"},
+			{"height","Dialog height ( set to 0 for default size for dialog ).","320"},
 			{"opseparator","Separator for multi item output ( use \"newline\" to use '\\n' ).","|"},
-			{"multiple","Select multiple items."},
+			{"multiple","Select multiple items ( lists )."},
 			{"btntoerr","Print button to stderr."},
-			{"buttons","Buttons.","Ok"},
-			{"type","Box Type.","aboutqt"},
+			{"buttons","Buttons ( for info boxes ).","Ok"},
+			{"type","Box Type ( no type will display aboutbox for Qt ).","aboutqt"},
 	});
 
 	app.setWindowIcon(QIcon::fromTheme("user-info"));

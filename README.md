@@ -7,8 +7,7 @@ To build/install:
 make
 make install
 ````
-
-QUICK USE:<br>
+**QUICK USE:**<br>
 yadqt -h
 ```console
 Usage: yadqt [options]
@@ -19,17 +18,19 @@ Options:
   -v, --version                Displays version information.
   -t, --title <YadQt>          Title.
   -b, --body <Information>     Body.
-  -d, --default <keithhedger>  Default text.
-  --width <0>                  Dialog width.
-  --height <0>                 Dialog height.
+  -d, --default <keithhedger>  Default text ( lists, forms etc ).
+  --width <640>                Dialog width ( set to 0 for default size for
+                               dialog ).
+  --height <320>               Dialog height ( set to 0 for default size for
+                               dialog ).
   --opseparator <|>            Separator for multi item output ( use "newline"
                                to use '\n' ).
-  --multiple                   Select multiple items.
+  --multiple                   Select multiple items ( lists ).
   --btntoerr                   Print button to stderr.
-  --buttons <Ok>               Buttons.
-  --type <aboutqt>             Box Type.
+  --buttons <Ok>               Buttons ( for info boxes ).
+  --type <aboutqt>             Box Type ( no type will display aboutbox for Qt ).
 ````
-Examples:<br>
+**Examples:**<br>
 yadqt --type=fatal -t "DANGER!" -b "BSOD!" --buttons="abort|Ignore" --btntoerr 2>/dev/pts/2;echo $?<br>
 ![fatal](screenshots/fatal.png "yadqt --type=fatal")<br>
 
@@ -50,18 +51,18 @@ yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box" --btntoe
 yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box"  --default="default 1|box 2|box n" --width=300 --height=0<br>
 ![fatal](screenshots/form2.png "yadqt --type=form")<br>
 
-yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab|tr '\n' '|')" --multiple --btntoerr --width=600 --height=350 2>/dev/pts/2;echo $?<br>
+yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab|tr '\\n' '|')" --multiple --btntoerr --width=600 --height=350 2>/dev/pts/2;echo $?<br>
 yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  ;echo $?<br>
 ![fatal](screenshots/list1.png "yadqt --type=list")<br>
 
 yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  --opseparator="newline";echo $?<br>
 
-yadqt --type=textfile --width=800 --height=400 -b /usr/include/linux/limits.h  --btntoerr  2>/dev/pts/3;echo $?<br>
+yadqt --type=textfile --width=800 --height=400 -d /usr/include/linux/limits.h  --btntoerr  2>/dev/pts/3;echo $?<br>
 ![fatal](screenshots/textfile.png "yadqt --type=textfile")<br>
 
-yadqt --type=imagefile -b '/home/keithhedger/Backgrounds/bc3.png' --height=420 --width=640<br>
+yadqt --type=imagefile -d '/home/keithhedger/Backgrounds/bc3.png' --height=420 --width=640<br>
 ![fatal](screenshots/image.png "yadqt --type=imagefile")<br>
-yadqt --type=imagefile -b '/home/keithhedger/WallpapersByCatagory/AllHallows/halloween-graveyard.gif'<br>
+yadqt --type=imagefile -d '/home/keithhedger/WallpapersByCatagory/AllHallows/halloween-graveyard.gif'<br>
 
 yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>/dev/pts/2;echo $?<br>
 ![fatal](screenshots/colour.png "yadqt --type=colour")<br>
