@@ -1,10 +1,10 @@
 [Desktop Entry]
 Version=1.0
 Encoding=UTF-8
-Name=YadQt Colour Picker.
-Comment=Display a QT colour chooser.
+Name=YadQt Colour Picker
+Comment=Display a QT colour chooser
 Terminal=false
 Type=Application
 Categories=Utility;
 Icon=preferences-desktop-theme
-Exec=yadqt --type=colour -t "Select a colour..." --default="#ffffffff"
+Exec=yadqt --type=colour -t "Select a colour..." --default="#ffffffff"|xargs yadqt --type=gettext -t "Results" -b "Colour Selected"  -d 

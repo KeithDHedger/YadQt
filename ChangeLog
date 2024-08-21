@@ -1,4 +1,5 @@
 0.0.7
+Display results of colour chooser from desktopfile.
 Added a desktop file for the colour chooser.
 Auto detect whether to include alpha channel in colour dialog based on start colour.
 Added colour dialog.

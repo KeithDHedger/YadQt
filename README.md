@@ -65,6 +65,7 @@ yadqt --type=imagefile -b '/home/keithhedger/WallpapersByCatagory/AllHallows/hal
 
 yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>/dev/pts/2;echo $?<br>
 ![fatal](screenshots/colour.png "yadqt --type=colour")<br>
+yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|xargs yadqt --type=gettext -t "Results" -b "Colour Selected"  -d <br>
 
 <br>
 Some options are not yet implemented<br>
