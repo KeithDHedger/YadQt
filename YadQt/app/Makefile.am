@@ -13,6 +13,9 @@ pixfiles_DATA = ../resources/pixmaps/*
 scriptfilesdir = $(pkgdatadir)/scripts
 scriptfiles_SCRIPTS = ../resources/scripts/README
 
+desktopfilesdir =  ${datadir}/applications
+desktopfiles_SCRIPTS = ../resources/applications/*
+
 bin_PROGRAMS = yadqt
 
 man1_MANS = ../resources/man/yadqt.1

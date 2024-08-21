@@ -12,6 +12,7 @@ int main(int argc, char **argv)
 	FormsClass			forms(&app,&data);
 	ListBoxClass			list(&app,&data);
 	FilesClass			files(&app,&data);
+	OrphanDialogClass	orphans(&app,&data);
 
 	unsigned				retval=0;
 
@@ -107,6 +108,13 @@ int main(int argc, char **argv)
 							retval=files.showImageFile();
 						}
 						break;
+//orphans
+					case GETCOLOUR:
+						{
+							retval=orphans.getColour();
+						}
+						break;
+
 				}
 		}
 	else

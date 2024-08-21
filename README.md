@@ -63,6 +63,9 @@ yadqt --type=imagefile -b '/home/keithhedger/Backgrounds/bc3.png' --height=420 -
 ![fatal](screenshots/image.png "yadqt --type=imagefile")<br>
 yadqt --type=imagefile -b '/home/keithhedger/WallpapersByCatagory/AllHallows/halloween-graveyard.gif'<br>
 
+yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>/dev/pts/2;echo $?<br>
+![fatal](screenshots/colour.png "yadqt --type=colour")<br>
+
 <br>
 Some options are not yet implemented<br>
 <br>

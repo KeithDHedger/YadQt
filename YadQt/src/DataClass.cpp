@@ -114,4 +114,8 @@ void DataClass::getBoxType()
 	if(str.compare("imagefile",Qt::CaseInsensitive)==0)
 		this->boxType=SHOWIMAGEFILE;
 
+//orphans
+	if(str.compare("colour",Qt::CaseInsensitive)==0)
+		this->boxType=GETCOLOUR;
+
 }
