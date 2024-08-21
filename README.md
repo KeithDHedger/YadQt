@@ -8,7 +8,7 @@ make
 make install
 ````
 
-**`QUICK USE:`** <br>
+**QUICK USE:** <br>
 yadqt -h
 ```console
 Usage: yadqt [options]
