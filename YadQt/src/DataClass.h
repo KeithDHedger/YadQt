@@ -37,6 +37,7 @@ class DataClass
 		bool							customSize=false;
 		int							boxType=-1;
 		QString						opsep="|";
+		QString						ipsep="|";
 
 		QMessageBox::StandardButtons	buttons=QMessageBox::NoButton;
 		QCommandLineParser			parser;

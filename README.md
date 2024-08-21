@@ -19,11 +19,14 @@ Options:
   -t, --title <YadQt>          Title.
   -b, --body <Information>     Body.
   -d, --default <keithhedger>  Default text ( lists, forms etc ).
+  --fromstdin                  Read default data from stdin.
   --width <640>                Dialog width ( set to 0 for default size for
                                dialog ).
   --height <320>               Dialog height ( set to 0 for default size for
                                dialog ).
   --opseparator <|>            Separator for multi item output ( use "newline"
+                               to use '\n' ).
+  --ipseparator <|>            Separator for multi item default text input ( use "newline"
                                to use '\n' ).
   --multiple                   Select multiple items ( lists ).
   --btntoerr                   Print button to stderr.
@@ -38,6 +41,7 @@ yadqt --type=aboutqt<br>
 
 yadqt --type=getitem -t "my title" -b "some input"  -d "one|three|two|end" --btntoerr 2>/dev/pts/2;echo $?<br>
 ![fatal](screenshots/getitem.png "yadqt --type=getitem")<br>
+cat /usr/include/linux/limits.h|yadqt --type=getitem -t "Select Item" -b "Items:"  --ipseparator=newline --fromstdin<br>
 
 yadqt --type=gettext -t "my title" -b "some input"  -d "default input txt";echo $?<br>
 ![fatal](screenshots/gettext.png "yadqt --type=gettext")<br>
@@ -53,6 +57,7 @@ yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box"  --defau
 
 yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab|tr '\\n' '|')" --multiple --btntoerr --width=600 --height=350 2>/dev/pts/2;echo $?<br>
 yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  ;echo $?<br>
+yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab)" --btntoerr --width=600 --height=350 --ipseparator="newline"<br>
 ![fatal](screenshots/list1.png "yadqt --type=list")<br>
 
 yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  --opseparator="newline";echo $?<br>
@@ -71,7 +76,7 @@ yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|xargs yadqt --
 **Simple search in current folder:**<br>
 Searches files for text and opens in default app.
 ```console
-find .  -print0 |xargs -0 grep -s --binary-files=without-match --ignore-case --binary-files=without-match --line-number "$(yadqt --type=gettext -t Search -b "Search for")"|xargs yadqt --type=list -t "Found" --width 800 --default="$(cat -|tr '\n' '|')"|awk -F: '{print $1}'|xargs xdg-open
+find .  -print0 |xargs -0 grep -s --binary-files=without-match --ignore-case --binary-files=without-match --line-number "$(yadqt --type=gettext -t Search -b "Search for")"|yadqt --type=list -t "Found" --width 800 --fromstdin --ipseparator=newline |awk -F: '{print $1}'|xargs xdg-open
 ````
 ![fatal](screenshots/search1.png "Search example")<br>
 ![fatal](screenshots/search2.png "Search example")<br>
@@ -80,7 +85,7 @@ find .  -print0 |xargs -0 grep -s --binary-files=without-match --ignore-case --b
 Some options are not yet implemented<br>
 <br>
 TODO<br>
-documentation :(<br>
+documentation - ONGOING ... :(<br>
 more boxes<br>
 set o/p separator for data.DONE<br>
-set i/p separator for data.<br>
+set i/p separator for data.DONE<br>

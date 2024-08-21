@@ -1,3 +1,7 @@
+0.1.0
+Added "--ipseparator" to options ( for default text ).
+Added "--fromstdin" to options to set default data from stdin.
+
 0.0.7
 Standardised options.
 More docs.

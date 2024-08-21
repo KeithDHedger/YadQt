@@ -24,9 +24,11 @@ int main(int argc, char **argv)
 			{{"t","title"},"Title.","YadQt"},
 			{{"b","body"},"Body.","Information"},
 			{{"d","default"},"Default text ( lists, forms etc ).",QDir::home().dirName()},
+			{"fromstdin","Read default data from stdin."},
 			{"width","Dialog width ( set to 0 for default size for dialog ).","640"},
 			{"height","Dialog height ( set to 0 for default size for dialog ).","320"},
 			{"opseparator","Separator for multi item output ( use \"newline\" to use '\\n' ).","|"},
+			{"ipseparator","Separator for multi item default text input ( use \"newline\" to use '\\n' ).","|"},
 			{"multiple","Select multiple items ( lists )."},
 			{"btntoerr","Print button to stderr."},
 			{"buttons","Buttons ( for info boxes ).","Ok"},
@@ -36,7 +38,17 @@ int main(int argc, char **argv)
 	app.setWindowIcon(QIcon::fromTheme("user-info"));
 	data.parser.process(app.arguments());
 	data.title=data.parser.value("title");
-	data.defaultText=data.parser.value("default");
+	if(data.parser.isSet("fromstdin")==true)
+		{
+			QTextStream	datastream(stdin);
+    			QString		datain = datastream.readAll();
+    			datain=LFSTK_UtilityClass::LFSTK_strStrip(datain.toStdString()).c_str();
+    			data.defaultText=datain;
+		}
+	else
+		{
+			data.defaultText=data.parser.value("default");
+		}
 	data.body=data.parser.value("body");
 	if(data.parser.isSet("width"))
 		{
@@ -54,6 +66,13 @@ int main(int argc, char **argv)
 				data.opsep="\n";
 			else
 				data.opsep=data.parser.value("opseparator");
+		}
+	if(data.parser.isSet("ipseparator"))
+		{
+			if(data.parser.value("ipseparator").compare("newline")==0)
+				data.ipsep="\n";
+			else
+				data.ipsep=data.parser.value("ipseparator");
 		}
 	if(data.parser.isSet("type"))
 		{
