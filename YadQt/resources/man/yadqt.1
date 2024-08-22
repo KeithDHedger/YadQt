@@ -1,19 +1,162 @@
-.\" yadqt
-.TH "yadqt" "1" "0.0.0" "K.D.Hedger" "User Commands"
+.TH "YADQT" "1" "0.1.0" "K.D.Hedger" "User Commands"
 .SH "NAME"
-yadqt \- manual page for yadqt 0.0.0
-.SH "SYNOPSIS"
-.B yadqt
-.SH "DESCRIPTION"
-A GUI programme.
+yadqt - Create Qt5/6 dialogs from the commandline.
+.br
 
+.SH "SYNOPSIS"
+\fByadqt \fR[\fIoptions\fR]
+.br
+
+.SH "DESCRIPTION"
+Create Qt5 or Qt6 dialogs from the commandline.
+.br
+This is a similar app to Yad for gtk.
+.br
+
+Current dialog types:
+.br
+about
+.br
+aboutqt
+.br
+query
+.br
+info
+.br
+warn
+.br
+fatal
+.br
+input
+.br
+getitem
+.br
+form
+.br
+list
+.br
+textfile
+.br
+imagefile
+.br
+colour
+.br
+font
+.br
+text
+.br
+.SH "OPTIONS"
+\fB-h\fR, \fB--help\fR
+.br
+       Displays help on commandline options.
+.br
+
+\fB--help-all\fR
+.br
+       Displays help including Qt specific options.
+.br
+
+\fB-v\fR, \fB--version\fR
+.br
+       Displays version information.
+.br
+
+\fB-t\fR, \fB--title \fR<YadQt>
+.br
+       Title.
+.br
+
+\fB-b\fR, \fB--body \fR<Information>
+.br
+       Body.
+.br
+
+\fB-d\fR, \fB--default \fR<keithhedger>
+.br
+       Default text ( lists, forms etc ).
+.br
+
+\fB--fromstdin\fR
+.br
+       Read default data from stdin.
+.br
+
+\fB--width \fR<640>
+.br
+       Dialog width ( set to 0 for default size for dialog ).
+.br
+
+\fB--height \fR<320>
+.br
+       Dialog height ( set to 0 for default size for dialog ).
+.br
+
+\fB--opseparator \fR<|>
+.br
+       Separator for multi item output ( use "newline" to use '\n' ).
+.br
+
+\fB--ipseparator \fR<|>
+.br
+       Separator for multi item default text input ( use "newline" to use '\n' ).
+.br
+
+\fB--multiple\fR
+.br
+       Select multiple items ( lists ).
+.br
+
+\fB--btntoerr\fR
+.br
+       Print button to stderr.
+.br
+
+\fB--buttons \fR<Ok>
+.br
+       Buttons ( for info boxes ).
+.br
+
+\fB--type \fR<aboutqt>
+.br
+       Box Type ( no type will display aboutbox for Qt ).
+.br
 
 .SH "EXAMPLES"
-.LP 
-	does somithing
-.IP 
-yadqt
-.LP 
+Create a fatal warning dialog, sending button chosen to /dev/pts/2 and display return code.
+.br
+yadqt --type=fatal -t "DANGER!" -b "BSOD!" --buttons="abort|Ignore" --btntoerr 2>/dev/pts/2;echo $?
+.br
 
-.SH "REPORTING BUGS"
-Report bugs to kdhedger@yahoo.co.uk
+Simple form.
+.br
+yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box"  --default="default 1|box 2|box n" --width=300 --height=0
+.br
+
+Show text from stdin.
+.br
+while read;do echo $REPLY;done< <(cat /etc/fstab)|yadqt --type=text --fromstdin --width=800 -t "Show Text"
+.br
+
+Display colour dialog and show result in input dialog.
+.br
+yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|xargs yadqt --type=input -t "Results" -b "Colour Selected"  -d
+.br
+
+Simple search in current folder:
+.br
+Searches files for text and opens in default app.
+.br
+find .  -print0 |xargs -0 grep -s --binary-files=without-match --ignore-case --binary-files=without-match --line-number "$(yadqt --type=input -t Search -b "Search for")"|yadqt --type=list -t "Found" --width 800 --fromstdin --ipseparator=newline |awk -F: '{print $1}'|xargs xdg-open
+.br
+
+For more examples and screensots go to:
+.br
+https://github.com/KeithDHedger/YadQt
+.br
+.SH "AUTHORS"
+Bugs, suggestions etc to:
+.br
+keithdhedger@gmail.com
+.br
+https://keithdhedger.github.io
+.br
