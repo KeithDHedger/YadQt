@@ -35,15 +35,16 @@ Options:
   --type <aboutqt>             Box Type ( no type will display aboutbox for Qt ).
 ````
 **Examples:**<br>
-````yadqt --type=aboutqt````
+````yadqt --type=aboutqt````<br>
+
 ````yadqt --type=fatal -t "DANGER!" -b "BSOD!" --buttons="abort|Ignore" --btntoerr 2>/dev/pts/2;echo $?````<br>
 ![fatal](screenshots/fatal.png "yadqt --type=fatal")<br>
 
+````cat /usr/include/linux/limits.h|yadqt --type=getitem -t "Select Item" -b "Items:"  --ipseparator=newline --fromstdin````<br>
 ````yadqt --type=getitem -t "my title" -b "some input"  -d "one|three|two|end" --btntoerr 2>/dev/pts/2;echo $?````<br>
 ![fatal](screenshots/getitem.png "yadqt --type=getitem")<br>
-````cat /usr/include/linux/limits.h|yadqt --type=getitem -t "Select Item" -b "Items:"  --ipseparator=newline --fromstdin````
 
-````yadqt --type=inout -t "my title" -b "some input"  -d "default input txt";echo $?````<br>
+````yadqt --type=input -t "my title" -b "some input"  -d "default input txt";echo $?````<br>
 ![fatal](screenshots/input.png "yadqt --type=input")<br>
 
 ````yadqt --type=info -b "Some info for you" --buttons="ok" --btntoerr 2>/dev/pts/2;echo $?````<br>
