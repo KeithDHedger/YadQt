@@ -1,4 +1,6 @@
 0.1.0
+Added type "text".
+Changed type "gettext to "input" 
 Added font dialog.
 Added "--ipseparator" to options ( for default text ).
 Added "--fromstdin" to options to set default data from stdin.

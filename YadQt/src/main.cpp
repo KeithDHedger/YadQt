@@ -93,7 +93,7 @@ int main(int argc, char **argv)
 						break;
 
 //input boxes
-					case GETTEXT:
+					case GETINPUT:
 						{
 							retval=input.getTextInput();
 						}
@@ -118,8 +118,12 @@ int main(int argc, char **argv)
 //files
 					case SHOWTEXTFILE:
 						{
-							retval=files.showTextFile();
+							retval=files.showTextFile(true);
 						}
+						break;
+					case GETTEXT:
+						retval=files.showTextFile(false);
+						//retval=orphans.getText();
 						break;
 					case SHOWIMAGEFILE:
 						{
@@ -128,9 +132,7 @@ int main(int argc, char **argv)
 						break;
 //orphans
 					case GETCOLOUR:
-						{
-							retval=orphans.getColour();
-						}
+						retval=orphans.getColour();
 						break;
 					case GETFONT:
 						retval=orphans.getFont();

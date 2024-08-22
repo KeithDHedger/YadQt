@@ -29,7 +29,7 @@ FilesClass::FilesClass(QApplication *app,DataClass *data)
 	this->data=data;
 }
 
-unsigned FilesClass::showTextFile(void)
+unsigned FilesClass::showTextFile(bool file)
 {
 	QPlainTextEdit		*thetext;
 	QDialog				*theDialog;
@@ -47,10 +47,20 @@ unsigned FilesClass::showTextFile(void)
 
 	thetext=new QPlainTextEdit(nullptr);
 	thetext->setReadOnly(true);
-	QFile file(this->data->defaultText);
-	file.open(QFile::ReadOnly | QFile::Text);
-	thetext->setPlainText(file.readAll());
-	file.close();
+
+	if(file==true)
+		{
+			QFile file(this->data->defaultText);
+			file.open(QFile::ReadOnly | QFile::Text);
+			thetext->setPlainText(file.readAll());
+			file.close();
+		}
+	else
+		{
+			QString items;
+			items=QString(LFSTK_UtilityClass::LFSTK_strReplaceAllChar(this->data->defaultText.toStdString(),this->data->ipsep.toStdString(),"\n").c_str());
+			thetext->setPlainText(items);
+		}
 
 	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
 	docvlayout->addWidget(thetext);

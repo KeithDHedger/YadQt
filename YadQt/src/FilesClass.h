@@ -29,7 +29,7 @@ class FilesClass
 		FilesClass(QApplication *app,DataClass *data);
 		~FilesClass();
 
-		unsigned		showTextFile(void);
+		unsigned		showTextFile(bool file);
 		unsigned		showImageFile(void);
 
 	private:

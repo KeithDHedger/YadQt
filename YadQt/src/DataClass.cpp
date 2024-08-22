@@ -96,8 +96,8 @@ void DataClass::getBoxType()
 		this->boxType=FATAL;
 
 //input boxes
-	if(str.compare("gettext",Qt::CaseInsensitive)==0)
-		this->boxType=GETTEXT;
+	if(str.compare("input",Qt::CaseInsensitive)==0)
+		this->boxType=GETINPUT;
 	if(str.compare("getitem",Qt::CaseInsensitive)==0)
 		this->boxType=GETITEM;
 
@@ -119,5 +119,7 @@ void DataClass::getBoxType()
 		this->boxType=GETCOLOUR;
 	if(str.compare("font",Qt::CaseInsensitive)==0)
 		this->boxType=GETFONT;
+	if(str.compare("text",Qt::CaseInsensitive)==0)
+		this->boxType=GETTEXT;
 
 }

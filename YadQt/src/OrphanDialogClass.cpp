@@ -66,3 +66,45 @@ unsigned OrphanDialogClass::getFont(void)
 
 	return(QMessageBox::Cancel);	
 }
+
+//unsigned OrphanDialogClass::getText(void)
+//{
+//	QPlainTextEdit		*thetext;
+//	QDialog				*theDialog;
+//	QWidget				*hbox;
+//	QVBoxLayout			*docvlayout=new QVBoxLayout;
+//	QHBoxLayout			*hlayout;
+//	QPushButton			*okbutton=new QPushButton("&Ok");
+//
+//	theDialog=new QDialog();
+//
+//	QObject::connect(okbutton,&QPushButton::clicked,[this,theDialog]()
+//		{
+//			theDialog->accept();
+//		});
+//
+//	thetext=new QPlainTextEdit(nullptr);
+//	thetext->setReadOnly(true);
+//	thetext->setPlainText(this->data->defaultText);
+//
+//	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
+//	docvlayout->addWidget(thetext);
+//
+//	hbox=new QWidget;
+//	hlayout=new QHBoxLayout;
+//	hlayout->setContentsMargins(0,0,0,0);
+//	hbox->setLayout(hlayout);
+//	hlayout->addStretch(1);
+//	hlayout->addWidget(okbutton);
+//
+//	docvlayout->addWidget(hbox);
+//
+//	theDialog->setLayout(docvlayout);
+//	theDialog->setWindowTitle(this->data->title);
+//
+//	if(this->data->customSize==true)
+//		theDialog->resize(QSize(this->data->width,this->data->height));
+//
+//	theDialog->exec();
+//	return(QMessageBox::Ok);
+//}
