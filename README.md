@@ -55,38 +55,30 @@ Options:
 ````yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box"  --default="default 1|box 2|box n" --width=300 --height=0````<br>
 ![fatal](screenshots/form2.png "yadqt --type=form")<br>
 
-````console
-yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab|tr '\\n' '|')" --multiple --btntoerr --width=600 --height=350 2>/dev/pts/2;echo $?
-yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  ;echo $?
-````
-
+````yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab|tr '\\n' '|')" --multiple --btntoerr --width=600 --height=350 2>/dev/pts/2;echo $?````<br>
 ````yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab)" --btntoerr --width=600 --height=350 --ipseparator="newline"````<br>
+````yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  --opseparator="newline";echo $?````<br>
 ![fatal](screenshots/list1.png "yadqt --type=list")<br>
 
-yadqt \--type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  --opseparator="newline";echo $?<br>
+````yadqt --type=text -t "Show Text" --default="some text@second line@third line" --ipseparator=@````<br>
+![fatal](screenshots/text1.png "yadqt --type=text")<br>
 
-yadqt \--type=text -t "Show Text" \--default="some text@second line@third line" --ipseparator=@<br>
-![fatal](screenshots/text1.png "yadqt \--type=text")<br>
+````while read;do echo $REPLY;done< <(cat /etc/fstab)|yadqt --type=text --fromstdin --width=800 -t "Show Text"````<br>
+![fatal](screenshots/text2.png "yadqt --type=text")<br>
 
-while read;do echo $REPLY;done< <(cat /etc/fstab)|yadqt \--type=text --fromstdin --width=800 -t "Show Text"<br>
-![fatal](screenshots/text2.png "yadqt \--type=text")<br>
+````yadqt --type=textfile --width=800 --height=400 -d /usr/include/linux/limits.h  --btntoerr  2>/dev/pts/3;echo $?````<br>
+![fatal](screenshots/textfile.png "yadqt --type=textfile")<br>
 
+````yadqt --type=imagefile -d '/home/keithhedger/WallpapersByCatagory/AllHallows/halloween-graveyard.gif'````<br>
+````yadqt --type=imagefile -d '/home/keithhedger/Backgrounds/bc3.png' --height=420 --width=640````<br>
+![fatal](screenshots/image.png "yadqt --type=imagefile")<br>
 
-yadqt \--type=textfile --width=800 --height=400 -d /usr/include/linux/limits.h  --btntoerr  2>/dev/pts/3;echo $?<br>
-![fatal](screenshots/textfile.png "yadqt \--type=textfile")<br>
+````yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|xargs yadqt --type=inout -t "Results" -b "Colour Selected"  -d ````<br>
+````yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>/dev/pts/2;echo $?````<br>
+![fatal](screenshots/colour.png "yadqt --type=colour")<br>
 
-
-
-yadqt \--type=imagefile -d '/home/keithhedger/Backgrounds/bc3.png' --height=420 --width=640<br>
-![fatal](screenshots/image.png "yadqt \--type=imagefile")<br>
-yadqt \--type=imagefile -d '/home/keithhedger/WallpapersByCatagory/AllHallows/halloween-graveyard.gif'<br>
-
-yadqt \--type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>/dev/pts/2;echo $?<br>
-![fatal](screenshots/colour.png "yadqt \--type=colour")<br>
-yadqt \--type=colour --default="#c080ff80" -t "Select a colour..."|xargs yadqt \--type=inout -t "Results" -b "Colour Selected"  -d <br>
-
-yadqt \--type=font -d "Monospace,20"<br>
-![fatal](screenshots/font.png "yadqt \--type=font")<br>
+````yadqt --type=font -d "Monospace,20"````<br>
+![fatal](screenshots/font.png "yadqt --type=font")<br>
 
 **Simple search in current folder:**<br>
 Searches files for text and opens in default app.
