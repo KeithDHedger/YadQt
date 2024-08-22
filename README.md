@@ -92,7 +92,7 @@ text<br>
 ````yadqt --type=imagefile -d '/home/keithhedger/Backgrounds/bc3.png' --height=420 --width=640````<br>
 ![fatal](screenshots/image.png "yadqt --type=imagefile")<br>
 
-````yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|xargs yadqt --type=inout -t "Results" -b "Colour Selected"  -d ````<br>
+````yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|xargs yadqt --type=input -t "Results" -b "Colour Selected"  -d ````<br>
 ````yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>/dev/pts/2;echo $?````<br>
 ![fatal](screenshots/colour.png "yadqt --type=colour")<br>
 
@@ -102,7 +102,7 @@ text<br>
 **Simple search in current folder:**<br>
 Searches files for text and opens in default app.
 ```console
-find .  -print0 |xargs -0 grep -s --binary-files=without-match --ignore-case --binary-files=without-match --line-number "$(yadqt --type=inout -t Search -b "Search for")"|yadqt --type=list -t "Found" --width 800 --fromstdin --ipseparator=newline |awk -F: '{print $1}'|xargs xdg-open
+find .  -print0 |xargs -0 grep -s --binary-files=without-match --ignore-case --binary-files=without-match --line-number "$(yadqt --type=input -t Search -b "Search for")"|yadqt --type=list -t "Found" --width 800 --fromstdin --ipseparator=newline |awk -F: '{print $1}'|xargs xdg-open
 ````
 ![fatal](screenshots/search1.png "Search example")<br>
 ![fatal](screenshots/search2.png "Search example")<br>
