@@ -35,13 +35,13 @@ Options:
   --type <aboutqt>             Box Type ( no type will display aboutbox for Qt ).
 ````
 **Examples:**<br>
-````console yadqt --type=aboutqt````
-````console yadqt --type=fatal -t "DANGER!" -b "BSOD!" --buttons="abort|Ignore" --btntoerr 2>/dev/pts/2;echo $?````<br>
+````yadqt --type=aboutqt````
+````yadqt --type=fatal -t "DANGER!" -b "BSOD!" --buttons="abort|Ignore" --btntoerr 2>/dev/pts/2;echo $?````<br>
 ![fatal](screenshots/fatal.png "yadqt --type=fatal")<br>
 
-````console yadqt --type=getitem -t "my title" -b "some input"  -d "one|three|two|end" --btntoerr 2>/dev/pts/2;echo $?````<br>
+````yadqt --type=getitem -t "my title" -b "some input"  -d "one|three|two|end" --btntoerr 2>/dev/pts/2;echo $?````<br>
 ![fatal](screenshots/getitem.png "yadqt --type=getitem")<br>
-````console cat /usr/include/linux/limits.h|yadqt --type=getitem -t "Select Item" -b "Items:"  --ipseparator=newline --fromstdin````
+````cat /usr/include/linux/limits.h|yadqt --type=getitem -t "Select Item" -b "Items:"  --ipseparator=newline --fromstdin````
 
 ````yadqt --type=inout -t "my title" -b "some input"  -d "default input txt";echo $?````<br>
 ![fatal](screenshots/input.png "yadqt --type=input")<br>
