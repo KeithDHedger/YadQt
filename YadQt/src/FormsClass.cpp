@@ -96,7 +96,6 @@ unsigned FormsClass::getForm(void)
 
 	form=this->miniPrefsDialog(items);
 
-	//std::vector<std::string> text=LFSTK_UtilityClass::LFSTK_strTok(this->data->defaultText.toStdString(),std::string("|"));
 	std::vector<std::string> text=LFSTK_UtilityClass::LFSTK_strTok(this->data->defaultText.toStdString(),this->data->ipsep.toStdString());
 	for(long unsigned int j=0;j<text.size();j++)
 		{

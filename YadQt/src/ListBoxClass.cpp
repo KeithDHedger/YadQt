@@ -52,7 +52,6 @@ unsigned ListBoxClass::getList(void)
 			theDialog->accept();
 		});
 
-//	std::vector<std::string> names=LFSTK_UtilityClass::LFSTK_strTok(this->data->defaultText.toStdString(),std::string("|"));
 	std::vector<std::string> names=LFSTK_UtilityClass::LFSTK_strTok(this->data->defaultText.toStdString(),this->data->ipsep.toStdString());
 	for(long unsigned int j=0;j<names.size();j++)
 		items<<names.at(j).c_str();
