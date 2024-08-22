@@ -121,6 +121,53 @@ text
        Box Type ( no type will display aboutbox for Qt ).
 .br
 
+.SH "RETURN"
+Button names can be sent to standard error by using the --btntoerr option.
+.br
+Button names are in Qt style, see below.
+.br
+
+The return value is based on the key pressed.
+.br
+Keys that return 0:
+.br
+QMessageBox::Ok
+.br
+QMessageBox::Open
+.br
+QMessageBox::Save
+.br
+QMessageBox::Close
+.br
+QMessageBox::Apply
+.br
+QMessageBox::Reset
+.br
+QMessageBox::RestoreDefaults
+.br
+QMessageBox::Help
+.br
+QMessageBox::SaveAll
+.br
+QMessageBox::Yes
+.br
+QMessageBox::YesToAll
+.br
+QMessageBox::Retry
+.br
+QMessageBox::Ignore
+.br
+
+Keys that return 1:
+.br
+QMessageBox::Cancel:
+.br
+QMessageBox::No:
+.br
+QMessageBox::NoToAll:
+.br
+QMessageBox::Abort:
+.br
 .SH "EXAMPLES"
 Create a fatal warning dialog, sending button chosen to /dev/pts/2 and display return code.
 .br
