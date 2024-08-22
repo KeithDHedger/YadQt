@@ -34,6 +34,24 @@ Options:
   --buttons <Ok>               Buttons ( for info boxes ).
   --type <aboutqt>             Box Type ( no type will display aboutbox for Qt ).
 ````
+
+**Dialog types:**<br>
+about<br>
+aboutqt<br>
+query<br>
+info<br>
+warn<br>
+fatal<br>
+input<br>
+getitem<br>
+form<br>
+list<br>
+textfile<br>
+imagefile<br>
+colour<br>
+font<br>
+text<br>
+
 **Examples:**<br>
 ````yadqt --type=aboutqt````<br>
 

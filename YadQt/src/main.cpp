@@ -82,7 +82,7 @@ int main(int argc, char **argv)
 //info boxes
 					case ABOUT:
 					case ABOUTQT:
-					case WHAT:
+					case QUERY:
 					case INFO:
 					case WARN:
 					case FATAL:

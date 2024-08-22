@@ -41,7 +41,7 @@ unsigned InfoBoxClass::showDialog(void)
 			case ABOUTQT:
 				QMessageBox::aboutQt(nullptr);
 				break;
-			case WHAT:
+			case QUERY:
 				retval=QMessageBox::question(nullptr,this->data->title,this->data->body,this->data->buttons);
 				break;
 			case INFO:

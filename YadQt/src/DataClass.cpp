@@ -86,8 +86,8 @@ void DataClass::getBoxType()
 		this->boxType=ABOUT;
 	if(str.compare("aboutqt",Qt::CaseInsensitive)==0)
 		this->boxType=ABOUTQT;
-	if(str.compare("what",Qt::CaseInsensitive)==0)
-		this->boxType=WHAT;
+	if(str.compare("query",Qt::CaseInsensitive)==0)
+		this->boxType=QUERY;
 	if(str.compare("info",Qt::CaseInsensitive)==0)
 		this->boxType=INFO;
 	if(str.compare("warn",Qt::CaseInsensitive)==0)
