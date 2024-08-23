@@ -26,8 +26,8 @@
 
 struct miniPrefsReturnStruct
 {
-	QDialog					*theDialog;
-	QHash<int,QLineEdit*>	boxes;
+	QDialog						*theDialog;
+	QHash<int,QLineEdit*>		boxes;
 };
 
 class FormsClass
@@ -36,12 +36,12 @@ class FormsClass
 		FormsClass(QApplication *app,DataClass *data);
 		~FormsClass();
 
-		unsigned					getForm(void);
+		unsigned						getForm(void);
 
 	private:
-		DataClass				*data;
-		miniPrefsReturnStruct	miniPrefsDialog(QStringList items);
-
+		DataClass					*data;
+		miniPrefsReturnStruct		miniPrefsDialog(QStringList items);
+		QMessageBox::StandardButton	retButton;
 };
 
 #endif

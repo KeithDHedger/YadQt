@@ -39,10 +39,13 @@ class DataClass
 		QString						opsep="|";
 		QString						ipsep="|";
 
-		QMessageBox::StandardButtons	buttons=QMessageBox::NoButton;
+		//QMessageBox::StandardButtons	buttons=QMessageBox::NoButton;
+		//QDialogButtonBox::StandardButtons	dbuttons=QDialogButtonBox::NoButton;
+		QDialogButtonBox::StandardButton	dbutton=QDialogButtonBox::NoButton;
 		QCommandLineParser			parser;
 
-		void							setButtons(void);
+		//void							setButtons(void);
+		void							setDButtons(void);
 		void							getBoxType(void);
 		
 };

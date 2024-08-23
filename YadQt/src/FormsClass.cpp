@@ -33,20 +33,16 @@ miniPrefsReturnStruct FormsClass::miniPrefsDialog(QStringList items)
 {
 	miniPrefsReturnStruct	prefs;
 	QWidget					*hbox;
-	QVBoxLayout				*docvlayout=new QVBoxLayout;
 	QHBoxLayout				*hlayout;
-	QPushButton				*cancelbutton=new QPushButton("&Cancel");
-	QPushButton				*okbutton=new QPushButton("&Apply");
+	QVBoxLayout				*docvlayout=new QVBoxLayout;
+	QDialogButtonBox			*bb=new QDialogButtonBox(this->data->dbutton);
 
 	prefs.theDialog=new QDialog();
 
-	QObject::connect(cancelbutton,&QPushButton::clicked,[this,prefs]()
-		{
-			prefs.theDialog->reject();
-		});
-	QObject::connect(okbutton,&QPushButton::clicked,[this,prefs]()
+	QObject::connect(bb,&QDialogButtonBox::clicked,[this,prefs,bb](QAbstractButton *button)
 		{
 			prefs.theDialog->accept();
+			this->retButton=QMessageBox::StandardButton(bb->standardButton(button));
 		});
 
 	for(int j=0;j<items.size();j++)
@@ -56,21 +52,14 @@ miniPrefsReturnStruct FormsClass::miniPrefsDialog(QStringList items)
 			hlayout->setContentsMargins(0,0,0,0);
 			hbox->setLayout(hlayout);
 			hlayout->addWidget(new QLabel(items.at(j)),0,Qt::AlignLeft);
-			prefs.boxes[j]=new QLineEdit(nullptr);	
+			prefs.boxes[j]=new QLineEdit(nullptr);
 
 			hlayout->addWidget(prefs.boxes[j],1,Qt::AlignRight);
 			docvlayout->addWidget(hbox);
 		}
-	hbox=new QWidget;
-	hlayout=new QHBoxLayout;
-	hlayout->setContentsMargins(0,0,0,0);
-	hbox->setLayout(hlayout);
-	hlayout->addWidget(cancelbutton);
-	hlayout->addStretch(0);
-	hlayout->addWidget(okbutton);
 
+	docvlayout->addWidget(bb);
 	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
-	docvlayout->addWidget(hbox);
 
 	prefs.theDialog->setLayout(docvlayout);
 	prefs.theDialog->setWindowTitle(this->data->title);
@@ -112,9 +101,8 @@ unsigned FormsClass::getForm(void)
 			op+=form.boxes[form.boxes.size()-1]->text();
 
 			QTextStream(stdout) <<op<< Qt::endl;
-			return(QMessageBox::Apply);		
 		}
 
-	return(QMessageBox::Cancel);
+	return(this->retButton);
 }
 

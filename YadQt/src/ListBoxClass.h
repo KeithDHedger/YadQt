@@ -30,10 +30,11 @@ class ListBoxClass
 		ListBoxClass(QApplication *app,DataClass *data);
 		~ListBoxClass();
 
-	unsigned		getList(void);
+	unsigned							getList(void);
 
 	private:
-		DataClass	*data;
+		DataClass					*data;
+		QMessageBox::StandardButton	retButton;
 };
 
 #endif

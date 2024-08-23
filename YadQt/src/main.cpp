@@ -77,6 +77,8 @@ int main(int argc, char **argv)
 	if(data.parser.isSet("type"))
 		{
 			data.getBoxType();
+			data.setDButtons();
+
 			switch(data.boxType)
 				{
 //info boxes
@@ -86,49 +88,43 @@ int main(int argc, char **argv)
 					case INFO:
 					case WARN:
 					case FATAL:
-						{
-							data.setButtons();
-							retval=info.showDialog();
-						}
+						retval=info.showDialog();
 						break;
 
 //input boxes
 					case GETINPUT:
-						{
-							retval=input.getTextInput();
-						}
+						retval=input.getTextInput();
 						break;
 					case GETITEM:
-						{
-							retval=input.getItem();
-						}
+						retval=input.getItem();
 						break;
 //forms
 					case GETFORM:
-						{
-							retval=forms.getForm();
-						}
+						if(data.parser.isSet("buttons")==false)
+							data.dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Ok|(unsigned int)QDialogButtonBox::Cancel);
+						retval=forms.getForm();
 						break;
 //list
 					case GETLIST:
-						{
-							retval=list.getList();
-						}
+						if(data.parser.isSet("buttons")==false)
+							data.dbutton=QDialogButtonBox::Ok;
+						retval=list.getList();
 						break;
 //files
 					case SHOWTEXTFILE:
-						{
-							retval=files.showTextFile(true);
-						}
+						if(data.parser.isSet("buttons")==false)
+							data.dbutton=QDialogButtonBox::Ok;
+						retval=files.showTextFile(true);
 						break;
 					case GETTEXT:
+						if(data.parser.isSet("buttons")==false)
+							data.dbutton=QDialogButtonBox::Ok;
 						retval=files.showTextFile(false);
-						//retval=orphans.getText();
 						break;
 					case SHOWIMAGEFILE:
-						{
+						if(data.parser.isSet("buttons")==false)
+							data.dbutton=QDialogButtonBox::Ok;
 							retval=files.showImageFile();
-						}
 						break;
 //orphans
 					case GETCOLOUR:
@@ -163,6 +159,7 @@ int main(int argc, char **argv)
 			case QMessageBox::YesToAll:
 			case QMessageBox::Retry:
 			case QMessageBox::Ignore:
+
 				retval=0;
 				break;
 			case QMessageBox::Cancel:

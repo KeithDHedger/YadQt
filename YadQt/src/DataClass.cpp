@@ -28,7 +28,7 @@ DataClass::DataClass()
 {
 }
 
-void DataClass::setButtons(void)
+void DataClass::setDButtons(void)
 {
 	if(this->parser.isSet("buttons"))
 		{
@@ -38,42 +38,43 @@ void DataClass::setButtons(void)
 			for(long unsigned int j=0;j<names.size();j++)
 				{
 					d=names.at(j).c_str();
+
 					if(d.compare("ok",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::Ok;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Ok|(unsigned int)this->dbutton);
 					if(d.compare("cancel",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::Cancel;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Cancel|(unsigned int)this->dbutton);
 					if(d.compare("open",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::Open;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Open|(unsigned int)this->dbutton);
 					if(d.compare("Save",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::Save;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Save|(unsigned int)this->dbutton);
 					if(d.compare("Close",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::Close;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Close|(unsigned int)this->dbutton);
 					if(d.compare("Discard",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::Discard;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Discard|(unsigned int)this->dbutton);
 					if(d.compare("Apply",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::Apply;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Apply|(unsigned int)this->dbutton);
 					if(d.compare("Reset",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::Reset;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Reset|(unsigned int)this->dbutton);
 					if(d.compare("RestoreDefaults",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::RestoreDefaults;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::RestoreDefaults|(unsigned int)this->dbutton);
 					if(d.compare("Help",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::Help;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Help|(unsigned int)this->dbutton);
 					if(d.compare("SaveAll",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::SaveAll;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::SaveAll|(unsigned int)this->dbutton);
 					if(d.compare("Yes",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::Yes;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Yes|(unsigned int)this->dbutton);
 					if(d.compare("YesToAll",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::YesToAll;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::YesToAll|(unsigned int)this->dbutton);
 					if(d.compare("No",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::No;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::No|(unsigned int)this->dbutton);
 					if(d.compare("NoToAll",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::NoToAll;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::NoToAll|(unsigned int)this->dbutton);
 					if(d.compare("Abort",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::Abort;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Abort|(unsigned int)this->dbutton);
 					if(d.compare("Retry",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::Retry;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Retry|(unsigned int)this->dbutton);
 					if(d.compare("Ignore",Qt::CaseInsensitive)==0)
-						this->buttons=this->buttons|QMessageBox::Ignore;
+						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Ignore|(unsigned int)this->dbutton);
 			}			
 		}
 }

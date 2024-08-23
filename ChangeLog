@@ -1,4 +1,5 @@
 0.1.0
+Added --buttons option for most dialogs.
 Updated manpage.
 Code clean.
 Changed type "what to "query" 

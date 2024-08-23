@@ -35,22 +35,12 @@ unsigned ListBoxClass::getList(void)
 	QWidget					*hbox;
 	QVBoxLayout				*docvlayout=new QVBoxLayout;
 	QHBoxLayout				*hlayout;
-	QPushButton				*cancelbutton=new QPushButton("&Cancel");
-	QPushButton				*okbutton=new QPushButton("&Apply");
 	QStringList				items;
 	QListWidget				*listwidget;
 	int						res=0;
+	QDialogButtonBox			*bb=new QDialogButtonBox(this->data->dbutton);
 
 	theDialog=new QDialog();
-
-	QObject::connect(cancelbutton,&QPushButton::clicked,[this,theDialog]()
-		{
-			theDialog->reject();
-		});
-	QObject::connect(okbutton,&QPushButton::clicked,[this,theDialog]()
-		{
-			theDialog->accept();
-		});
 
 	std::vector<std::string> names=LFSTK_UtilityClass::LFSTK_strTok(this->data->defaultText.toStdString(),this->data->ipsep.toStdString());
 	for(long unsigned int j=0;j<names.size();j++)
@@ -64,15 +54,13 @@ unsigned ListBoxClass::getList(void)
 	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
 	docvlayout->addWidget(listwidget);
 
-	hbox=new QWidget;
-	hlayout=new QHBoxLayout;
-	hlayout->setContentsMargins(0,0,0,0);
-	hbox->setLayout(hlayout);
-	hlayout->addWidget(cancelbutton);
-	hlayout->addStretch(0);
-	hlayout->addWidget(okbutton);
+	QObject::connect(bb,&QDialogButtonBox::clicked,[this,bb,theDialog](QAbstractButton *button)
+		{
+			theDialog->accept();
+			this->retButton=QMessageBox::StandardButton(bb->standardButton(button));
+		});
 
-	docvlayout->addWidget(hbox);
+	docvlayout->addWidget(bb);
 
 	theDialog->setLayout(docvlayout);
 	theDialog->setWindowTitle(this->data->title);
@@ -87,14 +75,14 @@ unsigned ListBoxClass::getList(void)
 			QString	textstrings;
 			QList	l=listwidget->selectedItems();
 
-			for(int j=0;j<l.size()-1;j++)
-				textstrings+=l.at(j)->text()+data->opsep;
-			textstrings+=l.at(l.size()-1)->text();
-
+			if(l.size()>0)
+				{
+					for(int j=0;j<l.size()-1;j++)
+						textstrings+=l.at(j)->text()+data->opsep;
+					textstrings+=l.at(l.size()-1)->text();
+				}
 			QTextStream(stdout) <<textstrings<< Qt::endl;
-			return(QMessageBox::Apply);		
 		}
-
-	return(QMessageBox::Cancel);
+	return(retButton);
 }
 

@@ -39,11 +39,11 @@ unsigned InputDialogsClass::getItem(void)
 		items<<names.at(j).c_str();
 
 	QString item=QInputDialog::getItem(nullptr,this->data->title,this->data->body,items,0,false,&ok);
-		if(ok==true)
-			{
-				QTextStream(stdout) <<item<< Qt::endl;
-				return(QMessageBox::Ok);
-			}
+	if(ok==true)
+		{
+			QTextStream(stdout) <<item<< Qt::endl;
+			return(QMessageBox::Ok);
+		}
 	return(QMessageBox::Cancel);
 }
 

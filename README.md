@@ -92,7 +92,7 @@ text<br>
 ````yadqt --type=imagefile -d '/home/keithhedger/Backgrounds/bc3.png' --height=420 --width=640````<br>
 ![fatal](screenshots/image.png "yadqt --type=imagefile")<br>
 
-````yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|xargs yadqt --type=input -t "Results" -b "Colour Selected"  -d ````<br>
+````yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|yadqt --type=input -t "Results" -b "Colour Selected" --fromstdin````<br>
 ````yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>/dev/pts/2;echo $?````<br>
 ![fatal](screenshots/colour.png "yadqt --type=colour")<br>
 

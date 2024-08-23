@@ -42,16 +42,16 @@ unsigned InfoBoxClass::showDialog(void)
 				QMessageBox::aboutQt(nullptr);
 				break;
 			case QUERY:
-				retval=QMessageBox::question(nullptr,this->data->title,this->data->body,this->data->buttons);
+				retval=QMessageBox::question(nullptr,this->data->title,this->data->body,(QMessageBox::StandardButtons)this->data->dbutton);
 				break;
 			case INFO:
-				retval=QMessageBox::information(nullptr,this->data->title,this->data->body,this->data->buttons);
+				retval=QMessageBox::information(nullptr,this->data->title,this->data->body,(QMessageBox::StandardButtons)this->data->dbutton);
 				break;
 			case WARN:
-				retval=QMessageBox::warning(nullptr,this->data->title,this->data->body,this->data->buttons);
+				retval=QMessageBox::warning(nullptr,this->data->title,this->data->body,(QMessageBox::StandardButtons)this->data->dbutton);
 				break;
 			case FATAL:
-				retval=QMessageBox::critical(nullptr,this->data->title,this->data->body,this->data->buttons);
+				retval=QMessageBox::critical(nullptr,this->data->title,this->data->body,(QMessageBox::StandardButtons)this->data->dbutton);
 				break;			
 		}
 	return(retval);

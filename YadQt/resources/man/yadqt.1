@@ -171,7 +171,7 @@ QMessageBox::Abort:
 .SH "EXAMPLES"
 Create a fatal warning dialog, sending button chosen to /dev/pts/2 and display return code.
 .br
-yadqt --type=fatal -t "DANGER!" -b "BSOD!" --buttons="abort|Ignore" --btntoerr 2>/dev/pts/2;echo $?
+yadqt --type=fatal -t "DANGER!" -b "BSOD!" --buttons="abort|Ignore" --btntoerr 2>/dev/pts/2;echo $?--fromstdin
 .br
 
 Simple form.
@@ -186,7 +186,7 @@ while read;do echo $REPLY;done< <(cat /etc/fstab)|yadqt --type=text --fromstdin 
 
 Display colour dialog and show result in input dialog.
 .br
-yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|xargs yadqt --type=input -t "Results" -b "Colour Selected"  -d
+yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|yadqt --type=input -t "Results" -b "Colour Selected" --fromstdin
 .br
 
 Simple search in current folder:

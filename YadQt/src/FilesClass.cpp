@@ -31,20 +31,14 @@ FilesClass::FilesClass(QApplication *app,DataClass *data)
 
 unsigned FilesClass::showTextFile(bool file)
 {
-	QPlainTextEdit		*thetext;
-	QDialog				*theDialog;
-	QWidget				*hbox;
-	QVBoxLayout			*docvlayout=new QVBoxLayout;
-	QHBoxLayout			*hlayout;
-	QPushButton			*okbutton=new QPushButton("&Ok");
+	QPlainTextEdit				*thetext;
+	QDialog						*theDialog;
+	QHBoxLayout					*hlayout;
+	QMessageBox::StandardButton	i;
+	QVBoxLayout					*docvlayout=new QVBoxLayout;
+	QDialogButtonBox				bb(this->data->dbutton);
 
 	theDialog=new QDialog();
-
-	QObject::connect(okbutton,&QPushButton::clicked,[this,theDialog]()
-		{
-			theDialog->accept();
-		});
-
 	thetext=new QPlainTextEdit(nullptr);
 	thetext->setReadOnly(true);
 
@@ -65,15 +59,12 @@ unsigned FilesClass::showTextFile(bool file)
 	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
 	docvlayout->addWidget(thetext);
 
-	hbox=new QWidget;
-	hlayout=new QHBoxLayout;
-	hlayout->setContentsMargins(0,0,0,0);
-	hbox->setLayout(hlayout);
-	hlayout->addStretch(1);
-	hlayout->addWidget(okbutton);
-
-	docvlayout->addWidget(hbox);
-
+	QObject::connect(&bb,&QDialogButtonBox::clicked,[this,theDialog,&bb,&i](QAbstractButton *button)
+		{
+			theDialog->accept();
+			i=QMessageBox::StandardButton(bb.standardButton(button));
+		});
+	docvlayout->addWidget(&bb);
 	theDialog->setLayout(docvlayout);
 	theDialog->setWindowTitle(this->data->title);
 
@@ -81,7 +72,7 @@ unsigned FilesClass::showTextFile(bool file)
 		theDialog->resize(QSize(this->data->width,this->data->height));
 
 	theDialog->exec();
-	return(QMessageBox::Ok);		
+	return(i);		
 }
 
 unsigned FilesClass::showImageFile(void)
@@ -91,30 +82,23 @@ unsigned FilesClass::showImageFile(void)
 	QPixmap				pm(this->data->defaultText);
 	QGraphicsPixmapItem	item(pm);
   	QDialog				*theDialog;
-	QWidget				*hbox;
 	QVBoxLayout			*docvlayout=new QVBoxLayout;
-	QHBoxLayout			*hlayout;
-	QPushButton			*okbutton=new QPushButton("&Ok");
+	QDialogButtonBox		bb(this->data->dbutton);
+	QMessageBox::StandardButton	i;
 
     scene.addItem(&item);
 	theDialog=new QDialog();
 
-	QObject::connect(okbutton,&QPushButton::clicked,[this,theDialog]()
+	QObject::connect(&bb,&QDialogButtonBox::clicked,[this,theDialog,&bb,&i](QAbstractButton *button)
 		{
 			theDialog->accept();
+			i=QMessageBox::StandardButton(bb.standardButton(button));
 		});
 
  	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
 	docvlayout->addWidget(&view);
 	
-	hbox=new QWidget;
-	hlayout=new QHBoxLayout;
-	hlayout->setContentsMargins(0,0,0,0);
-	hbox->setLayout(hlayout);
-	hlayout->addStretch(1);
-	hlayout->addWidget(okbutton);
-
-	docvlayout->addWidget(hbox);
+	docvlayout->addWidget(&bb);
 
 	theDialog->setLayout(docvlayout);
 	theDialog->setWindowTitle(this->data->title);
@@ -123,6 +107,6 @@ unsigned FilesClass::showImageFile(void)
 		theDialog->resize(QSize(this->data->width,this->data->height));
 
 	theDialog->exec();
-	return(QMessageBox::Ok);
+	return(i);		
 }
 
