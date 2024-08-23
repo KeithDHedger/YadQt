@@ -1,5 +1,11 @@
+0.1.1
+Code clean.
+Standardised outputs.
+
 0.1.0
-Added --buttons option for most dialogs.
+Ignore button now returns 1.
+Code clean.
+Added --buttons option for most dialogs ( excluding input, getitem, colour and font ).
 Updated manpage.
 Code clean.
 Changed type "what to "query" 

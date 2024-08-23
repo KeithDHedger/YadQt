@@ -29,7 +29,7 @@ InputDialogsClass::~InputDialogsClass()
 {
 }
 
-unsigned InputDialogsClass::getItem(void)
+void InputDialogsClass::getItem(void)
 {
 	QStringList	items;
 	bool			ok;
@@ -42,19 +42,29 @@ unsigned InputDialogsClass::getItem(void)
 	if(ok==true)
 		{
 			QTextStream(stdout) <<item<< Qt::endl;
-			return(QMessageBox::Ok);
+			this->data->retButton=QMessageBox::Ok;
+			this->data->retval=0;
 		}
-	return(QMessageBox::Cancel);
+	else
+		{
+			this->data->retButton=QMessageBox::Cancel;
+			this->data->retval=1;
+		}
 }
 
-unsigned InputDialogsClass::getTextInput(void)
+void InputDialogsClass::getTextInput(void)
 { 
 	bool		ok;
 	QString text=QInputDialog::getText(nullptr,this->data->title,this->data->body,QLineEdit::Normal,this->data->defaultText,&ok);
 	if(ok==true)
 		{
 			QTextStream(stdout) <<text<< Qt::endl;
-			return(QMessageBox::Ok);
+			this->data->retButton=QMessageBox::Ok;
+			this->data->retval=0;
 		}
-	return(QMessageBox::Cancel);
+	else
+		{
+			this->data->retButton=QMessageBox::Cancel;
+			this->data->retval=1;
+		}
 }

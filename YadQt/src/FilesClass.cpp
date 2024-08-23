@@ -29,16 +29,12 @@ FilesClass::FilesClass(QApplication *app,DataClass *data)
 	this->data=data;
 }
 
-unsigned FilesClass::showTextFile(bool file)
+void FilesClass::showTextFile(bool file)
 {
-	QPlainTextEdit				*thetext;
-	QDialog						*theDialog;
-	QHBoxLayout					*hlayout;
-	QMessageBox::StandardButton	i;
-	QVBoxLayout					*docvlayout=new QVBoxLayout;
-	QDialogButtonBox				bb(this->data->dbutton);
+	QPlainTextEdit	*thetext;
+	QVBoxLayout		*docvlayout=new QVBoxLayout;
 
-	theDialog=new QDialog();
+	this->data->theDialog=new QDialog();
 	thetext=new QPlainTextEdit(nullptr);
 	thetext->setReadOnly(true);
 
@@ -58,55 +54,38 @@ unsigned FilesClass::showTextFile(bool file)
 
 	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
 	docvlayout->addWidget(thetext);
+	docvlayout->addWidget(this->data->bb);
+	this->data->theDialog->setLayout(docvlayout);
 
-	QObject::connect(&bb,&QDialogButtonBox::clicked,[this,theDialog,&bb,&i](QAbstractButton *button)
-		{
-			theDialog->accept();
-			i=QMessageBox::StandardButton(bb.standardButton(button));
-		});
-	docvlayout->addWidget(&bb);
-	theDialog->setLayout(docvlayout);
-	theDialog->setWindowTitle(this->data->title);
+	this->data->theDialog->setWindowTitle(this->data->title);
 
 	if(this->data->customSize==true)
-		theDialog->resize(QSize(this->data->width,this->data->height));
+		this->data->theDialog->resize(QSize(this->data->width,this->data->height));
 
-	theDialog->exec();
-	return(i);		
+	this->data->theDialog->exec();
 }
 
-unsigned FilesClass::showImageFile(void)
+void FilesClass::showImageFile(void)
 {
 	QGraphicsScene		scene;
 	QGraphicsView		view(&scene);
 	QPixmap				pm(this->data->defaultText);
 	QGraphicsPixmapItem	item(pm);
-  	QDialog				*theDialog;
 	QVBoxLayout			*docvlayout=new QVBoxLayout;
-	QDialogButtonBox		bb(this->data->dbutton);
-	QMessageBox::StandardButton	i;
 
     scene.addItem(&item);
-	theDialog=new QDialog();
-
-	QObject::connect(&bb,&QDialogButtonBox::clicked,[this,theDialog,&bb,&i](QAbstractButton *button)
-		{
-			theDialog->accept();
-			i=QMessageBox::StandardButton(bb.standardButton(button));
-		});
+	this->data->theDialog=new QDialog();
 
  	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
 	docvlayout->addWidget(&view);
-	
-	docvlayout->addWidget(&bb);
+	docvlayout->addWidget(this->data->bb);
+	this->data->theDialog->setLayout(docvlayout);
 
-	theDialog->setLayout(docvlayout);
-	theDialog->setWindowTitle(this->data->title);
+	this->data->theDialog->setWindowTitle(this->data->title);
 
 	if(this->data->customSize==true)
-		theDialog->resize(QSize(this->data->width,this->data->height));
+		this->data->theDialog->resize(QSize(this->data->width,this->data->height));
 
-	theDialog->exec();
-	return(i);		
+	this->data->theDialog->exec();
 }
 

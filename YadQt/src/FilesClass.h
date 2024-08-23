@@ -29,8 +29,8 @@ class FilesClass
 		FilesClass(QApplication *app,DataClass *data);
 		~FilesClass();
 
-		unsigned		showTextFile(bool file);
-		unsigned		showImageFile(void);
+		void		showTextFile(bool file);
+		void		showImageFile(void);
 
 	private:
 		DataClass	*data;

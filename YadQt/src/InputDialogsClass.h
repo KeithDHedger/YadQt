@@ -29,8 +29,8 @@ class InputDialogsClass
 		InputDialogsClass(QApplication *app,DataClass *data);
 		~InputDialogsClass();
 
-		unsigned		getTextInput(void);
-		unsigned		getItem(void);
+		void		getTextInput(void);
+		void		getItem(void);
 
 	private:
 		DataClass	*data;

@@ -29,18 +29,16 @@ ListBoxClass::~ListBoxClass()
 {
 }
 
-unsigned ListBoxClass::getList(void)
+void ListBoxClass::getList(void)
 {
-	QDialog					*theDialog;
 	QWidget					*hbox;
 	QVBoxLayout				*docvlayout=new QVBoxLayout;
 	QHBoxLayout				*hlayout;
 	QStringList				items;
 	QListWidget				*listwidget;
 	int						res=0;
-	QDialogButtonBox			*bb=new QDialogButtonBox(this->data->dbutton);
 
-	theDialog=new QDialog();
+	this->data->theDialog=new QDialog();
 
 	std::vector<std::string> names=LFSTK_UtilityClass::LFSTK_strTok(this->data->defaultText.toStdString(),this->data->ipsep.toStdString());
 	for(long unsigned int j=0;j<names.size();j++)
@@ -54,23 +52,16 @@ unsigned ListBoxClass::getList(void)
 	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
 	docvlayout->addWidget(listwidget);
 
-	QObject::connect(bb,&QDialogButtonBox::clicked,[this,bb,theDialog](QAbstractButton *button)
-		{
-			theDialog->accept();
-			this->retButton=QMessageBox::StandardButton(bb->standardButton(button));
-		});
+	docvlayout->addWidget(this->data->bb);
 
-	docvlayout->addWidget(bb);
-
-	theDialog->setLayout(docvlayout);
-	theDialog->setWindowTitle(this->data->title);
-
+	this->data->theDialog->setLayout(docvlayout);
+	this->data->theDialog->setWindowTitle(this->data->title);
 
 	if(this->data->customSize==true)
-		theDialog->resize(QSize(this->data->width,this->data->height));
+		this->data->theDialog->resize(QSize(this->data->width,this->data->height));
 
-	res=theDialog->exec();
-	if(res==1)
+	res=this->data->theDialog->exec();
+	if(this->data->retval==0)
 		{
 			QString	textstrings;
 			QList	l=listwidget->selectedItems();
@@ -83,6 +74,5 @@ unsigned ListBoxClass::getList(void)
 				}
 			QTextStream(stdout) <<textstrings<< Qt::endl;
 		}
-	return(retButton);
 }
 

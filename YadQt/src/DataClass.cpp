@@ -26,6 +26,13 @@ DataClass::~DataClass()
 
 DataClass::DataClass()
 {
+	this->bb=new QDialogButtonBox(QDialogButtonBox::NoButton);
+	QObject::connect(this->bb,&QDialogButtonBox::clicked,[this](QAbstractButton *button)
+		{
+			this->retButton=QMessageBox::StandardButton(this->bb->standardButton(button));
+			this->setReturnVals();
+			this->theDialog->done(this->retval);
+		});
 }
 
 void DataClass::setDButtons(void)
@@ -75,7 +82,8 @@ void DataClass::setDButtons(void)
 						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Retry|(unsigned int)this->dbutton);
 					if(d.compare("Ignore",Qt::CaseInsensitive)==0)
 						this->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Ignore|(unsigned int)this->dbutton);
-			}			
+				}
+			this->bb->setStandardButtons(this->dbutton);
 		}
 }
 
@@ -122,5 +130,35 @@ void DataClass::getBoxType()
 		this->boxType=GETFONT;
 	if(str.compare("text",Qt::CaseInsensitive)==0)
 		this->boxType=GETTEXT;
+}
 
+void DataClass::setReturnVals(void)
+{
+	switch(this->retButton)
+		{
+			case QMessageBox::Ok:
+			case QMessageBox::Open:
+			case QMessageBox::Save:
+			case QMessageBox::Close:
+			case QMessageBox::Apply:
+			case QMessageBox::Reset:
+			case QMessageBox::RestoreDefaults:
+			case QMessageBox::Help:
+			case QMessageBox::SaveAll:
+			case QMessageBox::Yes:
+			case QMessageBox::YesToAll:
+			case QMessageBox::Retry:
+				this->retval=0;
+				break;
+			case QMessageBox::Ignore:
+			case QMessageBox::Cancel:
+			case QMessageBox::No:
+			case QMessageBox::NoToAll:
+			case QMessageBox::Abort:
+				this->retval=1;
+				break;
+			default:
+				this->retval=1;
+				break;
+		}
 }

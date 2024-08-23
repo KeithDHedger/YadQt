@@ -11,6 +11,7 @@
 #include <QDebug>
 #include <QIcon>
 #include <QtWidgets>
+#include<QColor>
 
 #include <vector>
 

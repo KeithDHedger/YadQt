@@ -1,3 +1,22 @@
+/*
+ *
+ * ©K. D. Hedger. Fri 23 Aug 20:36:56 BST 2024 keithdhedger@gmail.com
+
+ * This file (main.cpp) is part of YadQt.
+
+ * YadQt is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * YadQt is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with YadQt.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #include "globals.h"
 #include "config.h"
@@ -78,6 +97,11 @@ int main(int argc, char **argv)
 		{
 			data.getBoxType();
 			data.setDButtons();
+			if(data.parser.isSet("buttons")==false)
+				{
+					data.dbutton=QDialogButtonBox::Ok;
+					data.bb->setStandardButtons(data.dbutton);
+				}
 
 			switch(data.boxType)
 				{
@@ -88,90 +112,56 @@ int main(int argc, char **argv)
 					case INFO:
 					case WARN:
 					case FATAL:
-						retval=info.showDialog();
+						info.showDialog();
 						break;
 
 //input boxes
 					case GETINPUT:
-						retval=input.getTextInput();
+						input.getTextInput();
 						break;
 					case GETITEM:
-						retval=input.getItem();
+						input.getItem();
 						break;
 //forms
 					case GETFORM:
 						if(data.parser.isSet("buttons")==false)
-							data.dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Ok|(unsigned int)QDialogButtonBox::Cancel);
-						retval=forms.getForm();
+							{
+								data.dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Ok|(unsigned int)QDialogButtonBox::Cancel);
+								data.bb->setStandardButtons(data.dbutton);
+							}
+						forms.getForm();
 						break;
 //list
 					case GETLIST:
-						if(data.parser.isSet("buttons")==false)
-							data.dbutton=QDialogButtonBox::Ok;
-						retval=list.getList();
+						list.getList();
 						break;
 //files
 					case SHOWTEXTFILE:
-						if(data.parser.isSet("buttons")==false)
-							data.dbutton=QDialogButtonBox::Ok;
-						retval=files.showTextFile(true);
+						files.showTextFile(true);
 						break;
 					case GETTEXT:
-						if(data.parser.isSet("buttons")==false)
-							data.dbutton=QDialogButtonBox::Ok;
-						retval=files.showTextFile(false);
+						files.showTextFile(false);
 						break;
 					case SHOWIMAGEFILE:
-						if(data.parser.isSet("buttons")==false)
-							data.dbutton=QDialogButtonBox::Ok;
-							retval=files.showImageFile();
+						files.showImageFile();
 						break;
 //orphans
 					case GETCOLOUR:
-						retval=orphans.getColour();
+						orphans.getColour();
 						break;
 					case GETFONT:
-						retval=orphans.getFont();
+						orphans.getFont();
 						break;
 				}
 		}
 	else
 		{
 			data.boxType=ABOUTQT;
-			retval=info.showDialog();
+			info.showDialog();
 		}
 
 	if(data.parser.isSet("btntoerr"))
-		qDebug()<<QMessageBox::StandardButton(retval);
+		qDebug()<<QMessageBox::StandardButton(data.retButton);
 
-	switch(retval)
-		{
-			case QMessageBox::Ok:
-			case QMessageBox::Open:
-			case QMessageBox::Save:
-			case QMessageBox::Close:
-			case QMessageBox::Apply:
-			case QMessageBox::Reset:
-			case QMessageBox::RestoreDefaults:
-			case QMessageBox::Help:
-			case QMessageBox::SaveAll:
-			case QMessageBox::Yes:
-			case QMessageBox::YesToAll:
-			case QMessageBox::Retry:
-			case QMessageBox::Ignore:
-
-				retval=0;
-				break;
-			case QMessageBox::Cancel:
-			case QMessageBox::No:
-			case QMessageBox::NoToAll:
-			case QMessageBox::Abort:
-				retval=1;
-				break;
-			default:
-				retval=1;
-				break;
-		}
-
-	return(retval);
+	return(data.retval);
 }

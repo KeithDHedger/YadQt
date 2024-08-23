@@ -19,7 +19,6 @@
 */
 
 #include "OrphanDialogClass.h"
-#include<QColor>
 
 OrphanDialogClass::OrphanDialogClass(QApplication *app,DataClass *data)
 {
@@ -30,10 +29,11 @@ OrphanDialogClass::~OrphanDialogClass()
 {
 }
 
-unsigned OrphanDialogClass::getColour(void)
+void OrphanDialogClass::getColour(void)
 {
 	QColor	initcol(this->data->defaultText);
 	QColor	colour;
+
 	if(this->data->defaultText.length()>7)
 		colour=QColorDialog::getColor(initcol,nullptr,this->data->title,QColorDialog::ShowAlphaChannel);
 	else
@@ -45,12 +45,17 @@ unsigned OrphanDialogClass::getColour(void)
 				QTextStream(stdout) <<colour.name(QColor::HexArgb)<< Qt::endl;
 			else
 				QTextStream(stdout) <<colour.name()<< Qt::endl;
-			return(QMessageBox::Ok);	
+			this->data->retButton=QMessageBox::Ok;
+			this->data->retval=0;
 		}
-	return(QMessageBox::Cancel);	
+	else
+		{
+			this->data->retButton=QMessageBox::Cancel;
+			this->data->retval=1;
+		}
 }
 
-unsigned OrphanDialogClass::getFont(void)
+void OrphanDialogClass::getFont(void)
 {
 	bool		ok;
 	QFont	tfont;
@@ -61,10 +66,14 @@ unsigned OrphanDialogClass::getFont(void)
 	if(ok==true)
 		{
 			QTextStream(stdout) <<font.toString()<< Qt::endl;
-			return(QMessageBox::Ok);	
+			this->data->retButton=QMessageBox::Ok;
+			this->data->retval=0;
 		}
-
-	return(QMessageBox::Cancel);	
+	else
+		{
+			this->data->retButton=QMessageBox::Cancel;
+			this->data->retval=1;
+		}
 }
 
 

@@ -29,25 +29,25 @@ class DataClass
 		DataClass();
 		~DataClass();
 
-		QString						title;
-		QString						body;
-		QString						defaultText;
-		int							width=640;
-		int							height=320;
-		bool							customSize=false;
-		int							boxType=-1;
-		QString						opsep="|";
-		QString						ipsep="|";
-
-		//QMessageBox::StandardButtons	buttons=QMessageBox::NoButton;
-		//QDialogButtonBox::StandardButtons	dbuttons=QDialogButtonBox::NoButton;
+		QCommandLineParser				parser;
+		QString							title;
+		QString							body;
+		QString							defaultText;
+		QDialog							*theDialog;
+		QDialogButtonBox					*bb;
+		QString							opsep="|";
+		QString							ipsep="|";
+		QMessageBox::StandardButton		retButton=QMessageBox::NoButton;
 		QDialogButtonBox::StandardButton	dbutton=QDialogButtonBox::NoButton;
-		QCommandLineParser			parser;
+		int								width=640;
+		int								height=320;
+		bool								customSize=false;
+		int								boxType=-1;
+		int								retval=0;
 
-		//void							setButtons(void);
-		void							setDButtons(void);
-		void							getBoxType(void);
-		
+		void								setDButtons(void);
+		void								getBoxType(void);
+		void								setReturnVals(void);
 };
 
 #endif

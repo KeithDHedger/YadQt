@@ -29,17 +29,19 @@ InfoBoxClass::~InfoBoxClass()
 {
 }
 
-unsigned InfoBoxClass::showDialog(void)
+void InfoBoxClass::showDialog(void)
 {
-	unsigned retval=0;
+	QMessageBox::StandardButton retval=QMessageBox::NoButton;
 
 	switch(data->boxType)
 		{
 			case ABOUT:
 				QMessageBox::about(nullptr,this->data->title,this->data->body);
+				retval=QMessageBox::Ok;
 				break;
 			case ABOUTQT:
 				QMessageBox::aboutQt(nullptr);
+				retval=QMessageBox::Ok;
 				break;
 			case QUERY:
 				retval=QMessageBox::question(nullptr,this->data->title,this->data->body,(QMessageBox::StandardButtons)this->data->dbutton);
@@ -54,5 +56,6 @@ unsigned InfoBoxClass::showDialog(void)
 				retval=QMessageBox::critical(nullptr,this->data->title,this->data->body,(QMessageBox::StandardButtons)this->data->dbutton);
 				break;			
 		}
-	return(retval);
+	this->data->retButton=retval;
+	this->data->setReturnVals();
 }

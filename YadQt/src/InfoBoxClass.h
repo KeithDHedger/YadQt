@@ -18,7 +18,6 @@
  * along with YadQt.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef _INFOBOXCLASS_
 #define _INFOBOXCLASS_
 
@@ -30,7 +29,7 @@ class InfoBoxClass
 		InfoBoxClass(QApplication *app,DataClass *data);
 		~InfoBoxClass();
 
-		unsigned		showDialog(void);
+		void			showDialog(void);
 
 	private:
 		DataClass	*data;

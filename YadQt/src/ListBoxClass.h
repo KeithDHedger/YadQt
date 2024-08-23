@@ -18,7 +18,6 @@
  * along with YadQt.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef _LISTBOXCLASS_
 #define _LISTBOXCLASS_
 
@@ -30,7 +29,7 @@ class ListBoxClass
 		ListBoxClass(QApplication *app,DataClass *data);
 		~ListBoxClass();
 
-	unsigned							getList(void);
+	void								getList(void);
 
 	private:
 		DataClass					*data;

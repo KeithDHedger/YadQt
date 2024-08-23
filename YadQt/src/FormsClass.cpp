@@ -35,16 +35,10 @@ miniPrefsReturnStruct FormsClass::miniPrefsDialog(QStringList items)
 	QWidget					*hbox;
 	QHBoxLayout				*hlayout;
 	QVBoxLayout				*docvlayout=new QVBoxLayout;
-	QDialogButtonBox			*bb=new QDialogButtonBox(this->data->dbutton);
 
 	prefs.theDialog=new QDialog();
 
-	QObject::connect(bb,&QDialogButtonBox::clicked,[this,prefs,bb](QAbstractButton *button)
-		{
-			prefs.theDialog->accept();
-			this->retButton=QMessageBox::StandardButton(bb->standardButton(button));
-		});
-
+	this->data->theDialog=prefs.theDialog;//TODO//
 	for(int j=0;j<items.size();j++)
 		{
 			hbox=new QWidget;
@@ -58,12 +52,11 @@ miniPrefsReturnStruct FormsClass::miniPrefsDialog(QStringList items)
 			docvlayout->addWidget(hbox);
 		}
 
-	docvlayout->addWidget(bb);
+	docvlayout->addWidget(this->data->bb);
 	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
 
 	prefs.theDialog->setLayout(docvlayout);
 	prefs.theDialog->setWindowTitle(this->data->title);
-
 
 	if(this->data->customSize==true)
 		prefs.theDialog->resize(QSize(this->data->width,this->data->height));
@@ -71,14 +64,13 @@ miniPrefsReturnStruct FormsClass::miniPrefsDialog(QStringList items)
 	return(prefs);
 }
 
-unsigned FormsClass::getForm(void)
+void FormsClass::getForm(void)
 {
 	int						res=0;
 	QStringList				items;
 	QStringList				textstrings;
 	miniPrefsReturnStruct	form;
 
-	
 	std::vector<std::string> names=LFSTK_UtilityClass::LFSTK_strTok(this->data->body.toStdString(),std::string("|"));
 	for(long unsigned int j=0;j<names.size();j++)
 		items<<names.at(j).c_str();
@@ -93,7 +85,7 @@ unsigned FormsClass::getForm(void)
 		}
 
 	res=form.theDialog->exec();
-	if(res==1)
+	if(this->data->retval==0)
 		{
 			QString op="";
 			for(int j=0;j<form.boxes.size()-1;j++)
@@ -102,7 +94,5 @@ unsigned FormsClass::getForm(void)
 
 			QTextStream(stdout) <<op<< Qt::endl;
 		}
-
-	return(this->retButton);
 }
 

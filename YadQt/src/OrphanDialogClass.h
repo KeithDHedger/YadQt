@@ -18,7 +18,6 @@
  * along with YadQt.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef _ORPHANDIALOGCLASS_
 #define _ORPHANDIALOGCLASS_
 
@@ -30,9 +29,8 @@ class OrphanDialogClass
 		OrphanDialogClass(QApplication *app,DataClass *data);
 		~OrphanDialogClass();
 
-		unsigned getColour(void);
-		unsigned getFont(void);
-		//unsigned getText(void);
+		void		getColour(void);
+		void		getFont(void);
 
 	private:
 		DataClass	*data;

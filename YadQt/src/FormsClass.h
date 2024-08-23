@@ -18,7 +18,6 @@
  * along with YadQt.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef _FORMSCLASS_
 #define _FORMSCLASS_
 
@@ -26,8 +25,8 @@
 
 struct miniPrefsReturnStruct
 {
-	QDialog						*theDialog;
-	QHash<int,QLineEdit*>		boxes;
+	QDialog					*theDialog;
+	QHash<int,QLineEdit*>	boxes;
 };
 
 class FormsClass
@@ -36,12 +35,12 @@ class FormsClass
 		FormsClass(QApplication *app,DataClass *data);
 		~FormsClass();
 
-		unsigned						getForm(void);
+		void							getForm(void);
 
 	private:
 		DataClass					*data;
 		miniPrefsReturnStruct		miniPrefsDialog(QStringList items);
-		QMessageBox::StandardButton	retButton;
+		//QMessageBox::StandardButton	retButton;
 };
 
 #endif
