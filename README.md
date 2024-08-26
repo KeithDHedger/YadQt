@@ -51,6 +51,7 @@ imagefile<br>
 colour<br>
 font<br>
 text<br>
+tailbox<br>
 
 **Examples:**<br>
 ````yadqt --type=aboutqt````<br>
