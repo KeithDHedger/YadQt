@@ -31,9 +31,11 @@ class OrphanDialogClass
 
 		void		getColour(void);
 		void		getFont(void);
+		void		tailBox(void);
 
 	private:
-		DataClass	*data;
+		DataClass		*data;
+		QApplication		*app;
 };
 
 #endif

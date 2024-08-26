@@ -23,6 +23,7 @@
 OrphanDialogClass::OrphanDialogClass(QApplication *app,DataClass *data)
 {
 	this->data=data;
+	this->app=app;
 }
 
 OrphanDialogClass::~OrphanDialogClass()
@@ -76,4 +77,52 @@ void OrphanDialogClass::getFont(void)
 		}
 }
 
+void OrphanDialogClass::tailBox(void)
+{
+	QPlainTextEdit	*thetext;
+	QVBoxLayout		*docvlayout=new QVBoxLayout;
+	QString			boxtext="";
+	QTextBlock		block;
+	QTextCursor		cursor;
+	int				available_bytes=-1;
+	QTextStream		datastream(stdin);
+	QString			datain="";
 
+	this->data->theDialog=new QDialog();
+	thetext=new QPlainTextEdit(nullptr);
+	thetext->setReadOnly(true);
+
+	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
+	docvlayout->addWidget(thetext);
+	docvlayout->addWidget(this->data->bb);
+	this->data->theDialog->setLayout(docvlayout);
+
+	this->data->theDialog->setWindowTitle(this->data->title);
+
+	if(this->data->customSize==true)
+		this->data->theDialog->resize(QSize(this->data->width,this->data->height));
+
+	this->data->theDialog->show();
+	this->data->retval=-1;
+
+	fcntl(0,F_SETFL,fcntl(0, F_GETFL) | O_NONBLOCK);
+	while(this->data->retval<0)
+		{
+			this->app->processEvents();
+			usleep(10000);
+			ioctl(0,FIONREAD,&available_bytes);
+			if(available_bytes>0)
+				{
+    					datain=datastream.readAll();
+    					if(datain.isEmpty()==false)
+						{
+							boxtext+=QString(datain);
+							thetext->setPlainText(boxtext);
+							block=thetext->document()->lastBlock();
+							cursor=thetext->textCursor();
+							cursor.setPosition(block.position());
+							thetext->setTextCursor(cursor);
+						}    				
+				}
+		}
+}

@@ -99,6 +99,9 @@ text<br>
 ````yadqt --type=font -d "Monospace,20"````<br>
 ![fatal](screenshots/font.png "yadqt --type=font")<br>
 
+````ls -1 ~|yadqt --type=tailbox -t "Tail box" --width=800````<br>
+![fatal](screenshots/tailbox.png "yadqt --type=tailbox")<br>
+
 **Simple search in current folder:**<br>
 Searches files for text and opens in default app.
 ```console

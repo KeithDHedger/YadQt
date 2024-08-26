@@ -152,6 +152,9 @@ int main(int argc, char **argv)
 					case GETFONT:
 						orphans.getFont();
 						break;
+					case TAILBOX:
+						orphans.tailBox();
+						break;
 				}
 		}
 	else

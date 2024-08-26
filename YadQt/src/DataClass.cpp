@@ -130,6 +130,8 @@ void DataClass::getBoxType()
 		this->boxType=GETFONT;
 	if(str.compare("text",Qt::CaseInsensitive)==0)
 		this->boxType=GETTEXT;
+	if(str.compare("tailbox",Qt::CaseInsensitive)==0)
+		this->boxType=TAILBOX;
 }
 
 void DataClass::setReturnVals(void)
