@@ -2,11 +2,11 @@
 This is an app to produce simple Qt dialogs from the command line, similar to YAD for gtk.<br>
 
 To build/install:
-````console
+```console
 ./autogen.sh --prefix=/usr
 make
 make install
-````
+```
 
 **QUICK USE:** <br>
 yadqt -h
@@ -100,7 +100,9 @@ tailbox<br>
 ````yadqt --type=font -d "Monospace,20"````<br>
 ![fatal](screenshots/font.png "yadqt --type=font")<br>
 
-````ls -1 ~|yadqt --type=tailbox -t "Tail box" --width=800````<br>
+```tail -n25 -f '/run/XfceWMScript.log' |yadqt --type=tailbox -t "Tail box" --width=800```<br>
+Or<br>
+```yadqt --type=tailbox -t "Tail box" --width=800 < /run/XfceWMScript.log```<br>
 ![fatal](screenshots/tailbox.png "yadqt --type=tailbox")<br>
 
 **Simple search in current folder:**<br>
