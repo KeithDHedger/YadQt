@@ -32,6 +32,7 @@ class OrphanDialogClass
 		void		getColour(void);
 		void		getFont(void);
 		void		tailBox(void);
+		void		notePad(void);
 
 	private:
 		DataClass		*data;

@@ -19,7 +19,7 @@ Options:
   -v, --version                Displays version information.
   -t, --title <YadQt>          Title.
   -b, --body <Information>     Body.
-  -d, --default <keithhedger>  Default text ( lists, forms etc ).
+  -d, --default <keithhedger>  Default text ( lists, forms etc, 1st positional arg passed will overide this ).
   --fromstdin                  Read default data from stdin.
   --width <640>                Dialog width ( set to 0 for default size for
                                dialog ).
@@ -100,10 +100,15 @@ tailbox<br>
 ````yadqt --type=font -d "Monospace,20"````<br>
 ![fatal](screenshots/font.png "yadqt --type=font")<br>
 
+**Tailbox will update additions from file**<br>
 ```tail -n25 -f '/run/XfceWMScript.log' |yadqt --type=tailbox -t "Tail box" --width=800```<br>
 Or<br>
 ```yadqt --type=tailbox -t "Tail box" --width=800 < /run/XfceWMScript.log```<br>
 ![fatal](screenshots/tailbox.png "yadqt --type=tailbox")<br>
+
+**Notepad simple text file editor**<br>
+```yadqt --type=notepad --width=800 --height=400  ../../README ;echo $?```<br>
+![fatal](screenshots/notepad.png "yadqt --type=notepad")<br>
 
 **Simple search in current folder:**<br>
 Searches files for text and opens in default app.

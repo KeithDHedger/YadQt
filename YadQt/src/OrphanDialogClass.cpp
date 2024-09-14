@@ -126,3 +126,44 @@ void OrphanDialogClass::tailBox(void)
 				}
 		}
 }
+
+void OrphanDialogClass::notePad(void)
+{
+	QPlainTextEdit	*thetext;
+	QVBoxLayout		*docvlayout=new QVBoxLayout;
+
+	this->data->theDialog=new QDialog();
+	thetext=new QPlainTextEdit(nullptr);
+
+	QFile file(this->data->defaultText);
+	file.open(QFile::ReadOnly | QFile::Text);
+	thetext->setPlainText(file.readAll());
+	file.close();
+
+	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
+	docvlayout->addWidget(thetext);
+
+	this->data->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Save|(unsigned int)QDialogButtonBox::Discard);
+	this->data->bb->setStandardButtons(this->data->dbutton);
+	docvlayout->addWidget(this->data->bb);
+	this->data->theDialog->setLayout(docvlayout);
+
+//HMmmmmm
+//	if(this->data->parser.isSet("title")==false)
+//		this->data->title=this->data->defaultText;
+
+	this->data->theDialog->setWindowTitle(this->data->title);
+	
+	if(this->data->customSize==true)
+		this->data->theDialog->resize(QSize(this->data->width,this->data->height));
+
+	this->data->theDialog->exec();
+	if(this->data->retval==0)
+		{
+			if(file.open(QIODevice::ReadWrite))
+				{
+					QTextStream(&file) << thetext->toPlainText() << Qt::endl;
+					file.close();
+				}
+		}
+}

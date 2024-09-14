@@ -42,7 +42,7 @@ int main(int argc, char **argv)
 		{
 			{{"t","title"},"Title.","YadQt"},
 			{{"b","body"},"Body.","Information"},
-			{{"d","default"},"Default text ( lists, forms etc ).",QDir::home().dirName()},
+			{{"d","default"},"Default text ( lists, forms etc, 1st positional arg passed will overide this ).",QDir::home().dirName()},
 			{"fromstdin","Read default data from stdin."},
 			{"width","Dialog width ( set to 0 for default size for dialog ).","640"},
 			{"height","Dialog height ( set to 0 for default size for dialog ).","320"},
@@ -103,6 +103,10 @@ int main(int argc, char **argv)
 					data.bb->setStandardButtons(data.dbutton);
 				}
 
+			const QStringList	xtraargs=data.parser.positionalArguments();
+			if(xtraargs.isEmpty()==false)
+				data.defaultText=xtraargs.first();
+
 			switch(data.boxType)
 				{
 //info boxes
@@ -154,6 +158,9 @@ int main(int argc, char **argv)
 						break;
 					case TAILBOX:
 						orphans.tailBox();
+						break;
+					case NOTEPAD:
+						orphans.notePad();
 						break;
 				}
 		}
