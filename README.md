@@ -52,6 +52,7 @@ colour<br>
 font<br>
 text<br>
 tailbox<br>
+notepad<br>
 
 **Examples:**<br>
 ````yadqt --type=aboutqt````<br>
