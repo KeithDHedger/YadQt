@@ -24,6 +24,7 @@
 int main(int argc, char **argv)
 {
 	QApplication			app(argc,argv);
+	QStringList			xtraargs;
 
 	DataClass			data;
 	InfoBoxClass			info(&app,&data);
@@ -103,7 +104,7 @@ int main(int argc, char **argv)
 					data.bb->setStandardButtons(data.dbutton);
 				}
 
-			const QStringList	xtraargs=data.parser.positionalArguments();
+			xtraargs=data.parser.positionalArguments();
 			if(xtraargs.isEmpty()==false)
 				data.defaultText=xtraargs.first();
 
