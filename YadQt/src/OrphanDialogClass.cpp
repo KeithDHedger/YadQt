@@ -109,6 +109,9 @@ void OrphanDialogClass::tailBox(void)
 	while(this->data->retval<0)
 		{
 			this->app->processEvents();
+			if(this->data->theDialog->isVisible()==false)
+				this->data->retval=0;
+
 			usleep(10000);
 			ioctl(0,FIONREAD,&available_bytes);
 			if(available_bytes>0)
@@ -165,5 +168,122 @@ void OrphanDialogClass::notePad(void)
 					QTextStream(&file) << thetext->toPlainText() << Qt::endl;
 					file.close();
 				}
+		}
+}
+
+void OrphanDialogClass::loadData(QString uri)
+{
+	QByteArray		qb;
+	QTextCodec		*codec;
+	QString			str;
+	QMimeDatabase	db1;
+	QFile			file(uri);
+	QString			realpath=QFileInfo(file).canonicalFilePath();
+
+	if(db1.mimeTypeForFile(realpath).name().compare("text/markdown")==0)
+		{
+			QUrl baseUrl=QUrl::fromLocalFile(realpath).adjusted(QUrl::RemoveFilename);
+			this->baseurl=baseUrl;
+			this->thedoc->setSource(QUrl::fromLocalFile(realpath),QTextDocument::MarkdownResource);		
+		}
+	else if(db1.mimeTypeForFile(realpath).name().compare("text/html")==0)
+		{
+			QUrl baseUrl=QUrl::fromLocalFile(realpath).adjusted(QUrl::RemoveFilename);
+			this->baseurl=baseUrl;
+			this->thedoc->document()->setBaseUrl(baseUrl);
+			this->thedoc->setSource(QUrl::fromLocalFile(realpath),QTextDocument::HtmlResource);
+		}
+	else if(db1.mimeTypeForFile(realpath).name().startsWith("image/")==true)
+		{
+			thedoc->document()->clear();
+			QUrl baseUrl=QUrl::fromLocalFile(realpath).adjusted(QUrl::RemoveFilename);
+			this->baseurl=baseUrl;
+			this->thedoc->document()->setBaseUrl(baseUrl);
+			thedoc->append(QString("<img src=\"%1\" />").arg(realpath));
+		}
+	else
+		{
+			QFile file(realpath);
+			file.open(QFile::ReadOnly | QFile::Text);
+			thedoc->document()->setPlainText(file.readAll());
+			file.close();;
+		}
+}
+
+void OrphanDialogClass::richText(void)
+{
+	QVBoxLayout		*docvlayout=new QVBoxLayout;
+	QByteArray		qb;
+	QTextCodec		*codec;
+	QString			str;
+	QMimeDatabase	db1;
+	QHBoxLayout		*hlayout;
+	QWidget			*hbox;
+
+	this->data->theDialog=new QDialog();
+	this->thedoc=new QTextBrowser(nullptr);
+	
+	this->thedoc->setAcceptRichText(true);
+	this->thedoc->setOpenExternalLinks(true);
+	QObject::connect(thedoc,&QTextBrowser::anchorClicked,[this](const QUrl &link)
+		{
+			QFile f1(link.toString(QUrl::RemoveScheme));
+			if(f1.exists()==true)
+				this->loadData(link.toLocalFile());
+		});
+	this->loadData(this->data->defaultText);
+
+	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
+	docvlayout->addWidget(this->thedoc);
+
+	QPushButton *pb=new QPushButton(QIcon::fromTheme("go-previous"),"Back");
+	QObject::connect(pb,&QPushButton::clicked,[this]()
+		{
+			this->thedoc->backward();
+		});
+
+	QPushButton *pf=new QPushButton(QIcon::fromTheme("go-next"),"Forward");
+	QObject::connect(pf,&QPushButton::clicked,[this]()
+		{
+			this->thedoc->forward();
+		});
+
+	QPushButton *ok=new QPushButton(QIcon::fromTheme("stock_close"),"OK");
+	QObject::connect(ok,&QPushButton::clicked,[this]()
+		{
+			this->data->theDialog->hide();
+			this->data->retval=0;
+			this->data->retButton=QMessageBox::Ok;
+		});
+
+	hbox=new QWidget;
+	hlayout=new QHBoxLayout;
+	hlayout->setContentsMargins(0,0,0,0);
+	hbox->setLayout(hlayout);
+	hlayout->addWidget(pb,0,Qt::AlignLeft);
+	hlayout->addWidget(pf,0,Qt::AlignLeft);
+	hlayout->addWidget(ok,1,Qt::AlignRight);
+	docvlayout->addWidget(hbox);
+
+	this->data->theDialog->setLayout(docvlayout);
+
+//HMmmmmm
+//	if(this->data->parser.isSet("title")==false)
+//		this->data->title=this->data->defaultText;
+
+	this->data->theDialog->setWindowTitle(this->data->title);
+	
+	if(this->data->customSize==true)
+		this->data->theDialog->resize(QSize(this->data->width,this->data->height));
+	this->data->theDialog->show();
+	this->data->retval=-1;
+
+	while(this->data->retval!=0)
+		{
+			this->app->processEvents();
+			if(this->data->theDialog->isVisible()==false)
+				this->data->retval=0;
+			pb->setEnabled(this->thedoc->isBackwardAvailable());
+			pf->setEnabled(this->thedoc->isForwardAvailable());
 		}
 }

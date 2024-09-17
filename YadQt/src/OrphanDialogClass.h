@@ -33,10 +33,17 @@ class OrphanDialogClass
 		void		getFont(void);
 		void		tailBox(void);
 		void		notePad(void);
+		void		richText(void);
 
 	private:
+		void		loadData(QString uri);
+
 		DataClass		*data;
 		QApplication		*app;
+		QTextBrowser		*thedoc;
+		QUrl				baseurl;
+
+
 };
 
 #endif

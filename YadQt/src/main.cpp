@@ -36,6 +36,7 @@ int main(int argc, char **argv)
 
 	unsigned				retval=0;
 
+	app.setQuitOnLastWindowClosed(true);
 	app.setApplicationVersion(VERSION);
 	data.parser.addHelpOption();
 	data.parser.addVersionOption();
@@ -162,6 +163,9 @@ int main(int argc, char **argv)
 						break;
 					case NOTEPAD:
 						orphans.notePad();
+						break;
+					case RICHTEXT:
+						orphans.richText();
 						break;
 				}
 		}

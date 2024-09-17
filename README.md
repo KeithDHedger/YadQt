@@ -53,6 +53,7 @@ font<br>
 text<br>
 tailbox<br>
 notepad<br>
+richtext<br>
 
 **Examples:**<br>
 ````yadqt --type=aboutqt````<br>
@@ -110,6 +111,11 @@ Or<br>
 **Notepad simple text file editor**<br>
 ```yadqt --type=notepad --width=800 --height=400  ../../README ;echo $?```<br>
 ![fatal](screenshots/notepad.png "yadqt --type=notepad")<br>
+
+**Richtext simple richtext viewer**<br>
+```yadqt --type=richtext --width=800 --height=400 '/tmp/KeithDHedger.github.io/docs/index'```<br>
+![fatal](screenshots/richtext.png "yadqt --type=richtext")<br>
+
 
 **Simple search in current folder:**<br>
 Searches files for text and opens in default app.

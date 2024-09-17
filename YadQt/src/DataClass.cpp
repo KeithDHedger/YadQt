@@ -134,6 +134,8 @@ void DataClass::getBoxType()
 		this->boxType=TAILBOX;
 	if(str.compare("notepad",Qt::CaseInsensitive)==0)
 		this->boxType=NOTEPAD;
+	if(str.compare("richtext",Qt::CaseInsensitive)==0)
+		this->boxType=RICHTEXT;
 }
 
 void DataClass::setReturnVals(void)

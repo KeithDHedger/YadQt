@@ -33,7 +33,6 @@ void ListBoxClass::getList(void)
 {
 	QWidget					*hbox;
 	QVBoxLayout				*docvlayout=new QVBoxLayout;
-	QHBoxLayout				*hlayout;
 	QStringList				items;
 	QListWidget				*listwidget;
 	int						res=0;
