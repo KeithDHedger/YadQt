@@ -57,6 +57,7 @@ richtext<br>
 
 **Examples:**<br>
 ````yadqt --type=aboutqt````<br>
+````yadqt --type=about -b "About box with html<br><br><a href=\"https://keithdhedger.github.io\">Website</a><br><br><a href=\"mailto:keithdhedger@gmail.com\">Mail Me</a>"````<br>
 
 ````yadqt --type=fatal -t "DANGER!" -b "BSOD!" --buttons="abort|Ignore" --btntoerr 2>/dev/pts/2;echo $?````<br>
 ![fatal](screenshots/fatal.png "yadqt --type=fatal")<br>
