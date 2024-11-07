@@ -33,8 +33,9 @@ int main(int argc, char **argv)
 	ListBoxClass			list(&app,&data);
 	FilesClass			files(&app,&data);
 	OrphanDialogClass	orphans(&app,&data);
-
 	unsigned				retval=0;
+
+	QIcon::setFallbackThemeName("gnome");
 
 	app.setQuitOnLastWindowClosed(true);
 	app.setApplicationVersion(VERSION);
