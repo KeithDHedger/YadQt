@@ -54,7 +54,7 @@ int main(int argc, char **argv)
 			{"multiple","Select multiple items ( lists )."},
 			{"btntoerr","Print button to stderr."},
 			{"buttons","Buttons ( for info boxes ).","Ok"},
-			{"type","Box Type ( no type will display aboutbox for Qt ).","aboutqt"},
+			{"type","Box Type ( no type will display aboutbox for Qt )\n\nTypes are:\nabout aboutqt query info warn fatal input getitem form list textfile imagefile colour font text tailbox notepad richtext.\nMore info and examples here:\nhttps://keithdhedger.github.io/pages/yadqt/yadqt.html","aboutqt"},
 	});
 
 	app.setWindowIcon(QIcon::fromTheme("user-info"));

@@ -1,4 +1,5 @@
 0.1.1
+Added extra info to --help.
 Fixed quiting app when closing tailbox via window control etc.
 Added type richtext.
 Added type notepad.
