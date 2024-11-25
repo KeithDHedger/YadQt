@@ -242,6 +242,12 @@ void OrphanDialogClass::richText(void)
 			this->thedoc->backward();
 		});
 
+	QPushButton *ph=new QPushButton(QIcon::fromTheme("go-home"),"Home");
+	QObject::connect(ph,&QPushButton::clicked,[this]()
+		{
+			this->thedoc->home();
+		});
+
 	QPushButton *pf=new QPushButton(QIcon::fromTheme("go-next"),"Forward");
 	QObject::connect(pf,&QPushButton::clicked,[this]()
 		{
@@ -250,7 +256,6 @@ void OrphanDialogClass::richText(void)
 	QPushButton *prf=new QPushButton(QIcon::fromTheme("view-refresh"),"Refresh");
 	QObject::connect(prf,&QPushButton::clicked,[this]()
 		{
-			//this->loadData(this->data->defaultText);
 			this->thedoc->reload();
 		});
 
@@ -266,6 +271,7 @@ void OrphanDialogClass::richText(void)
 	hlayout=new QHBoxLayout;
 	hlayout->setContentsMargins(0,0,0,0);
 	hbox->setLayout(hlayout);
+	hlayout->addWidget(ph,0,Qt::AlignLeft);
 	hlayout->addWidget(pb,0,Qt::AlignLeft);
 	hlayout->addWidget(pf,0,Qt::AlignLeft);
 	hlayout->addWidget(prf,0,Qt::AlignLeft);
