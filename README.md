@@ -1,7 +1,7 @@
 # YadQt
 This is an app to produce simple Qt dialogs from the command line, similar to YAD for gtk.
 
-To build/install:
+**To build/install:**
 ```console
 ./autogen.sh --prefix=/usr
 make
@@ -38,11 +38,11 @@ Options:
                                form list textfile imagefile colour font text
                                tailbox notepad richtext.
                                More info and examples here:
-                               https://keithdhedger.github.io/pages/yadqt/yadqt.
-                               html
+                               https://keithdhedger.github.io/pages/yadqt/yadqt.html
 ```` 
 ### Dialog types:
-```` about  
+````console
+about  
 aboutqt  
 query  
 info  
@@ -65,7 +65,7 @@ richtext
 ### Examples:
 ````console
 yadqt --type=aboutqt
-yadqt --type=about -b "About box with html<a href=\"https://keithdhedger.github.io\">Website</a><a href=\"mailto:keithdhedger@gmail.com\">Mail Me</a>"
+yadqt --type=about -b "About box with html<br><br><a href=\"https://keithdhedger.github.io\">Website</a><br><br><a href=\"mailto:keithdhedger@gmail.com\">Mail Me</a>"
 ````
 ![ ](screenshots/aboutme.png "yadqt --type=about")
 ````console
