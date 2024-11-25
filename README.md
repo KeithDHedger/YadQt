@@ -33,8 +33,14 @@ Options:
   --btntoerr                   Print button to stderr.
   --buttons <Ok>               Buttons ( for info boxes ).
   --type <aboutqt>             Box Type ( no type will display aboutbox for Qt ).
-````  
- 
+                               Types are:
+                               about aboutqt query info warn fatal input getitem
+                               form list textfile imagefile colour font text
+                               tailbox notepad richtext.
+                               More info and examples here:
+                               https://keithdhedger.github.io/pages/yadqt/yadqt.
+                               html
+```` 
 ### Dialog types:
 ```` about  
 aboutqt  
