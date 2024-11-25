@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 		{
 			{{"t","title"},"Title.","YadQt"},
 			{{"b","body"},"Body.","Information"},
-			{{"d","default"},"Default text ( lists, forms etc, 1st positional arg passed will overide this ).",QDir::home().dirName()},
+			{{"d","default","data"},"Default text ( lists, forms etc, 1st positional arg passed will overide this ).",QDir::home().dirName()},
 			{"fromstdin","Read default data from stdin."},
 			{"width","Dialog width ( set to 0 for default size for dialog ).","640"},
 			{"height","Dialog height ( set to 0 for default size for dialog ).","320"},

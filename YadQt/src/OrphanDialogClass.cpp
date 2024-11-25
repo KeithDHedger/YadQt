@@ -184,7 +184,7 @@ void OrphanDialogClass::loadData(QString uri)
 		{
 			QUrl baseUrl=QUrl::fromLocalFile(realpath).adjusted(QUrl::RemoveFilename);
 			this->baseurl=baseUrl;
-			this->thedoc->setSource(QUrl::fromLocalFile(realpath),QTextDocument::MarkdownResource);		
+			this->thedoc->setSource(QUrl::fromLocalFile(realpath),QTextDocument::MarkdownResource);	
 		}
 	else if(db1.mimeTypeForFile(realpath).name().compare("text/html")==0)
 		{
@@ -247,6 +247,12 @@ void OrphanDialogClass::richText(void)
 		{
 			this->thedoc->forward();
 		});
+	QPushButton *prf=new QPushButton(QIcon::fromTheme("view-refresh"),"Refresh");
+	QObject::connect(prf,&QPushButton::clicked,[this]()
+		{
+			//this->loadData(this->data->defaultText);
+			this->thedoc->reload();
+		});
 
 	QPushButton *ok=new QPushButton(QIcon::fromTheme("stock_close"),"OK");
 	QObject::connect(ok,&QPushButton::clicked,[this]()
@@ -262,6 +268,7 @@ void OrphanDialogClass::richText(void)
 	hbox->setLayout(hlayout);
 	hlayout->addWidget(pb,0,Qt::AlignLeft);
 	hlayout->addWidget(pf,0,Qt::AlignLeft);
+	hlayout->addWidget(prf,0,Qt::AlignLeft);
 	hlayout->addWidget(ok,1,Qt::AlignRight);
 	docvlayout->addWidget(hbox);
 

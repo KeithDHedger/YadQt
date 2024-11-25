@@ -1,4 +1,6 @@
 0.1.1
+Update to README.
+Added 'Refresh' button to richtext viewer.
 Added extra info to --help.
 Fixed quiting app when closing tailbox via window control etc.
 Added type richtext.
