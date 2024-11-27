@@ -34,6 +34,8 @@ class OrphanDialogClass
 		void		tailBox(void);
 		void		notePad(void);
 		void		richText(void);
+		void		openFile(void);
+		void		saveFile(void);
 
 	private:
 		void		loadData(QString uri);

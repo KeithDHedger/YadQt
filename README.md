@@ -36,7 +36,7 @@ Options:
                                Types are:
                                about aboutqt query info warn fatal input getitem
                                form list textfile imagefile colour font text
-                               tailbox notepad richtext.
+                               tailbox notepad richtext openfile savefile.
                                More info and examples here:
                                https://keithdhedger.github.io/pages/yadqt/yadqt.html
 ```` 
@@ -60,6 +60,8 @@ text
 tailbox  
 notepad  
 richtext
+openfile
+savefile
 ````
     
 ### Examples:
@@ -173,6 +175,16 @@ yadqt --type=notepad --width=800 --height=400  ../../README ;echo $?
 yadqt --type=richtext --width=800 --height=400 '/tmp/KeithDHedger.github.io/docs/index'
 ````
 ![ ](screenshots/richtext.png "yadqt --type=richtext")
+
+##
+**File choosers**
+````console
+yadqt --type=openfile
+yadqt --type=savefile -d /tmp/somefile
+````
+![ ](screenshots/openfile.png "yadqt --type=openfile")
+####
+![ ](screenshots/savefile.png "yadqt --type=savefile")
 
 ##
 **Simple search in current folder:**  

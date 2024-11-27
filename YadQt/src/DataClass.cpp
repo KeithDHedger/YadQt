@@ -136,6 +136,13 @@ void DataClass::getBoxType()
 		this->boxType=NOTEPAD;
 	if(str.compare("richtext",Qt::CaseInsensitive)==0)
 		this->boxType=RICHTEXT;
+
+//files
+	if(str.compare("openfile",Qt::CaseInsensitive)==0)
+		this->boxType=OPENFILE;
+	if(str.compare("savefile",Qt::CaseInsensitive)==0)
+		this->boxType=SAVEFILE;
+
 }
 
 void DataClass::setReturnVals(void)

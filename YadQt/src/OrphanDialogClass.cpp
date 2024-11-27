@@ -130,6 +130,40 @@ void OrphanDialogClass::tailBox(void)
 		}
 }
 
+void OrphanDialogClass::openFile(void)
+{
+	QString filename=QFileDialog::getOpenFileName(nullptr,"Open File",this->data->defaultText);
+	if(filename.isEmpty()==false)
+		{
+			QTextStream(stdout) <<filename<< Qt::endl;
+			this->data->retButton=QMessageBox::Ok;
+			this->data->retval=0;
+		}
+	else
+		{
+			this->data->retButton=QMessageBox::Cancel;
+			this->data->retval=1;
+		}
+		printf("%s\n",filename.toStdString().c_str());
+}
+
+void OrphanDialogClass::saveFile(void)
+{
+	QString filename=QFileDialog::getSaveFileName(nullptr,"Save File",this->data->defaultText);
+	if(filename.isEmpty()==false)
+		{
+			QTextStream(stdout) <<filename<< Qt::endl;
+			this->data->retButton=QMessageBox::Ok;
+			this->data->retval=0;
+		}
+	else
+		{
+			this->data->retButton=QMessageBox::Cancel;
+			this->data->retval=1;
+		}
+		printf("%s\n",filename.toStdString().c_str());
+}
+
 void OrphanDialogClass::notePad(void)
 {
 	QPlainTextEdit	*thetext;
@@ -174,7 +208,7 @@ void OrphanDialogClass::notePad(void)
 void OrphanDialogClass::loadData(QString uri)
 {
 	QByteArray		qb;
-	QTextCodec		*codec;
+//	QTextCodec		*codec;
 	QString			str;
 	QMimeDatabase	db1;
 	QFile			file(uri);
@@ -214,7 +248,7 @@ void OrphanDialogClass::richText(void)
 {
 	QVBoxLayout		*docvlayout=new QVBoxLayout;
 	QByteArray		qb;
-	QTextCodec		*codec;
+//	QTextCodec		*codec;
 	QString			str;
 	QMimeDatabase	db1;
 	QHBoxLayout		*hlayout;
