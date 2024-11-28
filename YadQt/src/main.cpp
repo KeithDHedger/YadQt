@@ -38,7 +38,9 @@ int main(int argc, char **argv)
 	QIcon::setFallbackThemeName("gnome");
 
 	app.setQuitOnLastWindowClosed(true);
-	app.setApplicationVersion(VERSION);
+	app.setOrganizationName("KDHedger");
+	app.setApplicationName(PACKAGE_NAME);
+	app.setApplicationVersion(PACKAGE_VERSION);
 	app.processEvents();
 
 	data.parser.addHelpOption();

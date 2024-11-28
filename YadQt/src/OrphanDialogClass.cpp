@@ -144,7 +144,6 @@ void OrphanDialogClass::openFile(void)
 			this->data->retButton=QMessageBox::Cancel;
 			this->data->retval=1;
 		}
-		printf("%s\n",filename.toStdString().c_str());
 }
 
 void OrphanDialogClass::saveFile(void)
@@ -161,7 +160,6 @@ void OrphanDialogClass::saveFile(void)
 			this->data->retButton=QMessageBox::Cancel;
 			this->data->retval=1;
 		}
-		printf("%s\n",filename.toStdString().c_str());
 }
 
 void OrphanDialogClass::notePad(void)
