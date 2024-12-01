@@ -130,6 +130,43 @@ void OrphanDialogClass::tailBox(void)
 		}
 }
 
+void OrphanDialogClass::prefsDialog(void)
+{
+	prefsClass	*newprefs=new prefsClass();
+	QStringList  prefsdata;;
+	QSize		sze;
+
+	prefsdata=this->data->defaultText.split(this->data->ipsep);
+	if(this->data->customSize==true)
+		newprefs->createDialog(this->data->title,prefsdata,QSize(this->data->width,this->data->height));
+	else
+		newprefs->createDialog(this->data->title,prefsdata);
+
+	if(newprefs->dialogPrefs.valid==true)
+		{
+			for(int j=0;j<newprefs->dialogPrefs.comboBoxCnt;j++)
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.comboBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.comboBoxes[j]->currentText()<<"'"<<this->data->opsep;
+			for(int j=0;j<newprefs->dialogPrefs.editBoxCnt;j++)
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.editBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.editBoxes[j]->text()<<"'"<<this->data->opsep;
+			for(int j=0;j<newprefs->dialogPrefs.checkBoxCnt;j++)
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.checkBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.checkBoxes[j]->isChecked()<<"'"<<this->data->opsep;
+			for(int j=0;j<newprefs->dialogPrefs.colourBoxCnt;j++)
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.colourBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.colourBoxes[j]->text()<<"'"<<this->data->opsep;
+			for(int j=0;j<newprefs->dialogPrefs.fontBoxCnt;j++)
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.fontBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.fontBoxes[j]->text()<<"'"<<this->data->opsep;
+			for(int j=0;j<newprefs->dialogPrefs.fileBoxCnt;j++)
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.fileBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.fileBoxes[j]->text()<<"'"<<this->data->opsep;
+			this->data->retButton=QMessageBox::Ok;
+			this->data->retval=0;
+		}
+	else
+		{
+			this->data->retButton=QMessageBox::Cancel;
+			this->data->retval=1;
+		}
+	delete newprefs;
+}
+
 void OrphanDialogClass::openFile(void)
 {
 	QString filename=QFileDialog::getOpenFileName(nullptr,"Open File",this->data->defaultText);

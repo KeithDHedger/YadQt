@@ -143,6 +143,10 @@ void DataClass::getBoxType()
 	if(str.compare("savefile",Qt::CaseInsensitive)==0)
 		this->boxType=SAVEFILE;
 
+//prefs
+	if(str.compare("prefsdialog",Qt::CaseInsensitive)==0)
+		this->boxType=PREFSDIALOG;
+
 }
 
 void DataClass::setReturnVals(void)

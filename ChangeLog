@@ -1,4 +1,8 @@
 0.1.1
+Prefsdialog type size can be overridden by setting both --width AND --height.
+Updated README.
+Added examples.
+Added prefsdialog to types.
 Code clean.
 Added openfile/savefile types.
 Added 'Home' to richtext viewer.

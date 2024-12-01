@@ -47,6 +47,7 @@ int main(int argc, char **argv)
 	data.parser.addVersionOption();
 	data.parser.addOptions(
 		{
+			{{"a","appname"},"Application name.",PACKAGE_NAME},
 			{{"t","title"},"Title.","YadQt"},
 			{{"b","body"},"Body.","Information"},
 			{{"d","default","data"},"Default text ( lists, forms etc, 1st positional arg passed will overide this ).",QDir::home().dirName()},
@@ -58,7 +59,7 @@ int main(int argc, char **argv)
 			{"multiple","Select multiple items ( lists )."},
 			{"btntoerr","Print button to stderr."},
 			{"buttons","Buttons ( for info boxes ).","Ok"},
-			{"type","Box Type ( no type will display aboutbox for Qt )\n\nTypes are:\nabout aboutqt query info warn fatal input getitem form list textfile imagefile colour font text tailbox notepad richtext openfile savefile.\nMore info and examples here:\nhttps://keithdhedger.github.io/pages/yadqt/yadqt.html","aboutqt"},
+			{"type","Box Type ( no type will display aboutbox for Qt )\n\nTypes are:\nabout aboutqt query info warn fatal input getitem form list textfile imagefile colour font text tailbox notepad richtext openfile savefile prefsdialog.\nMore info and examples here:\nhttps://keithdhedger.github.io/pages/yadqt/yadqt.html","aboutqt"},
 	});
 
 	app.setWindowIcon(QIcon::fromTheme("user-info"));
@@ -76,6 +77,12 @@ int main(int argc, char **argv)
 			data.defaultText=data.parser.value("default");
 		}
 	data.body=data.parser.value("body");
+
+	if(data.parser.isSet("appname"))
+		{
+			app.setApplicationName(data.parser.value("appname"));
+		}
+
 	if(data.parser.isSet("width"))
 		{
 			data.customSize=true;
@@ -180,6 +187,11 @@ int main(int argc, char **argv)
 					case SAVEFILE:
 						orphans.saveFile();
 						break;
+//prefs
+					case PREFSDIALOG:
+						orphans.prefsDialog();
+						break;
+
 				}
 		}
 	else

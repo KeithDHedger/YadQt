@@ -1,0 +1,113 @@
+#font selector
+#type=font
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+font
+prefs/Main Font
+Sans Serif,9,-1,5,50,0,0,0,0,0
+
+font
+Secondary Font
+
+
+#colour selector
+#type=colour
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+colour
+prefs/Main Colour 2
+#ff00ffff
+
+#colour selector
+#type=colour
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+colour
+Second Col
+grey
+
+#combobox
+#type=combobox
+#prefs name, prefs sections seperated by /
+#default entry to select, blank=none
+#entry 1
+#entry 2
+#entry n
+#end combobox
+combostart
+prefs/Combo Name 1
+
+entry1
+entry2
+e3
+lastentry
+comboend
+
+#combobox
+#type=combobox
+#prefs name, prefs sections seperated by /
+#default entry to select, blank=none
+#entry 1
+#entry 2
+#entry n
+#end combobox
+combostart
+Combo Name 2
+lastentry00
+entry1
+entry 200
+e 30
+lastentry00
+comboend
+
+#edit box
+#type=edit
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+edit
+prefs/Edit Two
+some data
+
+#edit box
+#type=edit
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+edit
+Edit Three
+more data
+
+#check box
+#type=check
+#prefs name, prefs sections seperated by /
+#default (0/1), will be overwitten when prefs are saved
+check
+prefs/Check 1
+0
+
+#check box
+#type=check
+#prefs name, prefs sections seperated by /
+#default (0/1), will be overwitten when prefs are saved
+check
+Use Theme
+0
+
+#folder select
+#type=folder
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+folder
+Folder One
+
+
+#file select
+#type=file
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+file
+Fiile One
+/usr
+
+endpefs
+
+

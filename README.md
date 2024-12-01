@@ -17,6 +17,7 @@ Options:
   -h, --help                   Displays help on commandline options.
   --help-all                   Displays help including Qt specific options.
   -v, --version                Displays version information.
+  -a, --appname <YadQt>        Application name.
   -t, --title <YadQt>          Title.
   -b, --body <Information>     Body.
   -d, --default <keithhedger>  Default text ( lists, forms etc, 1st positional arg passed will overide this ).
@@ -36,7 +37,7 @@ Options:
                                Types are:
                                about aboutqt query info warn fatal input getitem
                                form list textfile imagefile colour font text
-                               tailbox notepad richtext openfile savefile.
+                               tailbox notepad richtext openfile savefile prefsdialog.
                                More info and examples here:
                                https://keithdhedger.github.io/pages/yadqt/yadqt.html
 ```` 
@@ -62,6 +63,7 @@ notepad
 richtext
 openfile
 savefile
+prefsdialog
 ````
     
 ### Examples:
@@ -187,6 +189,141 @@ yadqt --type=savefile -d /tmp/somefile
 ![ ](screenshots/savefile.png "yadqt --type=savefile")
 
 ##
+**Prefs Dialog:**
+````
+Prefs will be saved in ~/.config/KDHedger/APPLICATIONNAME.
+APPLICATIONNAME will default to YadQt, or set it via the -a switch.
+Prefs are standard QT QSettings files.
+Prefs are also echoed to stdout When you select 'Apply', format for output is:
+PREFSNAME=VALUE
+Output seperator is set with --opseparator.
+See the examples in /usr/share/YadQt/examples
+````
+
+````console
+pushd /usr/share/YadQt/examples
+	./bashprefs.sh
+popd
+````
+![ ](screenshots/prefsexample.png "yadqt --type=prefsdialog")
+####
+````console
+echo 'font|prefs/main font|Sans Serif,9,-1,5,50,0,0,0,0,0|colour|prefs/main colour 2|#ff00ffff|colour|second col|grey'|yadqt --type=prefsdialog -t "my prefs" -a yadprefsdialog --fromstdin
+````
+![ ](screenshots/prefsexample2.png "yadqt --type=prefsdialog") 
+
+**Example prefs config file:** 
+
+````console
+#font selector
+#type=font
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+font	
+prefs/main font
+Sans Serif,9,-1,5,50,0,0,0,0,0
+
+#colour selector
+#type=colour
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+colour
+prefs/main colour 2
+#ff00ffff
+
+#colour selector
+#type=colour
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+colour
+second col
+grey
+
+#combobox
+#type=combobox
+#prefs name, prefs sections seperated by /
+#default entry to select, blank=none
+#entry 1
+#entry 2
+#entry n
+#end combobox
+combostart
+prefs/combo name 1
+
+entry1
+entry2
+e3
+lastentry
+comboend
+
+#combobox
+#type=combobox
+#prefs name, prefs sections seperated by /
+#default entry to select, blank=none
+#entry 1
+#entry 2
+#entry n
+#end combobox
+combostart
+combo name 2
+first entry
+entry1
+entry 200
+e 30
+lastentry00
+comboend
+
+#edit box
+#type=edit
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+edit
+prefs/edit 2
+some data
+
+#edit box
+#type=edit
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+edit
+edit 3
+more data
+
+#check box
+#type=check
+#prefs name, prefs sections seperated by /
+#default (0/1), will be overwitten when prefs are saved
+check
+prefs/check 1
+0
+
+#check box
+#type=check
+#prefs name, prefs sections seperated by /
+#default (0/1), will be overwitten when prefs are saved
+check
+use theme
+0
+
+#folder select
+#type=folder
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+folder
+Folder One
+
+
+#file select
+#type=file
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+file
+Fiile One
+/usr
+
+endpefs
+````
+***
 **Simple search in current folder:**  
 
 Searches files for text and opens in default app.
@@ -203,6 +340,7 @@ Some options are not yet implemented
 
 ### TODO
 documentation - ONGOING ... :(  
+More examples  
 more boxes  
 set o/p separator for data.DONE  
 set i/p separator for data.DONE  

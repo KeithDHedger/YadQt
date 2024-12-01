@@ -1,8 +1,7 @@
-.TH "YADQT" "1" "0.1.0" "K.D.Hedger" "User Commands"
+.TH "YADQT" "1" "0.1.1" "K.D.Hedger" "User Commands"
 .SH "NAME"
 yadqt - Create Qt5/6 dialogs from the commandline.
 .br
-
 .SH "SYNOPSIS"
 \fByadqt \fR[\fIoptions\fR]
 .br
@@ -45,10 +44,37 @@ font
 .br
 text
 .br
+tailbox
+.br
+notepad
+.br
+richtext
+.br
+openfile
+.br
+savefile
+.br
+prefsdialog.
+.br
 .SH "OPTIONS"
 \fB-h\fR, \fB--help\fR
 .br
        Displays help on commandline options.
+.br
+
+\fB--help-all\fR
+.br
+       Displays help including Qt specific options.
+.br
+
+\fB-v, --version\fR
+.br
+       Displays version information.
+.br
+
+\fB-a, --appname\fR
+.br
+	Set apllication name default YadQt.
 .br
 
 \fB--help-all\fR
@@ -119,6 +145,50 @@ text
 \fB--type \fR<aboutqt>
 .br
        Box Type ( no type will display aboutbox for Qt ).
+.br
+       Types are:
+.br
+       about
+.br
+       aboutqt
+.br
+       query
+.br
+       info
+.br
+       warn
+.br
+       fatal
+.br
+       input
+.br
+       getitem
+.br
+       form
+.br
+       list
+.br
+       textfile
+.br
+       imagefile
+.br
+       colour
+.br
+       font
+.br
+       text
+.br
+       tailbox
+.br
+       notepad
+.br
+       richtext
+.br
+       openfile
+.br
+       savefile
+.br
+       prefsdialog.
 .br
 
 .SH "RETURN"

@@ -10,11 +10,12 @@ yadqt_CXXFLAGS = -O3
 pixfilesdir = $(pkgdatadir)/pixmaps
 pixfiles_DATA = ../resources/pixmaps/*
 
-scriptfilesdir = $(pkgdatadir)/scripts
-scriptfiles_SCRIPTS = ../resources/scripts/README
-
 desktopfilesdir =  ${datadir}/applications
 desktopfiles_SCRIPTS = ../resources/applications/*
+
+examplefilesdir =  $(pkgdatadir)/examples
+examplefiles_SCRIPTS = ../resources/examples/*.sh
+examplefiles_DATA = ../resources/examples/*.data
 
 bin_PROGRAMS = yadqt
 

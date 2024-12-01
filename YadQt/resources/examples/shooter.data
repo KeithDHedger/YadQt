@@ -1,0 +1,51 @@
+#combobox
+#type=combobox
+#prefs name, prefs sections seperated by /
+#default entry to select, blank=none
+#entry 1
+#entry 2
+#entry n
+#end combobox
+combostart
+Delay
+
+0
+1
+2
+4
+6
+comboend
+
+#file select
+#type=file
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+file
+Save file as
+
+combostart
+Select type
+
+Select Window
+Select Window And Borders
+Select Area
+Select Screen
+comboend
+
+#check box
+#type=check
+#prefs name, prefs sections seperated by /
+#default (0/1), will be overwitten when prefs are saved
+check
+Capture Mouse
+0
+
+#check box
+#type=check
+#prefs name, prefs sections seperated by /
+#default (0/1), will be overwitten when prefs are saved
+check
+Open In GIMP
+0
+
+endpefs

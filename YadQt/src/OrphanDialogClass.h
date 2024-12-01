@@ -36,6 +36,7 @@ class OrphanDialogClass
 		void		richText(void);
 		void		openFile(void);
 		void		saveFile(void);
+		void		prefsDialog(void);
 
 	private:
 		void		loadData(QString uri);

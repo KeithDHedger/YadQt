@@ -2,7 +2,6 @@
 #ifndef _GLOBALS_
 #define _GLOBALS_
 
-//#include <QObject>
 #include <QApplication>
 #include <QWidget>
 #include <QSettings>
@@ -26,6 +25,7 @@
 class DataClass;
 
 #include "LFSTKUtilityClass.h"
+#include "prefsClass.h"
 #include "DataClass.h"
 #include "InfoBoxClass.h"
 #include "InputDialogsClass.h"
@@ -34,7 +34,7 @@ class DataClass;
 #include "FilesClass.h"
 #include "OrphanDialogClass.h"
 
-enum {ABOUT=0,ABOUTQT,QUERY,INFO,WARN,FATAL,GETINPUT,GETITEM,GETFORM,GETLIST,SHOWTEXTFILE,SHOWIMAGEFILE,GETCOLOUR,GETFONT,GETTEXT,TAILBOX,NOTEPAD,RICHTEXT,OPENFILE,SAVEFILE};
+enum {ABOUT=0,ABOUTQT,QUERY,INFO,WARN,FATAL,GETINPUT,GETITEM,GETFORM,GETLIST,SHOWTEXTFILE,SHOWIMAGEFILE,GETCOLOUR,GETFONT,GETTEXT,TAILBOX,NOTEPAD,RICHTEXT,OPENFILE,SAVEFILE,PREFSDIALOG};
 
 
 #endif
