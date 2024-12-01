@@ -24,7 +24,7 @@ while read
 	do
 		OK=1
 		eval $REPLY
-	done< <(cat shooter.data|yadqt --type=prefsdialog -a YadQTScreenshooter -t "YadQT Screenshooter" --fromstdin --ipseparator=newline --opseparator=newline --width=424 2>/dev/null)
+	done< <(cat shooter.data|yadqt --type=prefsdialog -a YadQTScreenshooter -t "YadQT Screenshooter" --fromstdin --ipseparator=newline --opseparator=newline 2>/dev/null)
 
 if [ $OK -eq 0 ];then
 	exit 0
