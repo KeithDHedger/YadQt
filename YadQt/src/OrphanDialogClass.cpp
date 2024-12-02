@@ -100,7 +100,7 @@ void OrphanDialogClass::tailBox(void)
 	this->data->theDialog->setWindowTitle(this->data->title);
 
 	if(this->data->customSize==true)
-		this->data->theDialog->resize(QSize(this->data->width,this->data->height));
+		this->data->theDialog->resize(this->data->adjustBoxSize(640,480));
 
 	this->data->theDialog->show();
 	this->data->retval=-1;
@@ -138,7 +138,7 @@ void OrphanDialogClass::prefsDialog(void)
 
 	prefsdata=this->data->defaultText.split(this->data->ipsep);
 	if(this->data->customSize==true)
-		newprefs->createDialog(this->data->title,prefsdata,QSize(this->data->width,this->data->height));
+		newprefs->createDialog(this->data->title,prefsdata,this->data->adjustBoxSize(-1,-1));
 	else
 		newprefs->createDialog(this->data->title,prefsdata);
 
@@ -220,14 +220,11 @@ void OrphanDialogClass::notePad(void)
 	docvlayout->addWidget(this->data->bb);
 	this->data->theDialog->setLayout(docvlayout);
 
-//HMmmmmm
-//	if(this->data->parser.isSet("title")==false)
-//		this->data->title=this->data->defaultText;
+	if(this->data->parser.isSet("title")==false)
+		this->data->title=QFileInfo(this->data->defaultText).fileName();
 
-	this->data->theDialog->setWindowTitle(this->data->title);
-	
-	if(this->data->customSize==true)
-		this->data->theDialog->resize(QSize(this->data->width,this->data->height));
+	this->data->theDialog->setWindowTitle(this->data->title);	
+	this->data->theDialog->resize(this->data->adjustBoxSize(640,480));
 
 	this->data->theDialog->exec();
 	if(this->data->retval==0)
@@ -349,14 +346,12 @@ void OrphanDialogClass::richText(void)
 
 	this->data->theDialog->setLayout(docvlayout);
 
-//HMmmmmm
-//	if(this->data->parser.isSet("title")==false)
-//		this->data->title=this->data->defaultText;
+	if(this->data->parser.isSet("title")==false)
+		this->data->title=QFileInfo(this->data->defaultText).fileName();
 
 	this->data->theDialog->setWindowTitle(this->data->title);
-	
-	if(this->data->customSize==true)
-		this->data->theDialog->resize(QSize(this->data->width,this->data->height));
+	this->data->theDialog->resize(this->data->adjustBoxSize(640,480));
+
 	this->data->theDialog->show();
 	this->data->retval=-1;
 

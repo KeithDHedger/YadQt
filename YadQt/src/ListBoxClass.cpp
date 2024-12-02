@@ -57,7 +57,7 @@ void ListBoxClass::getList(void)
 	this->data->theDialog->setWindowTitle(this->data->title);
 
 	if(this->data->customSize==true)
-		this->data->theDialog->resize(QSize(this->data->width,this->data->height));
+		this->data->theDialog->resize(this->data->adjustBoxSize(256,256));
 
 	res=this->data->theDialog->exec();
 	if(this->data->retval==0)

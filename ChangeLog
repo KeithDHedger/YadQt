@@ -1,4 +1,6 @@
 0.1.1
+Auto set window title in notebook/richtext/textfile if not specified on cli.
+More sensible default sizes for dialogs if width/height not set on cli.
 Prefsdialog type size can be overridden by setting both --width AND --height.
 Updated README.
 Added examples.

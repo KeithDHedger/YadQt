@@ -39,8 +39,8 @@ class DataClass
 		QString							ipsep="|";
 		QMessageBox::StandardButton		retButton=QMessageBox::NoButton;
 		QDialogButtonBox::StandardButton	dbutton=QDialogButtonBox::NoButton;
-		int								width=640;
-		int								height=320;
+		int								width=-1;
+		int								height=-1;
 		bool								customSize=false;
 		int								boxType=-1;
 		int								retval=0;
@@ -48,6 +48,11 @@ class DataClass
 		void								setDButtons(void);
 		void								getBoxType(void);
 		void								setReturnVals(void);
+		QSize							adjustBoxSize(int defw,int defy);
 };
+/*
+		int								width=640;
+		int								height=320;
 
+*/
 #endif

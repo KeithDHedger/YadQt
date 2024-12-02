@@ -138,9 +138,14 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 	this->dialogPrefs.theDialog=new QDialog();
 	this->dialogPrefs.theDialog->setWindowTitle(title);
 	this->dialogPrefs.theDialog->setGeometry(defaults.value("prefsgeometry",QRect(100,100,320,128)).toRect());
-	qDebug()<<sze<<sze.isValid();
-	if(sze.isValid()==true)
-		this->dialogPrefs.theDialog->resize(sze);
+
+	QSize tsze(this->dialogPrefs.theDialog->width(),this->dialogPrefs.theDialog->height());
+	if(sze.width()!=-1)
+		tsze.setWidth(sze.width());
+	if(sze.height()!=-1)
+		tsze.setHeight(sze.height());
+
+	this->dialogPrefs.theDialog->resize(tsze);
 
 	j=0;
 	while(j<items.size())

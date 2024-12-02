@@ -57,10 +57,10 @@ void FilesClass::showTextFile(bool file)
 	docvlayout->addWidget(this->data->bb);
 	this->data->theDialog->setLayout(docvlayout);
 
+	if(this->data->parser.isSet("title")==false)
+		this->data->title=QFileInfo(this->data->defaultText).fileName();
 	this->data->theDialog->setWindowTitle(this->data->title);
-
-	if(this->data->customSize==true)
-		this->data->theDialog->resize(QSize(this->data->width,this->data->height));
+	this->data->theDialog->resize(this->data->adjustBoxSize(640,480));
 
 	this->data->theDialog->exec();
 }
@@ -84,7 +84,7 @@ void FilesClass::showImageFile(void)
 	this->data->theDialog->setWindowTitle(this->data->title);
 
 	if(this->data->customSize==true)
-		this->data->theDialog->resize(QSize(this->data->width,this->data->height));
+		this->data->theDialog->resize(this->data->adjustBoxSize(640,480));
 
 	this->data->theDialog->exec();
 }

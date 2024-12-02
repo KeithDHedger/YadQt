@@ -179,3 +179,14 @@ void DataClass::setReturnVals(void)
 				break;
 		}
 }
+
+QSize DataClass::adjustBoxSize(int defw,int defy)
+{
+	QSize	retsize(this->width,this->height);
+	if(this->width==-1)
+		retsize.setWidth(defw);
+	if(this->height==-1)
+		retsize.setHeight(defy);
+
+	return(retsize);
+}

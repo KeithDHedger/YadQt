@@ -29,9 +29,9 @@ FormsClass::~FormsClass()
 {
 }
 
-miniPrefsReturnStruct FormsClass::miniPrefsDialog(QStringList items)
+formReturnStruct FormsClass::formsDialog(QStringList items)
 {
-	miniPrefsReturnStruct	prefs;
+	formReturnStruct	prefs;
 	QWidget					*hbox;
 	QHBoxLayout				*hlayout;
 	QVBoxLayout				*docvlayout=new QVBoxLayout;
@@ -59,8 +59,7 @@ miniPrefsReturnStruct FormsClass::miniPrefsDialog(QStringList items)
 	prefs.theDialog->setWindowTitle(this->data->title);
 
 	if(this->data->customSize==true)
-		prefs.theDialog->resize(QSize(this->data->width,this->data->height));
-
+		prefs.theDialog->resize(this->data->adjustBoxSize(256,-1));
 	return(prefs);
 }
 
@@ -69,13 +68,13 @@ void FormsClass::getForm(void)
 	int						res=0;
 	QStringList				items;
 	QStringList				textstrings;
-	miniPrefsReturnStruct	form;
+	formReturnStruct	form;
 
 	std::vector<std::string> names=LFSTK_UtilityClass::LFSTK_strTok(this->data->body.toStdString(),std::string("|"));
 	for(long unsigned int j=0;j<names.size();j++)
 		items<<names.at(j).c_str();
 
-	form=this->miniPrefsDialog(items);
+	form=this->formsDialog(items);
 
 	std::vector<std::string> text=LFSTK_UtilityClass::LFSTK_strTok(this->data->defaultText.toStdString(),this->data->ipsep.toStdString());
 	for(long unsigned int j=0;j<text.size();j++)

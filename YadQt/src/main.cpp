@@ -142,11 +142,11 @@ int main(int argc, char **argv)
 						break;
 //forms
 					case GETFORM:
-						if(data.parser.isSet("buttons")==false)
-							{
-								data.dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Ok|(unsigned int)QDialogButtonBox::Cancel);
-								data.bb->setStandardButtons(data.dbutton);
-							}
+//						if(data.parser.isSet("buttons")==false)
+//							{
+//								data.dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Ok|(unsigned int)QDialogButtonBox::Cancel);
+//								data.bb->setStandardButtons(data.dbutton);
+//							}
 						forms.getForm();
 						break;
 //list

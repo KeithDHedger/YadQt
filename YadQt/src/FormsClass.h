@@ -23,7 +23,7 @@
 
 #include "globals.h"
 
-struct miniPrefsReturnStruct
+struct formReturnStruct
 {
 	QDialog					*theDialog;
 	QHash<int,QLineEdit*>	boxes;
@@ -39,7 +39,7 @@ class FormsClass
 
 	private:
 		DataClass					*data;
-		miniPrefsReturnStruct		miniPrefsDialog(QStringList items);
+		formReturnStruct		formsDialog(QStringList items);
 		//QMessageBox::StandardButton	retButton;
 };
 
