@@ -37,7 +37,7 @@ Options:
                                Types are:
                                about aboutqt query info warn fatal input getitem
                                form list textfile imagefile colour font text
-                               tailbox notepad richtext openfile savefile prefsdialog.
+                               tailbox notepad richtext openfile savefile prefsdialog tabbedprefsdialog.
                                More info and examples here:
                                https://keithdhedger.github.io/pages/yadqt/yadqt.html
 ```` 
@@ -64,6 +64,7 @@ richtext
 openfile
 savefile
 prefsdialog
+tabbedprefsdialog
 ````
     
 ### Examples:
@@ -206,6 +207,13 @@ pushd /usr/share/YadQt/examples
 popd
 ````
 ![ ](screenshots/prefsexample.png "yadqt --type=prefsdialog")
+####
+````console
+pushd /usr/share/YadQt/examples
+	./bashprefstabbed.sh
+popd
+````
+![ ](screenshots/tabbedprefsexample.png "yadqt --type=tabbedprefsdialog")
 ####
 ````console
 echo 'font|prefs/main font|Sans Serif,9,-1,5,50,0,0,0,0,0|colour|prefs/main colour 2|#ff00ffff|colour|second col|grey'|yadqt --type=prefsdialog -t "my prefs" -a yadprefsdialog --fromstdin

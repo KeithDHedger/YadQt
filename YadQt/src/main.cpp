@@ -59,7 +59,7 @@ int main(int argc, char **argv)
 			{"multiple","Select multiple items ( lists )."},
 			{"btntoerr","Print button to stderr."},
 			{"buttons","Buttons ( for info boxes ).","Ok"},
-			{"type","Box Type ( no type will display aboutbox for Qt )\n\nTypes are:\nabout aboutqt query info warn fatal input getitem form list textfile imagefile colour font text tailbox notepad richtext openfile savefile prefsdialog.\nMore info and examples here:\nhttps://keithdhedger.github.io/pages/yadqt/yadqt.html","aboutqt"},
+			{"type","Box Type ( no type will display aboutbox for Qt )\n\nTypes are:\nabout aboutqt query info warn fatal input getitem form list textfile imagefile colour font text tailbox notepad richtext openfile savefile prefsdialog tabbedprefsdialog.\nMore info and examples here:\nhttps://keithdhedger.github.io/pages/yadqt/yadqt.html","aboutqt"},
 	});
 
 	app.setWindowIcon(QIcon::fromTheme("user-info"));
@@ -142,11 +142,6 @@ int main(int argc, char **argv)
 						break;
 //forms
 					case GETFORM:
-//						if(data.parser.isSet("buttons")==false)
-//							{
-//								data.dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Ok|(unsigned int)QDialogButtonBox::Cancel);
-//								data.bb->setStandardButtons(data.dbutton);
-//							}
 						forms.getForm();
 						break;
 //list
@@ -189,7 +184,10 @@ int main(int argc, char **argv)
 						break;
 //prefs
 					case PREFSDIALOG:
-						orphans.prefsDialog();
+						orphans.prefsDialog(false);
+						break;
+					case TABBEDPREFSDIALOG:
+						orphans.prefsDialog(true);
 						break;
 
 				}

@@ -146,7 +146,8 @@ void DataClass::getBoxType()
 //prefs
 	if(str.compare("prefsdialog",Qt::CaseInsensitive)==0)
 		this->boxType=PREFSDIALOG;
-
+	if(str.compare("tabbedprefsdialog",Qt::CaseInsensitive)==0)
+		this->boxType=TABBEDPREFSDIALOG;
 }
 
 void DataClass::setReturnVals(void)

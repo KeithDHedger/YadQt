@@ -30,6 +30,8 @@
 
 #include <stdio.h>
 
+#define RITESTRETCH 2
+
 struct prefsReturnStruct
 {
 //simple
@@ -66,8 +68,9 @@ class prefsClass
 	prefsReturnStruct		dialogPrefs;
 	QHash<int,QVariant>		prefsData;
 	QStringList				prefsNames;
-
+	bool						paged=false;
 	void						createDialog(QString title,QStringList items,QSize sze=QSize(-1,-1));
+
 	void						setPrefs(QStringList items);
 	void						setPrefValue(QString name,QVariant val);
 	QVariant					getPrefValue(QString name);

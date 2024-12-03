@@ -126,20 +126,22 @@ void prefsClass::setPrefs(QStringList items)
 void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 {
 	QWidget					*hbox=NULL;
-	QVBoxLayout				*docvlayout=new QVBoxLayout;
+	QVBoxLayout				*docvlayout=NULL;
+	QVBoxLayout				*mainvlayout=new QVBoxLayout;
 	QHBoxLayout				*hlayout=NULL;
 	QString					prefsentry;
 	QSettings				defaults;
 	int						j=0;
 	QString					labelstr;
 	QFrame					f;
+	QTabWidget				*tabbar=NULL;
 
 	f.setFrameStyle(QFrame::HLine|QFrame::Plain);
 	this->dialogPrefs.theDialog=new QDialog();
 	this->dialogPrefs.theDialog->setWindowTitle(title);
 	this->dialogPrefs.theDialog->setGeometry(defaults.value("prefsgeometry",QRect(100,100,320,128)).toRect());
 
-	QSize tsze(this->dialogPrefs.theDialog->width(),this->dialogPrefs.theDialog->height());
+	QSize tsze(this->dialogPrefs.theDialog->size());
 	if(sze.width()!=-1)
 		tsze.setWidth(sze.width());
 	if(sze.height()!=-1)
@@ -147,9 +149,39 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 
 	this->dialogPrefs.theDialog->resize(tsze);
 
+	if(this->paged==true)
+		{
+			tabbar=new QTabWidget(nullptr);
+			
+			mainvlayout->setContentsMargins(0,0,0,0);
+			mainvlayout->addWidget(tabbar);
+			this->dialogPrefs.theDialog->setLayout(mainvlayout);
+	}
+	else
+		{
+			docvlayout=new QVBoxLayout;
+			this->dialogPrefs.theDialog->setLayout(mainvlayout);
+			mainvlayout->addLayout(docvlayout);
+		}
+
 	j=0;
 	while(j<items.size())
 		{
+			//new page
+			if((this->paged==true) && (items.at(j).compare("page")==0))
+				{
+					QWidget	*vbox;
+					hbox=new QWidget;
+					if(docvlayout!=NULL)
+						docvlayout->addWidget(hbox,1);
+					docvlayout=new QVBoxLayout;
+					j++;
+					labelstr=items.at(j).trimmed();
+					vbox=new QWidget;
+					vbox->setLayout(docvlayout);
+					tabbar->addTab(vbox,QIcon(""),labelstr);
+				}
+
 			//edits
 			if(items.at(j).compare("edit")==0)
 				{
@@ -166,8 +198,8 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					this->dialogPrefs.editBoxesPrefsName[this->dialogPrefs.editBoxCnt]=prefsentry.toLower();
 					j++;
 					this->dialogPrefs.editBoxes[this->dialogPrefs.editBoxCnt]=new QLineEdit(defaults.value(this->dialogPrefs.editBoxesPrefsName[this->dialogPrefs.editBoxCnt],items.at(j)).toString());
-					hlayout->addWidget(this->dialogPrefs.editBoxes[this->dialogPrefs.editBoxCnt],1);
-					docvlayout->addWidget(hbox);
+					hlayout->addWidget(this->dialogPrefs.editBoxes[this->dialogPrefs.editBoxCnt],RITESTRETCH);
+					docvlayout->addWidget(hbox,0);
 					this->dialogPrefs.editBoxes[this->dialogPrefs.editBoxCnt]->setCursorPosition(0);
 					this->dialogPrefs.editBoxCnt++;
 				}
@@ -197,7 +229,7 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 						}
 					this->dialogPrefs.comboBoxes[this->dialogPrefs.comboBoxCnt]->setCurrentText(defstr);
 					this->dialogPrefs.comboBoxes[this->dialogPrefs.comboBoxCnt]->setCurrentText(defaults.value(this->dialogPrefs.comboBoxesPrefsName[this->dialogPrefs.comboBoxCnt],items.at(j)).toString());
-					hlayout->addWidget(this->dialogPrefs.comboBoxes[this->dialogPrefs.comboBoxCnt],1);
+					hlayout->addWidget(this->dialogPrefs.comboBoxes[this->dialogPrefs.comboBoxCnt],RITESTRETCH);
 					docvlayout->addWidget(hbox);
 					this->dialogPrefs.comboBoxCnt++;
 				}
@@ -240,7 +272,7 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					prefsentry=labelstr;
 					labelstr=labelstr.mid(labelstr.lastIndexOf("/")+1,-1);
 					prefsentry.replace(" ","_");
-					hlayout->addWidget(new QLabel(labelstr),2);
+					hlayout->addWidget(new QLabel(labelstr),1);
 					this->dialogPrefs.colourBoxesPrefsName[this->dialogPrefs.colourBoxCnt]=prefsentry.toLower();
 					j++;
 					pb=new QPushButton(QIcon::fromTheme("preferences-desktop-theme"),"");
@@ -267,7 +299,7 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					hlayout2->addWidget(this->dialogPrefs.colourBoxes[this->dialogPrefs.colourBoxCnt],2);
 					hbox2->setLayout(hlayout2);
 					hbox->setLayout(hlayout);
-					hlayout->addWidget(hbox2,2);
+					hlayout->addWidget(hbox2,RITESTRETCH);
 					docvlayout->addWidget(hbox);
 					this->dialogPrefs.colourBoxes[this->dialogPrefs.colourBoxCnt]->setCursorPosition(0);
 					this->dialogPrefs.colourBoxCnt++;
@@ -292,7 +324,7 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					prefsentry=labelstr;
 					labelstr=labelstr.mid(labelstr.lastIndexOf("/")+1,-1);
 					prefsentry.replace(" ","_");
-					hlayout->addWidget(new QLabel(labelstr),2);
+					hlayout->addWidget(new QLabel(labelstr),1);
 					this->dialogPrefs.fontBoxesPrefsName[this->dialogPrefs.fontBoxCnt]=prefsentry.toLower();
 					j++;
 					pb=new QPushButton(QIcon::fromTheme("preferences-desktop-font"),"");
@@ -321,7 +353,7 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					hlayout2->addWidget(this->dialogPrefs.fontBoxes[this->dialogPrefs.fontBoxCnt],2);
 					hbox2->setLayout(hlayout2);
 					hbox->setLayout(hlayout);
-					hlayout->addWidget(hbox2,2);
+					hlayout->addWidget(hbox2,RITESTRETCH);
 					docvlayout->addWidget(hbox);
 					this->dialogPrefs.fontBoxes[this->dialogPrefs.fontBoxCnt]->setCursorPosition(0);
 					this->dialogPrefs.fontBoxCnt++;
@@ -345,7 +377,7 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					prefsentry=labelstr;
 					labelstr=labelstr.mid(labelstr.lastIndexOf("/")+1,-1);
 					prefsentry.replace(" ","_");
-					hlayout->addWidget(new QLabel(labelstr),2);
+					hlayout->addWidget(new QLabel(labelstr),1);
 					this->dialogPrefs.fileBoxesPrefsName[this->dialogPrefs.fileBoxCnt]=prefsentry.toLower();
 					j++;
 					pb=new QPushButton(QIcon::fromTheme("text-x-generic"),"");
@@ -354,7 +386,6 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					this->dialogPrefs.fileBoxes[this->dialogPrefs.fileBoxCnt]=new QLineEdit(defaults.value(this->dialogPrefs.fileBoxesPrefsName[this->dialogPrefs.fileBoxCnt],items.at(j)).toString());	
 					QObject::connect(pb,&QPushButton::clicked,[this,pb,filenum=this->dialogPrefs.fileBoxCnt]()
 						{
-							//QString filename=QFileDialog::getOpenFileName(nullptr,"Select File",this->dialogPrefs.fileBoxes[filenum]->text(),"Images (*.png *.xpm *.jpg);;Text files (* );;XML files (*.xml)");
 							QString filename=QFileDialog::getOpenFileName(nullptr,"Select File",this->dialogPrefs.fileBoxes[filenum]->text());
 							if(filename.isEmpty()==false)
 								{
@@ -365,13 +396,13 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					hlayout2->addWidget(this->dialogPrefs.fileBoxes[this->dialogPrefs.fileBoxCnt],2);
 					hbox2->setLayout(hlayout2);
 					hbox->setLayout(hlayout);
-					hlayout->addWidget(hbox2,2);
+					hlayout->addWidget(hbox2,RITESTRETCH);
 					docvlayout->addWidget(hbox);
 					this->dialogPrefs.fileBoxes[this->dialogPrefs.fileBoxCnt]->setCursorPosition(0);
 					this->dialogPrefs.fileBoxCnt++;
 				}
 
-			//foldres
+			//folders
 			if(items.at(j).compare("folder")==0)
 				{
 					QWidget		*hbox2=new QWidget;
@@ -389,7 +420,7 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					prefsentry=labelstr;
 					labelstr=labelstr.mid(labelstr.lastIndexOf("/")+1,-1);
 					prefsentry.replace(" ","_");
-					hlayout->addWidget(new QLabel(labelstr),2);
+					hlayout->addWidget(new QLabel(labelstr),1);
 					this->dialogPrefs.fileBoxesPrefsName[this->dialogPrefs.fileBoxCnt]=prefsentry.toLower();
 					j++;
 					pb=new QPushButton(QIcon::fromTheme("folder"),"");
@@ -409,12 +440,18 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					hlayout2->addWidget(this->dialogPrefs.fileBoxes[this->dialogPrefs.fileBoxCnt],2);
 					hbox2->setLayout(hlayout2);
 					hbox->setLayout(hlayout);
-					hlayout->addWidget(hbox2,2);
+					hlayout->addWidget(hbox2,RITESTRETCH);
 					docvlayout->addWidget(hbox);
 					this->dialogPrefs.fileBoxes[this->dialogPrefs.fileBoxCnt]->setCursorPosition(0);
 					this->dialogPrefs.fileBoxCnt++;
 				}
 			j++;
+		}
+
+	if(this->paged==true)
+		{
+			hbox=new QWidget;
+			docvlayout->addWidget(hbox,1);
 		}
 
 	QDialogButtonBox bb(QDialogButtonBox::Apply|QDialogButtonBox::Cancel);
@@ -446,9 +483,16 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 				}
 		});
 
-	docvlayout->addWidget(&f);
-	docvlayout->addWidget(&bb);
-	this->dialogPrefs.theDialog->setLayout(docvlayout);
+	if(this->paged==false)
+		{
+			mainvlayout->addWidget(&f);
+			mainvlayout->addWidget(&bb);
+		}
+	else
+		{
+			mainvlayout->addWidget(&bb);
+			mainvlayout->addSpacing(8);
+		}
 
 	int res=this->dialogPrefs.theDialog->exec();
 	if(res==1)

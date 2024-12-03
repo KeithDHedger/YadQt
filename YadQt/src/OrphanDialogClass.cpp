@@ -130,13 +130,15 @@ void OrphanDialogClass::tailBox(void)
 		}
 }
 
-void OrphanDialogClass::prefsDialog(void)
+void OrphanDialogClass::prefsDialog(bool istabbed)
 {
 	prefsClass	*newprefs=new prefsClass();
 	QStringList  prefsdata;;
 	QSize		sze;
 
 	prefsdata=this->data->defaultText.split(this->data->ipsep);
+	newprefs->paged=istabbed;
+
 	if(this->data->customSize==true)
 		newprefs->createDialog(this->data->title,prefsdata,this->data->adjustBoxSize(-1,-1));
 	else

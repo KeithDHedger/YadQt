@@ -1,3 +1,10 @@
+#page
+#type=page
+#tab label
+#if using paged prefs first entry MUST be a page
+page
+Tab 1
+
 #font selector
 #type=font
 #prefs name, prefs sections seperated by /
@@ -25,6 +32,13 @@ prefs/Main Colour 2
 colour
 Second Col
 grey
+
+#page
+#type=page
+#tab label
+#if using paged prefs first entry MUST be a page
+page
+Page 2
 
 #combobox
 #type=combobox
@@ -67,6 +81,13 @@ comboend
 edit
 prefs/Edit Two
 some data
+
+#page
+#type=page
+#tab label
+#if using paged prefs first entry MUST be a page
+page
+Last Page
 
 #edit box
 #type=edit
