@@ -139,7 +139,7 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 	f.setFrameStyle(QFrame::HLine|QFrame::Plain);
 	this->dialogPrefs.theDialog=new QDialog();
 	this->dialogPrefs.theDialog->setWindowTitle(title);
-	this->dialogPrefs.theDialog->setGeometry(defaults.value("prefsgeometry",QRect(100,100,320,128)).toRect());
+	this->dialogPrefs.theDialog->setGeometry(defaults.value(QString("%1_%2").arg(qApp->applicationName()).arg("prefsgeometry"),QRect(100,100,320,128)).toRect());
 
 	QSize tsze(this->dialogPrefs.theDialog->size());
 	if(sze.width()!=-1)
@@ -216,14 +216,19 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					prefsentry=labelstr;
 					labelstr=labelstr.mid(labelstr.lastIndexOf("/")+1,-1);
 					hlayout->addWidget(new QLabel(labelstr),1);
-					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]=new QSpinBox();
+					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]=new QDoubleSpinBox();
 					prefsentry.replace(" ","_");
 					this->dialogPrefs.spinBoxesPrefsName[this->dialogPrefs.spinBoxCnt]=prefsentry.toLower();
 					j++;
-					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setMinimum(items.at(j++).toInt());
-					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setMaximum(items.at(j++).toInt());
-					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setValue(defaults.value(this->dialogPrefs.spinBoxesPrefsName[this->dialogPrefs.spinBoxCnt],items.at(j++)).toInt());	
-					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setSingleStep(items.at(j).toInt());
+					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setMinimum(items.at(j++).toDouble());
+					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setMaximum(items.at(j++).toDouble());
+					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setValue(defaults.value(this->dialogPrefs.spinBoxesPrefsName[this->dialogPrefs.spinBoxCnt],items.at(j++)).toDouble());	
+					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setSingleStep(items.at(j).toDouble());
+					if(items.at(j).lastIndexOf('.')!=-1)
+						this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setDecimals(items.at(j).length()-items.at(j).lastIndexOf('.')-1);
+					else
+						this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setDecimals(0);
+
 					hlayout->addWidget(this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt],RITESTRETCH);
 					docvlayout->addWidget(hbox);
 					this->dialogPrefs.spinBoxCnt++;
@@ -493,7 +498,7 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 							rf=this->dialogPrefs.theDialog->frameGeometry();
 							rf.setHeight(rf.height()-(rf.height()-rg.height()));
 							rf.setWidth(rf.width()-(rf.width()-rg.width()));
-							defaults.setValue("prefsgeometry",rf);
+							defaults.setValue(QString("%1_%2").arg(qApp->applicationName()).arg("prefsgeometry"),rf);
 							this->dialogPrefs.theDialog->accept();
 							this->dialogPrefs.valid=true;
 						}			

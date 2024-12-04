@@ -45,7 +45,7 @@ struct prefsReturnStruct
 	QHash<int,QCheckBox*>	checkBoxes;
 	QHash<int,QString>		checkBoxesPrefsName;
 	int						checkBoxCnt=0;
-	QHash<int,QSpinBox*>		spinBoxes;
+	QHash<int,QDoubleSpinBox*>		spinBoxes;
 	QHash<int,QString>		spinBoxesPrefsName;
 	int						spinBoxCnt=0;
 
