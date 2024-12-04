@@ -1,20 +1,17 @@
-#combobox
-#type=combobox
+#spin box
+#type=spinner
 #prefs name, prefs sections seperated by /
-#default entry to select, blank=none
-#entry 1
-#entry 2
-#entry n
-#end combobox
-combostart
+#minimum
+#maximum
+#value
+#step
+#N.B. if step=0 up/down arrows wont work you can only type a value
+spinner
 Delay
-
 0
-1
+20
 2
-4
-6
-comboend
+1
 
 #file select
 #type=file
