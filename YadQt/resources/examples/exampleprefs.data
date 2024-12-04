@@ -16,7 +16,6 @@ Sans Serif,9,-1,5,50,0,0,0,0,0
 font
 Secondary Font
 
-
 #colour selector
 #type=colour
 #prefs name, prefs sections seperated by /
@@ -120,7 +119,6 @@ Use Theme
 folder
 Folder One
 
-
 #file select
 #type=file
 #prefs name, prefs sections seperated by /
@@ -129,6 +127,34 @@ file
 Fiile One
 /usr
 
+#spin box
+#type=spinner
+#prefs name, prefs sections seperated by /
+#minimum
+#maximum
+#value
+#step
+#N.B. if step=0 up/down arrows wont work you can only type a value
+spinner
+Spinner one
+1
+10
+5
+1
+
+#spin box
+#type=spinner
+#prefs name, prefs sections seperated by /
+#minimum
+#maximum
+#value
+#step
+#N.B. if step=0 up/down arrows wont work you can only type a value
+spinner
+prefs/spinner 2
+200
+500
+200
+25
+
 endpefs
-
-

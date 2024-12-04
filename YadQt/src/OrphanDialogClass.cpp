@@ -158,6 +158,8 @@ void OrphanDialogClass::prefsDialog(bool istabbed)
 				QTextStream(stdout)<<QString(newprefs->dialogPrefs.fontBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.fontBoxes[j]->text()<<"'"<<this->data->opsep;
 			for(int j=0;j<newprefs->dialogPrefs.fileBoxCnt;j++)
 				QTextStream(stdout)<<QString(newprefs->dialogPrefs.fileBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.fileBoxes[j]->text()<<"'"<<this->data->opsep;
+			for(int j=0;j<newprefs->dialogPrefs.spinBoxCnt;j++)
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.spinBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.spinBoxes[j]->text()<<"'"<<this->data->opsep;
 			this->data->retButton=QMessageBox::Ok;
 			this->data->retval=0;
 		}

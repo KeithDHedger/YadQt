@@ -40,7 +40,6 @@ class FormsClass
 	private:
 		DataClass					*data;
 		formReturnStruct		formsDialog(QStringList items);
-		//QMessageBox::StandardButton	retButton;
 };
 
 #endif

@@ -204,6 +204,31 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					this->dialogPrefs.editBoxCnt++;
 				}
 
+			//spin boxes
+			if(items.at(j).compare("spinner")==0)
+				{
+					hbox=new QWidget;
+					hlayout=new QHBoxLayout;
+					hlayout->setContentsMargins(0,0,0,0);
+					hbox->setLayout(hlayout);
+					j++;
+					labelstr=items.at(j);
+					prefsentry=labelstr;
+					labelstr=labelstr.mid(labelstr.lastIndexOf("/")+1,-1);
+					hlayout->addWidget(new QLabel(labelstr),1);
+					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]=new QSpinBox();
+					prefsentry.replace(" ","_");
+					this->dialogPrefs.spinBoxesPrefsName[this->dialogPrefs.spinBoxCnt]=prefsentry.toLower();
+					j++;
+					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setMinimum(items.at(j++).toInt());
+					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setMaximum(items.at(j++).toInt());
+					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setValue(defaults.value(this->dialogPrefs.spinBoxesPrefsName[this->dialogPrefs.spinBoxCnt],items.at(j++)).toInt());	
+					this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt]->setSingleStep(items.at(j).toInt());
+					hlayout->addWidget(this->dialogPrefs.spinBoxes[this->dialogPrefs.spinBoxCnt],RITESTRETCH);
+					docvlayout->addWidget(hbox);
+					this->dialogPrefs.spinBoxCnt++;
+				}
+
 			//combo
 			if(items.at(j).compare("combostart")==0)
 				{
@@ -516,5 +541,8 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 
 			for(int j=0;j<this->dialogPrefs.fileBoxCnt;j++)
 				prefs.setValue(this->dialogPrefs.fileBoxesPrefsName[j],this->dialogPrefs.fileBoxes[j]->text());
+
+			for(int j=0;j<this->dialogPrefs.spinBoxCnt;j++)
+				prefs.setValue(this->dialogPrefs.spinBoxesPrefsName[j],this->dialogPrefs.spinBoxes[j]->text());
 		}
 }

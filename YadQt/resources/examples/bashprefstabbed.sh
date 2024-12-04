@@ -20,4 +20,6 @@ echo prefs_main_font=$prefs_main_font
 echo secondary_font=$secondary_font
 echo folder_one=$folder_one
 echo fiile_one=$fiile_one
+echo spinner_one=$spinner_one
+echo prefs_spinner_2=$prefs_spinner_2
 

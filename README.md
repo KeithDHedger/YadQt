@@ -223,20 +223,30 @@ echo 'font|prefs/main font|Sans Serif,9,-1,5,50,0,0,0,0,0|colour|prefs/main colo
 **Example prefs config file:** 
 
 ````console
+#page
+#type=page
+#tab label
+#if using paged prefs first entry MUST be a page
+page
+Tab 1
+
 #font selector
 #type=font
 #prefs name, prefs sections seperated by /
 #default, will be overwitten when prefs are saved
-font	
-prefs/main font
+font
+prefs/Main Font
 Sans Serif,9,-1,5,50,0,0,0,0,0
+
+font
+Secondary Font
 
 #colour selector
 #type=colour
 #prefs name, prefs sections seperated by /
 #default, will be overwitten when prefs are saved
 colour
-prefs/main colour 2
+prefs/Main Colour 2
 #ff00ffff
 
 #colour selector
@@ -244,8 +254,15 @@ prefs/main colour 2
 #prefs name, prefs sections seperated by /
 #default, will be overwitten when prefs are saved
 colour
-second col
+Second Col
 grey
+
+#page
+#type=page
+#tab label
+#if using paged prefs first entry MUST be a page
+page
+Page 2
 
 #combobox
 #type=combobox
@@ -256,7 +273,7 @@ grey
 #entry n
 #end combobox
 combostart
-prefs/combo name 1
+prefs/Combo Name 1
 
 entry1
 entry2
@@ -273,8 +290,8 @@ comboend
 #entry n
 #end combobox
 combostart
-combo name 2
-first entry
+Combo Name 2
+lastentry00
 entry1
 entry 200
 e 30
@@ -286,15 +303,22 @@ comboend
 #prefs name, prefs sections seperated by /
 #default, will be overwitten when prefs are saved
 edit
-prefs/edit 2
+prefs/Edit Two
 some data
+
+#page
+#type=page
+#tab label
+#if using paged prefs first entry MUST be a page
+page
+Last Page
 
 #edit box
 #type=edit
 #prefs name, prefs sections seperated by /
 #default, will be overwitten when prefs are saved
 edit
-edit 3
+Edit Three
 more data
 
 #check box
@@ -302,7 +326,7 @@ more data
 #prefs name, prefs sections seperated by /
 #default (0/1), will be overwitten when prefs are saved
 check
-prefs/check 1
+prefs/Check 1
 0
 
 #check box
@@ -310,7 +334,7 @@ prefs/check 1
 #prefs name, prefs sections seperated by /
 #default (0/1), will be overwitten when prefs are saved
 check
-use theme
+Use Theme
 0
 
 #folder select
@@ -320,7 +344,6 @@ use theme
 folder
 Folder One
 
-
 #file select
 #type=file
 #prefs name, prefs sections seperated by /
@@ -328,6 +351,36 @@ Folder One
 file
 Fiile One
 /usr
+
+#spin box
+#type=spinner
+#prefs name, prefs sections seperated by /
+#minimum
+#maximum
+#value
+#step
+#N.B. if step=0 up/down arrows wont work you can only type a value
+spinner
+Spinner one
+1
+10
+5
+1
+
+#spin box
+#type=spinner
+#prefs name, prefs sections seperated by /
+#minimum
+#maximum
+#value
+#step
+#N.B. if step=0 up/down arrows wont work you can only type a value
+spinner
+prefs/spinner 2
+200
+500
+200
+25
 
 endpefs
 ````
