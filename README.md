@@ -360,6 +360,7 @@ Fiile One
 #value
 #step
 #N.B. if step=0 up/down arrows wont work you can only type a value
+#for float spinners the number of decimals used are the same as the decimals in the step value
 spinner
 Spinner one
 1
@@ -375,6 +376,7 @@ Spinner one
 #value
 #step
 #N.B. if step=0 up/down arrows wont work you can only type a value
+#for float spinners the number of decimals used are the same as the decimals in the step value
 spinner
 prefs/spinner 2
 200
