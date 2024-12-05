@@ -366,7 +366,7 @@ Spinner one
 1
 10
 5
-1
+0.1
 
 #spin box
 #type=spinner
