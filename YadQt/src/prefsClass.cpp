@@ -123,6 +123,51 @@ void prefsClass::setPrefs(QStringList items)
 		}
 }
 
+void prefsClass::printCurrentPrefs()
+{
+	if(this->dialogPrefs.valid==true)
+		{
+			QSettings	prefs;
+			QString		opsep=this->opSep;
+
+			for(int j=0;j<this->dialogPrefs.comboBoxCnt;j++)
+				{
+					QTextStream(stdout)<<QString(this->dialogPrefs.comboBoxesPrefsName[j]).replace("/","_")<<"='"<<this->dialogPrefs.comboBoxes[j]->currentText()<<"'"<<opsep;
+					prefs.setValue(this->dialogPrefs.comboBoxesPrefsName[j],this->dialogPrefs.comboBoxes[j]->currentText());
+				}
+			for(int j=0;j<this->dialogPrefs.editBoxCnt;j++)
+				{
+					prefs.setValue(this->dialogPrefs.editBoxesPrefsName[j],this->dialogPrefs.editBoxes[j]->text());
+					QTextStream(stdout)<<QString(this->dialogPrefs.editBoxesPrefsName[j]).replace("/","_")<<"='"<<this->dialogPrefs.editBoxes[j]->text()<<"'"<<opsep;
+				}
+			for(int j=0;j<this->dialogPrefs.checkBoxCnt;j++)
+				{
+					QTextStream(stdout)<<QString(this->dialogPrefs.checkBoxesPrefsName[j]).replace("/","_")<<"='"<<this->dialogPrefs.checkBoxes[j]->isChecked()<<"'"<<opsep;
+					prefs.setValue(this->dialogPrefs.checkBoxesPrefsName[j],this->dialogPrefs.checkBoxes[j]->isChecked());
+				}
+			for(int j=0;j<this->dialogPrefs.colourBoxCnt;j++)
+				{
+					QTextStream(stdout)<<QString(this->dialogPrefs.colourBoxesPrefsName[j]).replace("/","_")<<"='"<<this->dialogPrefs.colourBoxes[j]->text()<<"'"<<opsep;
+					prefs.setValue(this->dialogPrefs.colourBoxesPrefsName[j],this->dialogPrefs.colourBoxes[j]->text());
+				}
+			for(int j=0;j<this->dialogPrefs.fontBoxCnt;j++)
+				{
+					QTextStream(stdout)<<QString(this->dialogPrefs.fontBoxesPrefsName[j]).replace("/","_")<<"='"<<this->dialogPrefs.fontBoxes[j]->text()<<"'"<<opsep;
+					prefs.setValue(this->dialogPrefs.fontBoxesPrefsName[j],this->dialogPrefs.fontBoxes[j]->text());
+				}
+			for(int j=0;j<this->dialogPrefs.fileBoxCnt;j++)
+				{
+					QTextStream(stdout)<<QString(this->dialogPrefs.fileBoxesPrefsName[j]).replace("/","_")<<"='"<<this->dialogPrefs.fileBoxes[j]->text()<<"'"<<opsep;
+					prefs.setValue(this->dialogPrefs.fileBoxesPrefsName[j],this->dialogPrefs.fileBoxes[j]->text());
+				}
+			for(int j=0;j<this->dialogPrefs.spinBoxCnt;j++)
+				{
+					QTextStream(stdout)<<QString(this->dialogPrefs.spinBoxesPrefsName[j]).replace("/","_")<<"='"<<this->dialogPrefs.spinBoxes[j]->text()<<"'"<<opsep;
+					prefs.setValue(this->dialogPrefs.spinBoxesPrefsName[j],this->dialogPrefs.spinBoxes[j]->text());
+				}
+		}
+}
+
 void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 {
 	QWidget					*hbox=NULL;
@@ -484,12 +529,12 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 			docvlayout->addWidget(hbox,1);
 		}
 
-	QDialogButtonBox bb(QDialogButtonBox::Apply|QDialogButtonBox::Cancel);
+	QDialogButtonBox bb(QDialogButtonBox::Ok|QDialogButtonBox::Apply|QDialogButtonBox::Cancel);
 	QObject::connect(&bb,&QDialogButtonBox::clicked,[this,&bb](QAbstractButton *button)
 		{
 			switch(bb.standardButton(button))
 				{
-					case QDialogButtonBox::Apply:
+					case QDialogButtonBox::Ok:
 						{
 							QSettings	defaults;
 							QRect		rf,rg;
@@ -501,6 +546,13 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 							defaults.setValue(QString("%1_%2").arg(qApp->applicationName()).arg("prefsgeometry"),rf);
 							this->dialogPrefs.theDialog->accept();
 							this->dialogPrefs.valid=true;
+						}
+						break;
+
+					case QDialogButtonBox::Apply:
+						{
+							this->dialogPrefs.valid=true;
+							this->printCurrentPrefs();
 						}			
 						break;
 
@@ -526,28 +578,5 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 
 	int res=this->dialogPrefs.theDialog->exec();
 	if(res==1)
-		{
-			QSettings	prefs;
-
-			for(int j=0;j<this->dialogPrefs.comboBoxCnt;j++)
-				prefs.setValue(this->dialogPrefs.comboBoxesPrefsName[j],this->dialogPrefs.comboBoxes[j]->currentText());
-				
-			for(int j=0;j<this->dialogPrefs.editBoxCnt;j++)
-				prefs.setValue(this->dialogPrefs.editBoxesPrefsName[j],this->dialogPrefs.editBoxes[j]->text());
-
-			for(int j=0;j<this->dialogPrefs.checkBoxCnt;j++)
-				prefs.setValue(this->dialogPrefs.checkBoxesPrefsName[j],this->dialogPrefs.checkBoxes[j]->isChecked());
-
-			for(int j=0;j<this->dialogPrefs.colourBoxCnt;j++)
-				prefs.setValue(this->dialogPrefs.colourBoxesPrefsName[j],this->dialogPrefs.colourBoxes[j]->text());
-
-			for(int j=0;j<this->dialogPrefs.fontBoxCnt;j++)
-				prefs.setValue(this->dialogPrefs.fontBoxesPrefsName[j],this->dialogPrefs.fontBoxes[j]->text());
-
-			for(int j=0;j<this->dialogPrefs.fileBoxCnt;j++)
-				prefs.setValue(this->dialogPrefs.fileBoxesPrefsName[j],this->dialogPrefs.fileBoxes[j]->text());
-
-			for(int j=0;j<this->dialogPrefs.spinBoxCnt;j++)
-				prefs.setValue(this->dialogPrefs.spinBoxesPrefsName[j],this->dialogPrefs.spinBoxes[j]->text());
-		}
+		this->printCurrentPrefs();
 }

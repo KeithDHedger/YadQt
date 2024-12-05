@@ -1,4 +1,5 @@
 0.1.1
+Changed buttons in prefs dialog to "Apply, Ok, Cancel" to allow live update of prefs ( see example bashprefslive.sh.
 Added spin buttons to pref dialog.
 Added tabbed prefs dialog.
 Auto set window title in notebook/richtext/textfile if not specified on cli.

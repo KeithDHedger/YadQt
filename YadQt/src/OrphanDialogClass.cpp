@@ -138,6 +138,7 @@ void OrphanDialogClass::prefsDialog(bool istabbed)
 
 	prefsdata=this->data->defaultText.split(this->data->ipsep);
 	newprefs->paged=istabbed;
+	newprefs->opSep=this->data->opsep;
 
 	if(this->data->customSize==true)
 		newprefs->createDialog(this->data->title,prefsdata,this->data->adjustBoxSize(-1,-1));
@@ -147,19 +148,19 @@ void OrphanDialogClass::prefsDialog(bool istabbed)
 	if(newprefs->dialogPrefs.valid==true)
 		{
 			for(int j=0;j<newprefs->dialogPrefs.comboBoxCnt;j++)
-				QTextStream(stdout)<<QString(newprefs->dialogPrefs.comboBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.comboBoxes[j]->currentText()<<"'"<<this->data->opsep;
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.comboBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.comboBoxes[j]->currentText()<<"'"<<newprefs->opSep;
 			for(int j=0;j<newprefs->dialogPrefs.editBoxCnt;j++)
-				QTextStream(stdout)<<QString(newprefs->dialogPrefs.editBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.editBoxes[j]->text()<<"'"<<this->data->opsep;
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.editBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.editBoxes[j]->text()<<"'"<<newprefs->opSep;
 			for(int j=0;j<newprefs->dialogPrefs.checkBoxCnt;j++)
-				QTextStream(stdout)<<QString(newprefs->dialogPrefs.checkBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.checkBoxes[j]->isChecked()<<"'"<<this->data->opsep;
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.checkBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.checkBoxes[j]->isChecked()<<"'"<<newprefs->opSep;
 			for(int j=0;j<newprefs->dialogPrefs.colourBoxCnt;j++)
-				QTextStream(stdout)<<QString(newprefs->dialogPrefs.colourBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.colourBoxes[j]->text()<<"'"<<this->data->opsep;
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.colourBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.colourBoxes[j]->text()<<"'"<<newprefs->opSep;
 			for(int j=0;j<newprefs->dialogPrefs.fontBoxCnt;j++)
-				QTextStream(stdout)<<QString(newprefs->dialogPrefs.fontBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.fontBoxes[j]->text()<<"'"<<this->data->opsep;
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.fontBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.fontBoxes[j]->text()<<"'"<<newprefs->opSep;
 			for(int j=0;j<newprefs->dialogPrefs.fileBoxCnt;j++)
-				QTextStream(stdout)<<QString(newprefs->dialogPrefs.fileBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.fileBoxes[j]->text()<<"'"<<this->data->opsep;
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.fileBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.fileBoxes[j]->text()<<"'"<<newprefs->opSep;
 			for(int j=0;j<newprefs->dialogPrefs.spinBoxCnt;j++)
-				QTextStream(stdout)<<QString(newprefs->dialogPrefs.spinBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.spinBoxes[j]->text()<<"'"<<this->data->opsep;
+				QTextStream(stdout)<<QString(newprefs->dialogPrefs.spinBoxesPrefsName[j]).replace("/","_")<<"='"<<newprefs->dialogPrefs.spinBoxes[j]->text()<<"'"<<newprefs->opSep;
 			this->data->retButton=QMessageBox::Ok;
 			this->data->retval=0;
 		}

@@ -73,6 +73,7 @@ class prefsClass
 	QHash<int,QVariant>		prefsData;
 	QStringList				prefsNames;
 	bool						paged=false;
+	QString					opSep="\n";
 	void						createDialog(QString title,QStringList items,QSize sze=QSize(-1,-1));
 
 	void						setPrefs(QStringList items);
@@ -80,6 +81,7 @@ class prefsClass
 	QVariant					getPrefValue(QString name);
 	void						writePrefs(void);
 	void						readPrefs(void);
+	void						printCurrentPrefs(void);
 
 	protected:
 	private:
