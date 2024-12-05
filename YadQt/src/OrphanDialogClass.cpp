@@ -139,8 +139,7 @@ void OrphanDialogClass::prefsDialog(bool istabbed)
 	prefsdata=this->data->defaultText.split(this->data->ipsep);
 	newprefs->paged=istabbed;
 	newprefs->opSep=this->data->opsep;
-			//this->bb->setStandardButtons(this->dbutton);
-newprefs->bb->setStandardButtons(this->data->dbutton);
+	newprefs->bb->setStandardButtons(this->data->dbutton);
 
 	if(this->data->customSize==true)
 		newprefs->createDialog(this->data->title,prefsdata,this->data->adjustBoxSize(-1,-1));
