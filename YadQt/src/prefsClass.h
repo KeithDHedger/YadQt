@@ -74,8 +74,9 @@ class prefsClass
 	QStringList				prefsNames;
 	bool						paged=false;
 	QString					opSep="\n";
-	void						createDialog(QString title,QStringList items,QSize sze=QSize(-1,-1));
+	QDialogButtonBox			*bb;
 
+	void						createDialog(QString title,QStringList items,QSize sze=QSize(-1,-1));
 	void						setPrefs(QStringList items);
 	void						setPrefValue(QString name,QVariant val);
 	QVariant					getPrefValue(QString name);

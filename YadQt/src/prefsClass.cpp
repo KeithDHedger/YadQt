@@ -51,6 +51,7 @@ prefsClass::~prefsClass()
 */
 prefsClass::prefsClass()
 {
+	this->bb=new QDialogButtonBox(QDialogButtonBox::NoButton);
 }
 
 QString prefsClass::bestFontColour(QString colour)
@@ -529,10 +530,12 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 			docvlayout->addWidget(hbox,1);
 		}
 
-	QDialogButtonBox bb(QDialogButtonBox::Ok|QDialogButtonBox::Apply|QDialogButtonBox::Cancel);
-	QObject::connect(&bb,&QDialogButtonBox::clicked,[this,&bb](QAbstractButton *button)
+	//QDialogButtonBox bb(QDialogButtonBox::Ok|QDialogButtonBox::Apply|QDialogButtonBox::Cancel);
+	//QDialogButtonBox bb();
+	QObject::connect(this->bb,&QDialogButtonBox::clicked,[this](QAbstractButton *button)
 		{
-			switch(bb.standardButton(button))
+		qDebug()<<">>>>>>>";
+			switch(this->bb->standardButton(button))
 				{
 					case QDialogButtonBox::Ok:
 						{
@@ -568,11 +571,11 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 	if(this->paged==false)
 		{
 			mainvlayout->addWidget(&f);
-			mainvlayout->addWidget(&bb);
+			mainvlayout->addWidget(this->bb);
 		}
 	else
 		{
-			mainvlayout->addWidget(&bb);
+			mainvlayout->addWidget(this->bb);
 			mainvlayout->addSpacing(8);
 		}
 

@@ -2,7 +2,7 @@
 
 #use tempfile
 
-cat exampleprefs.data|yadqt --type=prefsdialog -t "Example Prefs" -a yadprefsexample --fromstdin --ipseparator=newline --opseparator=newline >/tmp/prefs
+cat exampleprefs.data|yadqt --type=prefsdialog -t "Example Prefs" -a yadprefsexample --fromstdin --ipseparator=newline --opseparator=newline --buttons="ok|cancel|apply" >/tmp/prefs
 
 if [ -e /tmp/prefs ];then
 	. /tmp/prefs
