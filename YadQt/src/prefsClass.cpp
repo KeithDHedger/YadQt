@@ -530,11 +530,8 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 			docvlayout->addWidget(hbox,1);
 		}
 
-	//QDialogButtonBox bb(QDialogButtonBox::Ok|QDialogButtonBox::Apply|QDialogButtonBox::Cancel);
-	//QDialogButtonBox bb();
 	QObject::connect(this->bb,&QDialogButtonBox::clicked,[this](QAbstractButton *button)
 		{
-		qDebug()<<">>>>>>>";
 			switch(this->bb->standardButton(button))
 				{
 					case QDialogButtonBox::Ok:
