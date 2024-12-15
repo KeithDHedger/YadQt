@@ -7,4 +7,4 @@ Terminal=false
 Type=Application
 Categories=Utility;
 Icon=preferences-desktop-theme
-Exec=yadqt --type=colour --default="#ffffffff" -t "Select a colour..."|yadqt --type=input -t "Results" -b "Colour Selected" --fromstdin
+Exec=sh -c 'yadqt --type=colour --default="#ffffffff" -t "Select a colour..."|yadqt --type=input -t "Results" -b "Colour Selected" --fromstdin'

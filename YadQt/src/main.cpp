@@ -194,7 +194,8 @@ int main(int argc, char **argv)
 		}
 	else
 		{
-			data.boxType=ABOUTQT;
+			data.body="<b>YadQt</b><br>Create Qt dialogs from shell scripts<br><br><a href=\"https://keithdhedger.github.io\">Website</a><br><br><a href=\"mailto:keithdhedger@gmail.com\">Mail Me</a>";
+			data.boxType=ABOUT ;
 			info.showDialog();
 		}
 

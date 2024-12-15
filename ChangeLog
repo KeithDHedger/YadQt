@@ -1,3 +1,7 @@
+1.0.0
+Yadqt with no args now displays about box for yadqt.
+Default is now qt6 ( use qt5 with --enable-qt5 to configure for qt5 build ).
+
 0.1.1
 Set buttons in prefs dialog via the --buttons switch, defaults to OK.
 Changed buttons in prefs dialog to "Apply, Ok, Cancel" to allow live update of prefs ( see example bashprefslive.sh.

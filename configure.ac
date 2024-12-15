@@ -12,20 +12,18 @@ AC_PROG_CXX
 
 PKG_PROG_PKG_CONFIG
 
-AC_ARG_ENABLE(qt6,AS_HELP_STRING([--enable-qt6],[Build for Qt6]),
-    [enable_qt6=$enableval],
-    [enable_qt6="no"])
+AC_ARG_ENABLE(qt5,AS_HELP_STRING([--enable-qt5],[Build for Qt5]),
+    [enable_qt5=$enableval],
+    [enable_qt5="no"])
 
-	if test "$enable_qt6" = "yes"; then
+	if test "$enable_qt5" = "no"; then
 		QTWIDGETS_MODULES="Qt6Widgets >= 6.6.0"
 		PKG_CHECK_MODULES(QTWIDGETS, $QTWIDGETS_MODULES)
-
 		AC_DEFINE([_USEQT6_], [], [Build Qt6])
 		AC_MSG_NOTICE([Using Qt6])
 	else
 		QTWIDGETS_MODULES="Qt5Widgets >= 5.15.0"
 		PKG_CHECK_MODULES(QTWIDGETS, $QTWIDGETS_MODULES)
-
 		AC_MSG_NOTICE([Using Qt5])
 	fi
 
