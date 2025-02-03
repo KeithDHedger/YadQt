@@ -34,7 +34,7 @@ void InputDialogsClass::getItem(void)
 	QStringList	items;
 	bool			ok;
 
-	std::vector<std::string> names=LFSTK_UtilityClass::LFSTK_strTok(this->data->defaultText.toStdString(),this->data->ipsep.toStdString());
+	std::vector<std::string> names=LFSTK_UtilityClass::LFSTK_strTok(this->data->defaultText.toStdString(),this->data->ipsep.toStdString());//TODO//
 	for(long unsigned int j=0;j<names.size();j++)
 		items<<names.at(j).c_str();
 

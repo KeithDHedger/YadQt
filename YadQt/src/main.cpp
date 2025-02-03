@@ -19,7 +19,6 @@
 */
 
 #include "globals.h"
-#include "config.h"
 
 int main(int argc, char **argv)
 {
@@ -48,23 +47,27 @@ int main(int argc, char **argv)
 	data.parser.addOptions(
 		{
 			{{"a","appname"},"Application name.",PACKAGE_NAME},
-			{{"t","title"},"Title.","YadQt"},
-			{{"b","body"},"Body.","Information"},
+			{{"t","title"},"Title.",PACKAGE_NAME},
+			{{"b","body"},"Body.",data.body},
 			{{"d","default","data"},"Default text ( lists, forms etc, 1st positional arg passed will overide this ).",QDir::home().dirName()},
 			{"fromstdin","Read default data from stdin."},
-			{"width","Dialog width ( set to 0 for default size for dialog ).","640"},
-			{"height","Dialog height ( set to 0 for default size for dialog ).","320"},
-			{"opseparator","Separator for multi item output ( use \"newline\" to use '\\n' ).","|"},
-			{"ipseparator","Separator for multi item default text input ( use \"newline\" to use '\\n' ).","|"},
+			{"width","Dialog width ( set to 0 for default size for dialog ).","0"},
+			{"height","Dialog height ( set to 0 for default size for dialog ).","0"},
+			{"opseparator","Separator for multi item output ( use \"newline\" to use '\\n' ).",data.opsep},
+			{"ipseparator","Separator for multi item default text input ( use \"newline\" to use '\\n' ).",data.ipsep},
 			{"multiple","Select multiple items ( lists )."},
 			{"btntoerr","Print button to stderr."},
 			{"buttons","Buttons ( for info boxes ).","Ok"},
-			{"type","Box Type ( no type will display aboutbox for Qt )\n\nTypes are:\nabout aboutqt query info warn fatal input getitem form list textfile imagefile colour font text tailbox notepad richtext openfile savefile prefsdialog tabbedprefsdialog.\nMore info and examples here:\nhttps://keithdhedger.github.io/pages/yadqt/yadqt.html","aboutqt"},
+			{"icon","Icon to use for tray menu.",data.theIcon},
+			{"type","Box Type ( no type will display aboutbox for Qt )\n\nTypes are:\nabout aboutqt query info warn fatal input getitem form list textfile imagefile colour font text tailbox notepad richtext openfile savefile prefsdialog tabbedprefsdialog traymenu.\nMore info and examples here:\nhttps://keithdhedger.github.io/pages/yadqt/yadqt.html","aboutqt"},
 	});
 
 	app.setWindowIcon(QIcon::fromTheme("user-info"));
 	data.parser.process(app.arguments());
-	data.title=data.parser.value("title");
+
+	if(data.parser.isSet("title")==true)
+		data.title=data.parser.value("title");
+
 	if(data.parser.isSet("fromstdin")==true)
 		{
 			QTextStream	datastream(stdin);
@@ -76,11 +79,18 @@ int main(int argc, char **argv)
 		{
 			data.defaultText=data.parser.value("default");
 		}
-	data.body=data.parser.value("body");
+
+	if(data.parser.isSet("body")==true)
+		data.body=data.parser.value("body");
 
 	if(data.parser.isSet("appname"))
 		{
 			app.setApplicationName(data.parser.value("appname"));
+		}
+
+	if(data.parser.isSet("icon"))
+		{
+			data.theIcon=data.parser.value("icon").trimmed();
 		}
 
 	if(data.parser.isSet("width"))
@@ -189,7 +199,10 @@ int main(int argc, char **argv)
 					case TABBEDPREFSDIALOG:
 						orphans.prefsDialog(true);
 						break;
-
+//tray menu
+					case TRAYMENU:
+						orphans.trayMenu();
+						break;
 				}
 		}
 	else

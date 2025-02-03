@@ -11,35 +11,43 @@ make install
 **QUICK USE:**  
 yadqt -h
 ```console
-Usage: yadqt [options]
+Usage: YadQt/app/yadqt [options]
 
 Options:
-  -h, --help                   Displays help on commandline options.
-  --help-all                   Displays help including Qt specific options.
-  -v, --version                Displays version information.
-  -a, --appname <YadQt>        Application name.
-  -t, --title <YadQt>          Title.
-  -b, --body <Information>     Body.
-  -d, --default <keithhedger>  Default text ( lists, forms etc, 1st positional arg passed will overide this ).
-  --fromstdin                  Read default data from stdin.
-  --width <640>                Dialog width ( set to 0 for default size for
-                               dialog ).
-  --height <320>               Dialog height ( set to 0 for default size for
-                               dialog ).
-  --opseparator <|>            Separator for multi item output ( use "newline"
-                               to use '\n' ).
-  --ipseparator <|>            Separator for multi item default text input ( use "newline"
-                               to use '\n' ).
-  --multiple                   Select multiple items ( lists ).
-  --btntoerr                   Print button to stderr.
-  --buttons <Ok>               Buttons ( for info boxes ).
-  --type <aboutqt>             Box Type ( no type will display aboutbox for Qt ).
-                               Types are:
-                               about aboutqt query info warn fatal input getitem
-                               form list textfile imagefile colour font text
-                               tailbox notepad richtext openfile savefile prefsdialog tabbedprefsdialog.
-                               More info and examples here:
-                               https://keithdhedger.github.io/pages/yadqt/yadqt.html
+  -h, --help                           Displays help on commandline options.
+  --help-all                           Displays help, including generic Qt
+                                       options.
+  -v, --version                        Displays version information.
+  -a, --appname <YadQt>                Application name.
+  -t, --title <YadQt>                  Title.
+  -b, --body <Information>             Body.
+  -d, --default, --data <keithhedger>  Default text ( lists, forms etc, 1st
+                                       positional arg passed will overide this
+                                       ).
+  --fromstdin                          Read default data from stdin.
+  --width <0>                          Dialog width ( set to 0 for default size
+                                       for dialog ).
+  --height <0>                         Dialog height ( set to 0 for default
+                                       size for dialog ).
+  --opseparator <|>                    Separator for multi item output ( use
+                                       "newline" to use '\n' ).
+  --ipseparator <|>                    Separator for multi item default text
+                                       input ( use "newline" to use '\n' ).
+  --multiple                           Select multiple items ( lists ).
+  --btntoerr                           Print button to stderr.
+  --buttons <Ok>                       Buttons ( for info boxes ).
+  --icon <system-run>                  Icon to use for tray menu.
+  --type <aboutqt>                     Box Type ( no type will display aboutbox
+                                       for Qt )
+                                       Types are:
+                                       about aboutqt query info warn fatal input
+                                       getitem form list textfile imagefile
+                                       colour font text tailbox notepad richtext
+                                       openfile savefile prefsdialog
+                                       tabbedprefsdialog traymenu.
+                                       More info and examples here:
+                                       https://keithdhedger.github.io/pages/yadq
+                                       t/yadqt.html
 ```` 
 ### Dialog types:
 ````console
@@ -65,6 +73,7 @@ openfile
 savefile
 prefsdialog
 tabbedprefsdialog
+traymenu
 ````
     
 ### Examples:
@@ -178,6 +187,18 @@ yadqt --type=notepad --width=800 --height=400  ../../README ;echo $?
 yadqt --type=richtext --width=800 --height=400 '/tmp/KeithDHedger.github.io/docs/index'
 ````
 ![ ](screenshots/richtext.png "yadqt --type=richtext")
+
+##
+**System tray icon examples**
+````console
+yadqt --type=traymenu --title="Run Apps" --icon=system-run --data="XTerm|xterm|xterm|Open Google|google-chrome|xdg-open https://www.google.com|New Email|mail_new|xdg-email"
+YadQt/resources/examples/trayexample.sh
+````
+![ ](screenshots/apps.png "yadqt --type=traymenu")
+####
+![ ](screenshots/places.png "yadqt --type=traymenu")
+####
+![ ](screenshots/localapps.png "yadqt --type=traymenu")
 
 ##
 **File choosers**

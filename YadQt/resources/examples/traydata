@@ -1,0 +1,7 @@
+Open Root
+computer
+xdg-open /
+Open Temp
+folder
+xdg-open /tmp
+

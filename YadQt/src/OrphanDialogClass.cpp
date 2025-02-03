@@ -370,3 +370,55 @@ void OrphanDialogClass::richText(void)
 			pf->setEnabled(this->thedoc->isForwardAvailable());
 		}
 }
+
+void OrphanDialogClass::trayMenu(void)
+{
+	QStringList		items;
+    QSystemTrayIcon	trayIcon;
+    QMenu			*trayIconMenu=new QMenu(nullptr);
+	QAction			*anAction;
+    QAction			*quitAction;
+
+	ProxyStyle *mainThemeProxy=new ProxyStyle();
+	mainThemeProxy->setParent(this->app);
+	this->app->setStyle(mainThemeProxy);
+
+	trayIcon.setToolTip(data->title);
+
+	items=this->data->defaultText.split(this->data->ipsep,Qt::KeepEmptyParts,Qt::CaseInsensitive);
+	if((items.count() % 3) !=0)//TODO//
+		{
+			qDebug()<<"Wrong number of arguments, MUST be NAME|ICON|PATH/TO/EXECUTABLE. exiting ...";
+			this->data->retval=1;
+			return;
+		}
+
+	for(int j=0;j<items.count();j+=3)
+		{
+			anAction=new QAction(QIcon::fromTheme(items.at(j+1).trimmed()),items.at(j),nullptr);
+			anAction->setData(items.at(j+2));
+			QObject::connect(anAction, &QAction::triggered,[=] ()
+				{
+					if(anAction->data().toString().length()==0)
+						{
+							qDebug()<<"No executable supplied ...";
+							return;
+						}
+					QStringList	comargs=QProcess::splitCommand(anAction->data().toString());
+					QString		prog=comargs.at(0);
+					comargs.removeFirst();
+					QProcess::startDetached(prog,comargs);
+				});
+			trayIconMenu->addAction(anAction);
+		}
+
+	trayIconMenu->addSeparator();
+    quitAction=new QAction("&Quit",nullptr);
+    QObject::connect(quitAction, &QAction::triggered, qApp, &QCoreApplication::quit);
+	trayIconMenu->addAction(quitAction);
+
+	trayIcon.setContextMenu(trayIconMenu);
+    trayIcon.setIcon(QIcon::fromTheme(this->data->theIcon));	
+    trayIcon.show();
+	this->app->exec();
+}

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+while read
+	do
+		#echo $REPLY
+		NAME=
+		ICON=
+		EXEC=
+		NAME=$(awk -F= '/^Name=/ {print $2;exit}' "$REPLY")
+		ICON=$(awk -F= '/^Icon=/ {print $2;exit}' "$REPLY")
+		if [ "X$ICON" = "X" ];then
+			ICON="noicon"
+		fi
+		EXEC=$(awk -F= '/^Exec/ {print $2; exit}' "$REPLY")
+		if [ ! "X$NAME" = "X" ] && [ ! "X$EXEC" = "X" ];then
+			echo -e "${NAME}\n${ICON}\n${EXEC}"
+		fi
+	done< <(find ~/.local/share/applications  -name "*.desktop")  |yadqt --type=traymenu --title="Run Apps" --fromstdin --ipseparator=newline --icon=start-here

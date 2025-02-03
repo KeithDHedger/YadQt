@@ -10,7 +10,9 @@
 #include <QDebug>
 #include <QIcon>
 #include <QtWidgets>
-#include<QColor>
+#include <QColor>
+#include <QSystemTrayIcon>
+#include <QProxyStyle>
 
 #include <vector>
 #include <fcntl.h>
@@ -21,6 +23,8 @@
 #include <sys/ioctl.h>
 
 #define MARGINS 4
+
+#include "config.h"
 
 class DataClass;
 
@@ -34,7 +38,7 @@ class DataClass;
 #include "FilesClass.h"
 #include "OrphanDialogClass.h"
 
-enum {ABOUT=0,ABOUTQT,QUERY,INFO,WARN,FATAL,GETINPUT,GETITEM,GETFORM,GETLIST,SHOWTEXTFILE,SHOWIMAGEFILE,GETCOLOUR,GETFONT,GETTEXT,TAILBOX,NOTEPAD,RICHTEXT,OPENFILE,SAVEFILE,PREFSDIALOG,TABBEDPREFSDIALOG};
+enum {ABOUT=0,ABOUTQT,QUERY,INFO,WARN,FATAL,GETINPUT,GETITEM,GETFORM,GETLIST,SHOWTEXTFILE,SHOWIMAGEFILE,GETCOLOUR,GETFONT,GETTEXT,TAILBOX,NOTEPAD,RICHTEXT,OPENFILE,SAVEFILE,PREFSDIALOG,TABBEDPREFSDIALOG,TRAYMENU};
 
 
 #endif

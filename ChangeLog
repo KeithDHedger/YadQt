@@ -1,4 +1,7 @@
 1.0.0
+Tray menu icons can be either symbolic name or full path.
+Added tramenu examples.
+Added --type=traymenu.
 Yadqt with no args now displays about box for yadqt.
 Default is now qt6 ( use qt5 with --enable-qt5 to configure for qt5 build ).
 

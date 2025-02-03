@@ -70,13 +70,13 @@ void FormsClass::getForm(void)
 	QStringList				textstrings;
 	formReturnStruct	form;
 
-	std::vector<std::string> names=LFSTK_UtilityClass::LFSTK_strTok(this->data->body.toStdString(),std::string("|"));
+	std::vector<std::string> names=LFSTK_UtilityClass::LFSTK_strTok(this->data->body.toStdString(),std::string("|"));//TODO//
 	for(long unsigned int j=0;j<names.size();j++)
 		items<<names.at(j).c_str();
 
 	form=this->formsDialog(items);
 
-	std::vector<std::string> text=LFSTK_UtilityClass::LFSTK_strTok(this->data->defaultText.toStdString(),this->data->ipsep.toStdString());
+	std::vector<std::string> text=LFSTK_UtilityClass::LFSTK_strTok(this->data->defaultText.toStdString(),this->data->ipsep.toStdString());//TODO//
 	for(long unsigned int j=0;j<text.size();j++)
 		{
 			textstrings<<text.at(j).c_str();

@@ -35,7 +35,7 @@ DataClass::DataClass()
 		});
 }
 
-void DataClass::setDButtons(void)
+void DataClass::setDButtons(void)//TODO//
 {
 	if(this->parser.isSet("buttons"))
 		{
@@ -136,6 +136,8 @@ void DataClass::getBoxType()
 		this->boxType=NOTEPAD;
 	if(str.compare("richtext",Qt::CaseInsensitive)==0)
 		this->boxType=RICHTEXT;
+	if(str.compare("traymenu",Qt::CaseInsensitive)==0)
+		this->boxType=TRAYMENU;
 
 //files
 	if(str.compare("openfile",Qt::CaseInsensitive)==0)
