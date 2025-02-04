@@ -47,6 +47,7 @@ Options:
                                        colour font text tailbox notepad richtext
                                        openfile savefile prefsdialog
                                        tabbedprefsdialog traymenu help.
+
                                        More info and examples here:
                                        https://keithdhedger.github.io/pages/yadq
                                        t/yadqt.html
