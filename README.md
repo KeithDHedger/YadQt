@@ -83,43 +83,43 @@ yadqt --type=help
 yadqt --type=aboutqt
 yadqt --type=about -b "About box with html<br><br><a href=\"https://keithdhedger.github.io\">Website</a><br><br><a href=\"mailto:keithdhedger@gmail.com\">Mail Me</a>"
 ````
-![ ](screenshots/aboutme.png "yadqt --type=about")
+![ ](YadQt/resources/help/aboutme.png "yadqt --type=about")
 ````console
 
 yadqt --type=fatal -t "DANGER!" -b "BSOD!" --buttons="abort|Ignore" --btntoerr 2>/dev/pts/2;echo $?
 ````
-![ ](screenshots/fatal.png "yadqt --type=fatal")
+![ ](YadQt/resources/help/fatal.png "yadqt --type=fatal")
 
 ````console
 
 cat /usr/include/linux/limits.h|yadqt --type=getitem -t "Select Item" -b "Items:"  --ipseparator=newline --fromstdin
 yadqt --type=getitem -t "my title" -b "some combobox input"  -d "one|three|two|end" --btntoerr 2>/dev/pts/2;echo $?
 ````
-![ ](screenshots/getitem.png "yadqt --type=getitem")
+![ ](YadQt/resources/help/getitem.png "yadqt --type=getitem")
 
 ```` console
 
 yadqt --type=input -t "my title" -b "some user input"  -d "default input txt";echo $?
 ````
-![ ](screenshots/input.png "yadqt --type=input")
+![ ](YadQt/resources/help/input.png "yadqt --type=input")
 
 ````console
 
 yadqt --type=info -b "Some info for you" --buttons="ok" --btntoerr 2>/dev/pts/2;echo $?
 ````
-![ ](screenshots/info.png "yadqt \--type=info")
+![ ](YadQt/resources/help/info.png "yadqt \--type=info")
 
 ````console
 
 yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box" --btntoerr --default="default 1|box 2|box n"  2>/dev/pts/2;echo $?
 ````
-![ ](screenshots/form.png "yadqt --type=form")
+![ ](YadQt/resources/help/form.png "yadqt --type=form")
 
 ````console
 
 yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box"  --default="default 1|box 2|box n" --width=300 --height=0
 ````
-![ ](screenshots/form2.png "yadqt --type=form")
+![ ](YadQt/resources/help/form2.png "yadqt --type=form")
 
 ````console
 
@@ -127,45 +127,45 @@ yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab|tr '\\n' '|')" --
 yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab)" --btntoerr --width=600 --height=350 --ipseparator="newline"
 yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  --opseparator="newline";echo $?
 ````
-![ ](screenshots/list1.png "yadqt --type=list")
+![ ](YadQt/resources/help/list1.png "yadqt --type=list")
 
 ````console
 
 yadqt --type=text -t "Show Text" --default="some text@second line@third line" --ipseparator=@
 ````
-![ ](screenshots/text1.png "yadqt --type=text")
+![ ](YadQt/resources/help/text1.png "yadqt --type=text")
 
 ````console
 
 while read;do echo $REPLY;done< <(cat /etc/fstab)|yadqt --type=text --fromstdin --width=800 -t "Show Text"
 ````
-![ ](screenshots/text2.png "yadqt --type=text")
+![ ](YadQt/resources/help/text2.png "yadqt --type=text")
 
 ````console
 
 yadqt --type=textfile --width=800 --height=400 -d /usr/include/linux/limits.h  --btntoerr  2>/dev/pts/3;echo $?
 ````
-![ ](screenshots/textfile.png "yadqt --type=textfile")
+![ ](YadQt/resources/help/textfile.png "yadqt --type=textfile")
 
 ````console
 
 yadqt --type=imagefile -d '/home/keithhedger/WallpapersByCatagory/AllHallows/halloween-graveyard.gif'
 yadqt --type=imagefile -d '/home/keithhedger/Backgrounds/bc3.png' --height=420 --width=640
 ````
-![ ](screenshots/image.png "yadqt --type=imagefile")
+![ ](YadQt/resources/help/image.png "yadqt --type=imagefile")
 
 ````console
 
 yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|yadqt --type=input -t "Results" -b "Colour Selected" --fromstdin
 yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>/dev/pts/2;echo $?
 ````
-![ ](screenshots/colour.png "yadqt --type=colour")
+![ ](YadQt/resources/help/colour.png "yadqt --type=colour")
 
 ````console
 
 yadqt --type=font -d "Monospace,20"
 ````
-![ ](screenshots/font.png "yadqt --type=font")
+![ ](YadQt/resources/help/font.png "yadqt --type=font")
 
 ## 
 **Tailbox will update additions from file**
@@ -174,21 +174,21 @@ tail -n25 -f '/run/XfceWMScript.log' |yadqt --type=tailbox -t "Tail box" --width
 Or
 yadqt --type=tailbox -t "Tail box" --width=800 < /run/XfceWMScript.log
 ````
-![ ](screenshots/tailbox.png "yadqt --type=tailbox")
+![ ](YadQt/resources/help/tailbox.png "yadqt --type=tailbox")
 
 ##
 **Notepad simple text file editor**
 ````console
 yadqt --type=notepad --width=800 --height=400  ../../README ;echo $?
 ````
-![ ](screenshots/notepad.png "yadqt --type=notepad")  
+![ ](YadQt/resources/help/notepad.png "yadqt --type=notepad")  
 
 ##
 **Richtext simple richtext viewer**
 ````console
 yadqt --type=richtext --width=800 --height=400 '/tmp/KeithDHedger.github.io/docs/index'
 ````
-![ ](screenshots/richtext.png "yadqt --type=richtext")
+![ ](YadQt/resources/help/richtext.png "yadqt --type=richtext")
 
 ##
 **System tray icon examples**
@@ -196,11 +196,11 @@ yadqt --type=richtext --width=800 --height=400 '/tmp/KeithDHedger.github.io/docs
 yadqt --type=traymenu --title="Run Apps" --icon=system-run --data="XTerm|xterm|xterm|Open Google|google-chrome|xdg-open https://www.google.com|New Email|mail_new|xdg-email" --timeout=1000
 YadQt/resources/examples/trayexample.sh
 ````
-![ ](screenshots/apps.png "yadqt --type=traymenu")
+![ ](YadQt/resources/help/apps.png "yadqt --type=traymenu")
 ####
-![ ](screenshots/places.png "yadqt --type=traymenu")
+![ ](YadQt/resources/help/places.png "yadqt --type=traymenu")
 ####
-![ ](screenshots/localapps.png "yadqt --type=traymenu")
+![ ](YadQt/resources/help/localapps.png "yadqt --type=traymenu")
 
 ##
 **File choosers**
@@ -208,9 +208,9 @@ YadQt/resources/examples/trayexample.sh
 yadqt --type=openfile
 yadqt --type=savefile -d /tmp/somefile
 ````
-![ ](screenshots/openfile.png "yadqt --type=openfile")
+![ ](YadQt/resources/help/openfile.png "yadqt --type=openfile")
 ####
-![ ](screenshots/savefile.png "yadqt --type=savefile")
+![ ](YadQt/resources/help/savefile.png "yadqt --type=savefile")
 
 ##
 **Prefs Dialog:**
@@ -229,19 +229,19 @@ pushd /usr/share/YadQt/examples
 	./bashprefs.sh
 popd
 ````
-![ ](screenshots/prefsexample.png "yadqt --type=prefsdialog")
+![ ](YadQt/resources/help/prefsexample.png "yadqt --type=prefsdialog")
 ####
 ````console
 pushd /usr/share/YadQt/examples
 	./bashprefstabbed.sh
 popd
 ````
-![ ](screenshots/tabbedprefsexample.png "yadqt --type=tabbedprefsdialog")
+![ ](YadQt/resources/help/tabbedprefsexample.png "yadqt --type=tabbedprefsdialog")
 ####
 ````console
 echo 'font|prefs/main font|Sans Serif,9,-1,5,50,0,0,0,0,0|colour|prefs/main colour 2|#ff00ffff|colour|second col|grey'|yadqt --type=prefsdialog -t "my prefs" -a yadprefsdialog --fromstdin
 ````
-![ ](screenshots/prefsexample2.png "yadqt --type=prefsdialog") 
+![ ](YadQt/resources/help/prefsexample2.png "yadqt --type=prefsdialog") 
 
 **Example prefs config file:** 
 
@@ -417,9 +417,9 @@ Searches files for text and opens in default app.
 find .  -print0 |xargs -0 grep -s --binary-files=without-match --ignore-case --binary-files=without-match --line-number "$(yadqt --type=input -t Search -b "Search for")"|yadqt --type=list -t "Found" --width 800 --fromstdin --ipseparator=newline |awk -F: '{print $1}'|xargs xdg-open
 ````  
 
-![ ](screenshots/search1.png "Search example")  
+![ ](YadQt/resources/help/search1.png "Search example")  
 
-![ ](screenshots/search2.png "Search example")  
+![ ](YadQt/resources/help/search2.png "Search example")  
 
 ***
 Some options are not yet implemented
