@@ -36,7 +36,8 @@ Options:
   --multiple                           Select multiple items ( lists ).
   --btntoerr                           Print button to stderr.
   --buttons <Ok>                       Buttons ( for info boxes ).
-  --timeout <0>                        Timeout to use for tray menu message in mS ( 0=no message ).
+  --timeout <0>                        Timeout to use for tray menu message in
+                                       mS ( 0=no message ).
   --icon <system-run>                  Icon to use for tray menu.
   --type <aboutqt>                     Box Type ( no type will display aboutbox
                                        for Qt )
