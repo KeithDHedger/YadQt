@@ -138,6 +138,8 @@ void DataClass::getBoxType()
 		this->boxType=RICHTEXT;
 	if(str.compare("traymenu",Qt::CaseInsensitive)==0)
 		this->boxType=TRAYMENU;
+	if(str.compare("help",Qt::CaseInsensitive)==0)
+		this->boxType=YADQTHELP;
 
 //files
 	if(str.compare("openfile",Qt::CaseInsensitive)==0)

@@ -50,6 +50,7 @@ class OrphanDialogClass
 		void		saveFile(void);
 		void		prefsDialog(bool istabbed=false);
 		void		trayMenu(void);
+		void		yadQtHelp(void);
 
 	private:
 		void		loadData(QString uri);

@@ -1,4 +1,6 @@
 1.0.0
+Added message to traymenu when selecting menu item, ( use --timeout=NNN, where NNN is timout in mS, 0=no message ). 
+Added type=help for builtin help dialog.
 Tray menu icons can be either symbolic name or full path.
 Added tramenu examples.
 Added --type=traymenu.

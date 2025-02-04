@@ -51,9 +51,5 @@ class DataClass
 		void								setReturnVals(void);
 		QSize							adjustBoxSize(int defw,int defy);
 };
-/*
-		int								width=640;
-		int								height=320;
 
-*/
 #endif

@@ -286,7 +286,6 @@ void OrphanDialogClass::richText(void)
 {
 	QVBoxLayout		*docvlayout=new QVBoxLayout;
 	QByteArray		qb;
-//	QTextCodec		*codec;
 	QString			str;
 	QMimeDatabase	db1;
 	QHBoxLayout		*hlayout;
@@ -374,7 +373,7 @@ void OrphanDialogClass::richText(void)
 void OrphanDialogClass::trayMenu(void)
 {
 	QStringList		items;
-    QSystemTrayIcon	trayIcon;
+    QSystemTrayIcon	*trayIcon=new QSystemTrayIcon(nullptr);
     QMenu			*trayIconMenu=new QMenu(nullptr);
 	QAction			*anAction;
     QAction			*quitAction;
@@ -383,7 +382,7 @@ void OrphanDialogClass::trayMenu(void)
 	mainThemeProxy->setParent(this->app);
 	this->app->setStyle(mainThemeProxy);
 
-	trayIcon.setToolTip(data->title);
+	trayIcon->setToolTip(data->title);
 
 	items=this->data->defaultText.split(this->data->ipsep,Qt::KeepEmptyParts,Qt::CaseInsensitive);
 	if((items.count() % 3) !=0)//TODO//
@@ -406,6 +405,8 @@ void OrphanDialogClass::trayMenu(void)
 						}
 					QStringList	comargs=QProcess::splitCommand(anAction->data().toString());
 					QString		prog=comargs.at(0);
+					if(this->data->body.toInt()!=0)
+						trayIcon->showMessage(anAction->text(),QString("Launching %1 ...").arg(prog),anAction->icon(),this->data->body.toInt());
 					comargs.removeFirst();
 					QProcess::startDetached(prog,comargs);
 				});
@@ -417,8 +418,21 @@ void OrphanDialogClass::trayMenu(void)
     QObject::connect(quitAction, &QAction::triggered, qApp, &QCoreApplication::quit);
 	trayIconMenu->addAction(quitAction);
 
-	trayIcon.setContextMenu(trayIconMenu);
-    trayIcon.setIcon(QIcon::fromTheme(this->data->theIcon));	
-    trayIcon.show();
+	trayIcon->setContextMenu(trayIconMenu);
+    trayIcon->setIcon(QIcon::fromTheme(this->data->theIcon));	
+    trayIcon->show();
 	this->app->exec();
+
+	delete trayIcon;
+	delete trayIconMenu;
 }
+
+void OrphanDialogClass::yadQtHelp(void)
+{
+	this->data->title="Yad~Qt Help";
+	this->data->width=830;
+	this->data->height=640;
+	this->data->defaultText=DATADIR "/help/yadqt.html";
+	this->richText();
+}
+

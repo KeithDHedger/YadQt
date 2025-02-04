@@ -44,7 +44,7 @@ Options:
                                        getitem form list textfile imagefile
                                        colour font text tailbox notepad richtext
                                        openfile savefile prefsdialog
-                                       tabbedprefsdialog traymenu.
+                                       tabbedprefsdialog traymenu help.
                                        More info and examples here:
                                        https://keithdhedger.github.io/pages/yadq
                                        t/yadqt.html
@@ -74,10 +74,12 @@ savefile
 prefsdialog
 tabbedprefsdialog
 traymenu
+help
 ````
     
 ### Examples:
 ````console
+yadqt --type=help
 yadqt --type=aboutqt
 yadqt --type=about -b "About box with html<br><br><a href=\"https://keithdhedger.github.io\">Website</a><br><br><a href=\"mailto:keithdhedger@gmail.com\">Mail Me</a>"
 ````
@@ -191,7 +193,7 @@ yadqt --type=richtext --width=800 --height=400 '/tmp/KeithDHedger.github.io/docs
 ##
 **System tray icon examples**
 ````console
-yadqt --type=traymenu --title="Run Apps" --icon=system-run --data="XTerm|xterm|xterm|Open Google|google-chrome|xdg-open https://www.google.com|New Email|mail_new|xdg-email"
+yadqt --type=traymenu --title="Run Apps" --icon=system-run --data="XTerm|xterm|xterm|Open Google|google-chrome|xdg-open https://www.google.com|New Email|mail_new|xdg-email" --timeout=1000
 YadQt/resources/examples/trayexample.sh
 ````
 ![ ](screenshots/apps.png "yadqt --type=traymenu")

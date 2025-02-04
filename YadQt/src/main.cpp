@@ -42,6 +42,7 @@ int main(int argc, char **argv)
 	app.setApplicationVersion(PACKAGE_VERSION);
 	app.processEvents();
 
+	data.parser.setApplicationDescription("This is an app to produce simple Qt dialogs from the command line, similar to YAD for gtk");
 	data.parser.addHelpOption();
 	data.parser.addVersionOption();
 	data.parser.addOptions(
@@ -59,7 +60,8 @@ int main(int argc, char **argv)
 			{"btntoerr","Print button to stderr."},
 			{"buttons","Buttons ( for info boxes ).","Ok"},
 			{"icon","Icon to use for tray menu.",data.theIcon},
-			{"type","Box Type ( no type will display aboutbox for Qt )\n\nTypes are:\nabout aboutqt query info warn fatal input getitem form list textfile imagefile colour font text tailbox notepad richtext openfile savefile prefsdialog tabbedprefsdialog traymenu.\nMore info and examples here:\nhttps://keithdhedger.github.io/pages/yadqt/yadqt.html","aboutqt"},
+			{"timeout","Timeout to use for tray menu message in mS( 0=no message ).","0"},
+			{"type","Box Type ( no type will display aboutbox for Qt )\n\nTypes are:\nabout aboutqt query info warn fatal input getitem form list textfile imagefile colour font text tailbox notepad richtext openfile savefile prefsdialog tabbedprefsdialog traymenu help.\nMore info and examples here:\nhttps://keithdhedger.github.io/pages/yadqt/yadqt.html","aboutqt"},
 	});
 
 	app.setWindowIcon(QIcon::fromTheme("user-info"));
@@ -91,6 +93,11 @@ int main(int argc, char **argv)
 	if(data.parser.isSet("icon"))
 		{
 			data.theIcon=data.parser.value("icon").trimmed();
+		}
+
+	if(data.parser.isSet("timeout"))
+		{
+			data.body=data.parser.value("timeout").trimmed();
 		}
 
 	if(data.parser.isSet("width"))
@@ -203,6 +210,11 @@ int main(int argc, char **argv)
 					case TRAYMENU:
 						orphans.trayMenu();
 						break;
+//yadqt help
+					case YADQTHELP:
+						orphans.yadQtHelp();
+						break;
+
 				}
 		}
 	else

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>YadQT</title>
+	</head>
+	<body bgcolor="#cccccc" text="#000000">
+		<style>
+			gridspan { display: grid; grid-template-columns: max-content auto;}
+			dt {grid-column-start: 1;}
+			dd {grid-column-start: 2;}
+			d3 {grid-column-start: 3;}
+		</style>
+		<a name="top"></a>
+		<div align="center">
+		<div style="font-size:64px;"><b>YadQt</b></div><br>
+		This is an app to produce simple Qt dialogs from the command line, similar to YAD for gtk.
+		</div>
+		<br>
+		<div align="left"></div>
+		<b>To build/install:</b><br>
+		<code>
+			./autogen.sh --prefix=/usr<br>
+			make<br>
+			make install<br>
+		</code><br><br>
+
+		<b>QUICK USE:</b><br>
+		<code>
+			yadqt -h<br>
+			Usage: yadqt [options]<br><br>
+			Options:<br>
+			<gridspan>
+				<dt>-h, --help</dt><dd>Displays help on commandline options.</dd>
+				<dt>--help-all</dt><dd>Displays help including Qt specific options.</dd>
+				<dt>-v, --version</dt><dd>Displays version information.</dd>
+				<dt>-t, --title &lt;YadQt</dt><dd>Title.</dd>
+				<dt>-b, --body &lt;Information</dt><dd>Body.</dd>
+				<dt>-d, --default &lt;USERNAME&gt;</dt><dd>Default text ( lists, forms etc, 1st positional arg passed will overide this ).</dd>
+				<dt>--fromstdin</dt><dd>Read default data from stdin.</dd>
+				<dt>--width &lt;0&gt;</dt><dd>Dialog width ( set to 0 for default size for dialog ).</dd>
+				<dt>--height &lt;0&gt;</dt><dd>Dialog height ( set to 0 for default size for dialog ).</dd>
+				<dt>--opseparator &lt;|&gt;</dt><dd>Separator for multi item output ( use "newline" to use '\n' ).</dd>
+				<dt>--ipseparator &lt;|&gt;</dt><dd>Separator for multi item default text input ( use "newline" to use '\n' ).</dd>
+				<dt>--multiple</dt><dd>Select multiple items ( lists ).</dd>
+				<dt>--btntoerr </dt><dd>Print button to stderr.</dd>
+				<dt>--buttons &lt;Ok&gt;</dt><dd>Buttons ( for info boxes ).</dd>
+				<dt>--icon &ltsystem-run&gt</dt><dd>Icon to use for tray menu.</dd>
+				<dt>--type &lt;aboutqt&gt;</dt><dd>Box Type ( no type will display aboutbox for Qt ).</dd>
+                <dd>Types are:<br>
+					about aboutqt query info warn fatal input getitem
+					form list textfile imagefile colour font text
+					tailbox notepad richtext openfile savefile prefsdialog tabbedprefsdialog traymenu help.<br>
+					More info and examples here:<br>
+					https://keithdhedger.github.io/pages/yadqt/yadqt.html<br>
+				</dd>
+
+			</gridspan>
+		</code>
+		<dt></dt><br>
+		<div align="left"></div>
+
+		<b>Dialog types:</b><br>
+		about<br>
+		aboutqt<br>
+		query<br>
+		info<br>
+		warn<br>
+		fatal<br>
+		input<br>
+		getitem<br>
+		form<br>
+		list<br>
+		textfile<br>
+		imagefile<br>
+		colour<br>
+		font<br>
+		text
+		tailbox<br>
+		notepad<br>
+		richtext<br>
+		openfile<br>
+		savefile<br>
+		prefsdialog<br>
+		tabbedprefsdialog<br>
+		traymenu<br>
+		help<br>
+		<br>
+
+		<b>Examples:</b><br>
+		<code>yadqt --type=help<br>
+			yadqt --type=aboutqt<br>
+			yadqt --type=about -b "About box with html&lt;br&gt;&lt;br&gt;&lt;a href=\"https://keithdhedger.github.io\"&gt;Website&lt;/a&gt;&lt;br&gt;&lt;br&gt;&lt;a href=\"mailto:keithdhedger@gmail.com\"&gt;Mail Me&lt;/a&gt;"
+		</code><br>
+		<img src="aboutme.png" alt="aboutme.png" title="aboutme.png"><br><br>
+
+		<code>yadqt --type=fatal -t "DANGER!" -b "BSOD!" --buttons="abort|Ignore" --btntoerr 2>/dev/pts/2;echo $?</code><br>
+		<img src="fatal.png" alt="fatal.png" title="type=fatal"><br>
+		<br>
+
+		<code>cat /usr/include/linux/limits.h|yadqt --type=getitem -t "Select Item" -b "Items:"  --ipseparator=newline --fromstdin<br>
+		yadqt --type=getitem -t "my title" -b "some input"  -d "one|three|two|end" --btntoerr 2>/dev/pts/2;echo $?</code><br>
+		<img src="getitem.png" alt="getitem.png" title="type=getitem"><br>
+		<br>
+
+		<code>yadqt --type=input -t "my title" -b "some input"  -d "default input txt";echo $?</code><br>
+		<img src="input.png" alt="input.png" title="type=input"><br>
+		<br>
+
+		<code>yadqt --type=info -b "Some info for you" --buttons="ok" --btntoerr 2>/dev/pts/2;echo $?</code><br>
+		<img src="info.png" alt="info.png" title="type=info"><br>
+		<br>
+
+		<code>yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box" --btntoerr --default="default 1|box 2|box n"  2>/dev/pts/2;echo $?</code><br>
+		<img src="form.png" alt="form.png" title="type=form"><br>
+		<br>
+
+		<code>yadqt --type=form -t "Simple Form" -b "Entry 1|Box Two|Data 3|Last Box"  --default="default 1|box 2|box n" --width=300 --height=0</code><br>
+		<img src="form2.png" alt="form2.png" title="type=form"><br>
+		<br>
+
+		<code>yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab|tr '\\n' '|')" --multiple --btntoerr --width=600 --height=350 2>/dev/pts/2;echo $?<br>
+			yadqt --type=list -t "Simple List" --default="$(cat /etc/fstab)" --btntoerr --width=600 --height=350 --ipseparator="newline"<br>
+			yadqt --type=list -t "Simple List" --default="default 1|item 2|item 3|num 4|five|666|item nth" --multiple  --opseparator="newline";echo $?</code><br>
+		<img src="list1.png" alt="list.png" title="type=list"><br>
+		<br>
+
+		<code>yadqt --type=text -t "Show Text" --default="some text@second line@third line" --ipseparator=@</code><br>
+		<img src="text1.png" alt="text1.png" title="type=text""><br>
+		<br>
+
+		<code>while read;do echo $REPLY;done< <(cat /etc/fstab)|yadqt --type=text --fromstdin --width=800 -t "Show Text"</code><br>
+		<img src="text2.png" alt="text2.png" title="type=text"><br>
+		<br>
+
+		<code>yadqt --type=textfile --width=800 --height=400 -d /usr/include/linux/limits.h  --btntoerr  2>/dev/pts/3;echo $?</code><br>
+		<img src="textfile.png" alt="textfile.png" title="type=textfile"><br>
+		<br>
+
+		<code>yadqt --type=imagefile -d '/home/keithhedger/WallpapersByCatagory/AllHallows/halloween-graveyard.gif'<br>
+yadqt --type=imagefile -d '/home/keithhedger/Backgrounds/bc3.png' --height=420 --width=640</code><br>
+		<img src="image.png" alt="image.png" title="type=imagefile"><br>
+		<br>
+
+		<code>yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|yadqt --type=input -t "Results" -b "Colour Selected" --fromstdin<br>
+yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>/dev/pts/2;echo $?</code><br>
+		<img src="colour.png" alt="colour.png" title="type=colour"><br>
+		<br>
+
+		<code>yadqt --type=font -d "Monospace,20"</code><br>
+		<img src="font.png" alt="font.png" title="font.png"><br>
+		<br>
+
+		<br>
+		<b>Tailbox will update additions from file:</b><br>
+		<code>tail -n25 -f '/run/XfceWMScript.log' |yadqt --type=tailbox -t "Tail box" --width=800<br>
+		Or<br>
+		yadqt --type=tailbox -t "Tail box" --width=800 < /run/XfceWMScript.log</code><br>
+		<img src="tailbox.png" alt="tailbox.png" title="type=tailbox"><br>
+		<br>
+
+		<b>Notepad simple text file editor:</b><br>
+		<code>yadqt --type=notepad --width=800 --height=400  ../../README ;echo $?</code><br>
+		<img src="notepad.png" alt="notepad.png" title="type=notepad"><br>
+		<br>
+
+		<b>Richtext simple richtext viewer:</b><br>
+		<code>yadqt --type=richtext --width=800 --height=400 '/tmp/KeithDHedger.github.io/docs/index'</code><br>
+		<img src="richtext.png" alt="richtext.png" title="type=richtext"><br>
+		<br>
+
+		<b>System tray icon examples:</b><br>
+		<code>
+			yadqt --type=traymenu --title="Run Apps" --icon=system-run --data="XTerm|xterm|xterm|Open Google|google-chrome|xdg-open https://www.google.com|New Email|mail_new|xdg-email"<br>
+			YadQt/resources/examples/trayexample.sh
+		</code><br>
+		<img src="apps.png" alt="apps.png" title="type=traymenu"><br>
+		<img src="places.png" alt="places.png" title="type=traymenu"><br>
+		<img src="localapps.png" alt="localapps.png" title="type=traymenu"><br>
+		<br>
+
+		<b>File choosers:</b><br>
+		<code>yadqt --type=openfile<br>
+			yadqt --type=savefile -d /tmp/somefile<br>
+		</code>
+		<img src="openfile.png" alt="openfile.png" title="type=openfile"><br>
+		<img src="savefile.png" alt="savefile.png" title="type=savefile"><br>
+		<br>
+
+		<b>Prefs Dialog:</b><br>
+		<code>Prefs will be saved in ~/.config/KDHedger/APPLICATIONNAME.<br>
+			APPLICATIONNAME will default to YadQt, or set it via the -a switch.<br>
+			Prefs are standard QT QSettings files.<br>
+			Prefs are also echoed to stdout When you select 'Apply', format for output is:<br>
+			PREFSNAME=VALUE<br>
+			Output seperator is set with --opseparator.<br>
+			See the examples in /usr/share/YadQt/examples<br>
+			<br>
+			pushd /usr/share/YadQt/examples<br>
+			./bashprefs.sh<br>
+			popd/code><br>
+		</code>
+		<img src="prefsexample.png" alt="prefsexample.png" title="type=prefsdialog"><br>
+		<code>
+			pushd /usr/share/YadQt/examples<br>
+				./bashprefstabbed.sh<br>
+			popd<br>
+		</code>
+		<img src="tabbedprefsexample.png" alt="tabbedprefsexample.png" title="type=tabbedprefsdialog"><br>
+
+		<code>echo 'font|prefs/main font|Sans Serif,9,-1,5,50,0,0,0,0,0|colour|prefs/main colour 2|#ff00ffff|colour|second col|grey'|yadqt --type=prefsdialog -t "my prefs" -a yadprefsdialog --fromstdin</code><br>
+		<img src="prefsexample2.png" alt="prefsexample2.png" title="type=prefsdialog"><br>
+
+		<b>Example prefs config file:</b><br>
+		#page<br>
+		#type=page<br>
+		#tab label<br>
+		#if using paged prefs first entry MUST be a page<br>
+		page<br>
+		Tab 1<br>
+		<br>
+		#font selector<br>
+		#type=font<br>
+		#prefs name, prefs sections seperated by /<br>
+		#default, will be overwitten when prefs are saved<br>
+		font<br>
+		prefs/Main Font<br>
+		Sans Serif,9,-1,5,50,0,0,0,0,0<br>
+		<br>
+		font<br>
+		Secondary Font<br>
+		<br>
+		#colour selector<br>
+		#type=colour<br>
+		#prefs name, prefs sections seperated by /<br>
+		#default, will be overwitten when prefs are saved<br>
+		colour<br>
+		prefs/Main Colour 2<br>
+		#ff00ffff<br>
+		<br>
+		#colour selector<br>
+		#type=colour<br>
+		#prefs name, prefs sections seperated by /<br>
+		#default, will be overwitten when prefs are saved<br>
+		colour<br>
+		Second Col<br>
+		grey<br>
+		<br>
+		#page<br>
+		#type=page<br>
+		#tab label<br>
+		#if using paged prefs first entry MUST be a page<br>
+		page<br>
+		Page 2<br>
+		<br>
+		#combobox<br>
+		#type=combobox<br>
+		#prefs name, prefs sections seperated by /<br>
+		#default entry to select, blank=none<br>
+		#entry 1<br>
+		#entry 2<br>
+		#entry n<br>
+		#end combobox<br>
+		combostart<br>
+		prefs/Combo Name 1<br>
+		<br>
+		entry1<br>
+		entry2<br>
+		e3<br>
+		lastentry<br>
+		comboend<br>
+		<br>
+		#combobox<br>
+		#type=combobox<br>
+		#prefs name, prefs sections seperated by /<br>
+		#default entry to select, blank=none<br>
+		#entry 1<br>
+		#entry 2<br>
+		#entry n<br>
+		#end combobox<br>
+		combostart<br>
+		Combo Name 2<br>
+		lastentry00<br>
+		entry1<br>
+		entry 200<br>
+		e 30<br>
+		lastentry00<br>
+		comboend<br>
+		<br>
+		#edit box<br>
+		#type=edit<br>
+		#prefs name, prefs sections seperated by /<br>
+		#default, will be overwitten when prefs are saved<br>
+		edit<br>
+		prefs/Edit Two<br>
+		some data<br>
+		<br>
+		#page<br>
+		#type=page<br>
+		#tab label<br>
+		#if using paged prefs first entry MUST be a page<br>
+		page<br>
+		Last Page<br>
+		<br>
+		#edit box<br>
+		#type=edit<br>
+		#prefs name, prefs sections seperated by /<br>
+		#default, will be overwitten when prefs are saved<br>
+		edit<br>
+		Edit Three<br>
+		more data<br>
+		<br>
+		#check box<br>
+		#type=check<br>
+		#prefs name, prefs sections seperated by /<br>
+		#default (0/1), will be overwitten when prefs are saved<br>
+		check<br>
+		prefs/Check 1<br>
+		0<br>
+		<br>
+		#check box<br>
+		#type=check<br>
+		#prefs name, prefs sections seperated by /<br>
+		#default (0/1), will be overwitten when prefs are saved<br>
+		check<br>
+		Use Theme<br>
+		0<br>
+		<br>
+		#folder select<br>
+		#type=folder<br>
+		#prefs name, prefs sections seperated by /<br>
+		#default, will be overwitten when prefs are saved<br>
+		folder<br>
+		Folder One<br>
+		<br>
+		#file select<br>
+		#type=file<br>
+		#prefs name, prefs sections seperated by /<br>
+		#default, will be overwitten when prefs are saved<br>
+		file<br>
+		Fiile One<br>
+		/usr<br>
+		<br>
+		#spin box<br>
+		#spin box<br>
+		#type=spinner<br>
+		#prefs name, prefs sections seperated by /<br>
+		#minimum<br>
+		#maximum<br>
+		#value<br>
+		#step<br>
+		#N.B. if step=0 up/down arrows wont work you can only type a value<br>
+		#for float spinners the number of decimals used are the same as the decimals in the step value<br>
+		spinner<br>
+		Spinner one<br>
+		1<br>
+		10<br>
+		5<br>
+		0.1<br>
+		<br>
+		#spin box<br>
+		#type=spinner<br>
+		#prefs name, prefs sections seperated by /<br>
+		#minimum<br>
+		#maximum<br>
+		#value<br>
+		#step<br>
+		#N.B. if step=0 up/down arrows wont work you can only type a value<br>
+		#for float spinners the number of decimals used are the same as the decimals in the step value<br>
+		spinner<br>
+		prefs/spinner 2<br>
+		200<br>
+		500<br>
+		200<br>
+		25<br>
+		<br>
+		endpefs<br><br>
+
+		<hr width=100% size="2"><br>
+
+		<b>Simple search in current folder:</b><br>
+		Searches files for text and opens in default app.<br>
+		<code>find .  -print0 |xargs -0 grep -s --binary-files=without-match --ignore-case --binary-files=without-match --line-number "$(yadqt --type=input -t Search -b "Search for")"|yadqt --type=list -t "Found" --width 800 --fromstdin --ipseparator=newline |awk -F: '{print $1}'|xargs xdg-open</code><br>
+		<img src="search1.png" alt="search1.png" title="type=input"><br>
+		<img src="search2.png" alt="search2.png" title="type=list"><br>
+		<br>
+		<hr width=100% size="2">
+		<div align="center">
+			<a href="#top">Back To Top</a><br>
+			<br>
+			<a href="https://keithdhedger.github.io/index.html">Home Page</a><br>
+		</div>
+	</body>
+</html>

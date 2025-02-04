@@ -14,6 +14,9 @@ examplefilesdir =  $(pkgdatadir)/examples
 examplefiles_SCRIPTS = ../resources/examples/*.sh
 examplefiles_DATA = ../resources/examples/*.data  ../resources/examples/*.desktop
 
+helpfilesdir =  $(pkgdatadir)/help
+helpfiles_DATA = ../resources/help/*.png  ../resources/help/yadqt.html
+
 bin_PROGRAMS = yadqt
 
 man1_MANS = ../resources/man/yadqt.1
