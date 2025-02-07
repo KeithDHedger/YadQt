@@ -35,7 +35,7 @@
 				<dt>--help-all</dt><dd>Displays help including Qt specific options.</dd>
 				<dt>-v, --version</dt><dd>Displays version information.</dd>
 				<dt>-t, --title &lt;YadQt</dt><dd>Title.</dd>
-				<dt>-b, --body &lt;Information</dt><dd>Body.</dd>
+				<dt>-b, --body &lt;YadQt</dt><dd>Body.</dd>
 				<dt>-d, --default &lt;USERNAME&gt;</dt><dd>Default text ( lists, forms etc, 1st positional arg passed will overide this ).</dd>
 				<dt>--fromstdin</dt><dd>Read default data from stdin.</dd>
 				<dt>--width &lt;0&gt;</dt><dd>Dialog width ( set to 0 for default size for dialog ).</dd>
@@ -170,9 +170,11 @@ yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>
 
 		<b>System tray icon examples:</b><br>
 		<code>
+			Left click for balloon message, right click for menu.<br>
 			yadqt --type=traymenu --title="Run Apps" --icon=system-run --data="XTerm|xterm|xterm|Open Google|google-chrome|xdg-open https://www.google.com|New Email|mail_new|xdg-email" --timeout=1000<br>
 			YadQt/resources/examples/trayexample.sh
 		</code><br>
+		<img src="bubble.png" alt="bubble.png" title="type=traymenu"><br>
 		<img src="apps.png" alt="apps.png" title="type=traymenu"><br>
 		<img src="places.png" alt="places.png" title="type=traymenu"><br>
 		<img src="localapps.png" alt="localapps.png" title="type=traymenu"><br>
