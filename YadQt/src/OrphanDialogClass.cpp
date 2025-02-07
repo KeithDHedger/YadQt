@@ -374,7 +374,7 @@ void OrphanDialogClass::trayMenu(void)
 {
 	QStringList		items;
     QSystemTrayIcon	*trayIcon=new QSystemTrayIcon(nullptr);
-    QMenu			*trayIconMenu=new QMenu(nullptr);
+    QMenu			*trayIconContextMenu=new QMenu(nullptr);
 	QAction			*anAction;
     QAction			*quitAction;
 
@@ -405,26 +405,41 @@ void OrphanDialogClass::trayMenu(void)
 						}
 					QStringList	comargs=QProcess::splitCommand(anAction->data().toString());
 					QString		prog=comargs.at(0);
-					if(this->data->body.toInt()!=0)
-						trayIcon->showMessage(anAction->text(),QString("Launching %1 ...").arg(prog),anAction->icon(),this->data->body.toInt());
+					if(this->data->timeOut!=0)
+						trayIcon->showMessage(anAction->text(),QString("Launching %1 ...").arg(prog),anAction->icon(),this->data->timeOut);
 					comargs.removeFirst();
 					QProcess::startDetached(prog,comargs);
 				});
-			trayIconMenu->addAction(anAction);
+			trayIconContextMenu->addAction(anAction);
 		}
 
-	trayIconMenu->addSeparator();
+	trayIconContextMenu->addSeparator();
     quitAction=new QAction("&Quit",nullptr);
     QObject::connect(quitAction, &QAction::triggered, qApp, &QCoreApplication::quit);
-	trayIconMenu->addAction(quitAction);
+	trayIconContextMenu->addAction(quitAction);
 
-	trayIcon->setContextMenu(trayIconMenu);
-    trayIcon->setIcon(QIcon::fromTheme(this->data->theIcon));	
+	trayIcon->setContextMenu(trayIconContextMenu);
+	trayIcon->setIcon(QIcon::fromTheme(this->data->theIcon));	
+
+	if(this->data->body.compare(PACKAGE_NAME)!=0)
+		{
+			QObject::connect(trayIcon, &QSystemTrayIcon::activated,[=] (QSystemTrayIcon::ActivationReason reason)
+				{
+					if(reason==QSystemTrayIcon::Trigger)
+						{
+							int tout=this->data->timeOut;
+							if(tout==0)
+								tout=1500;
+							trayIcon->showMessage(this->data->title,this->data->body,QIcon::fromTheme(this->data->theIcon),tout);
+						}
+				});
+		}
+
     trayIcon->show();
 	this->app->exec();
 
 	delete trayIcon;
-	delete trayIconMenu;
+	delete trayIconContextMenu;
 }
 
 void OrphanDialogClass::yadQtHelp(void)

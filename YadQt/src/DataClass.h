@@ -31,7 +31,7 @@ class DataClass
 
 		QCommandLineParser				parser;
 		QString							title=PACKAGE_NAME;
-		QString							body="Information";
+		QString							body=PACKAGE_NAME;
 		QString							defaultText;
 		QDialog							*theDialog;
 		QDialogButtonBox					*bb;
@@ -45,6 +45,7 @@ class DataClass
 		int								boxType=-1;
 		int								retval=0;
 		QString							theIcon="system-run";
+		int								timeOut=0;
 
 		void								setDButtons(void);
 		void								getBoxType(void);

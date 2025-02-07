@@ -15,4 +15,4 @@ while read
 		if [ ! "X$NAME" = "X" ] && [ ! "X$EXEC" = "X" ];then
 			echo -e "${NAME}\n${ICON}\n${EXEC}"
 		fi
-	done< <(find ~/.local/share/applications  -name "*.desktop")  |yadqt --type=traymenu --title="Run Apps" --fromstdin --ipseparator=newline --icon=start-here --timeout=1000
+	done< <(find ~/.local/share/applications  -name "*.desktop")  |yadqt --type=traymenu --title="Run Apps" --fromstdin --ipseparator=newline --icon=start-here --timeout=1000  --body="Open local applications"

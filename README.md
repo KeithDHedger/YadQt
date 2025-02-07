@@ -20,7 +20,7 @@ Options:
   -v, --version                        Displays version information.
   -a, --appname <YadQt>                Application name.
   -t, --title <YadQt>                  Title.
-  -b, --body <Information>             Body.
+  -b, --body <YadQt>                   Body.
   -d, --default, --data <keithhedger>  Default text ( lists, forms etc, 1st
                                        positional arg passed will overide this
                                        ).
@@ -195,10 +195,14 @@ yadqt --type=richtext --width=800 --height=400 '/tmp/KeithDHedger.github.io/docs
 
 ##
 **System tray icon examples**
+
+Left click for balloon message, right click for menu.
 ````console
 yadqt --type=traymenu --title="Run Apps" --icon=system-run --data="XTerm|xterm|xterm|Open Google|google-chrome|xdg-open https://www.google.com|New Email|mail_new|xdg-email" --timeout=1000
 YadQt/resources/examples/trayexample.sh
 ````
+![ ](YadQt/resources/help/bubble.png "yadqt --type=traymenu")
+####
 ![ ](YadQt/resources/help/apps.png "yadqt --type=traymenu")
 ####
 ![ ](YadQt/resources/help/places.png "yadqt --type=traymenu")

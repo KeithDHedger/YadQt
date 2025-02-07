@@ -97,7 +97,7 @@ int main(int argc, char **argv)
 
 	if(data.parser.isSet("timeout"))
 		{
-			data.body=data.parser.value("timeout").trimmed();
+			data.timeOut=data.parser.value("timeout").toInt();
 		}
 
 	if(data.parser.isSet("width"))
