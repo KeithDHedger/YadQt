@@ -59,8 +59,6 @@ class OrphanDialogClass
 		QApplication		*app;
 		QTextBrowser		*thedoc;
 		QUrl				baseurl;
-
-
 };
 
 #endif

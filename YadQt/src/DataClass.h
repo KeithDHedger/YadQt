@@ -46,6 +46,8 @@ class DataClass
 		int								retval=0;
 		QString							theIcon="system-run";
 		int								timeOut=0;
+		bool								dataFromStdIn=false;
+		bool								allowRestart=false;
 
 		void								setDButtons(void);
 		void								getBoxType(void);

@@ -4,4 +4,9 @@ xdg-open /
 Open Temp
 folder
 xdg-open /tmp
+Open /usr
+folder
+xdg-open /usr
+
+
 

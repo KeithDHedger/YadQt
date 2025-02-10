@@ -377,12 +377,23 @@ void OrphanDialogClass::trayMenu(void)
     QMenu			*trayIconContextMenu=new QMenu(nullptr);
 	QAction			*anAction;
     QAction			*quitAction;
+    QAction			*restartAction;
+	bool				flag=false;
 
 	ProxyStyle *mainThemeProxy=new ProxyStyle();
 	mainThemeProxy->setParent(this->app);
 	this->app->setStyle(mainThemeProxy);
 
 	trayIcon->setToolTip(data->title);
+
+	if((this->data->dataFromStdIn==false) && (QFile::exists(this->data->defaultText)))
+		{
+			QFile file(this->data->defaultText);
+			file.open(QFile::ReadOnly | QFile::Text);
+			this->data->defaultText=file.readAll().trimmed();
+			file.close();
+			flag=true;
+		}
 
 	items=this->data->defaultText.split(this->data->ipsep,Qt::KeepEmptyParts,Qt::CaseInsensitive);
 	if((items.count() % 3) !=0)//TODO//
@@ -414,7 +425,22 @@ void OrphanDialogClass::trayMenu(void)
 		}
 
 	trayIconContextMenu->addSeparator();
-    quitAction=new QAction("&Quit",nullptr);
+
+	if((flag==true) && (this->data->allowRestart==true))
+		{
+		    restartAction=new QAction("Restart",nullptr);
+			QObject::connect(restartAction, &QAction::triggered,[=] ()
+				{
+					QStringList	comargs=this->app->arguments();
+					QString		prog=comargs.at(0);
+					comargs.removeFirst();
+					this->app->quit();
+					QProcess::startDetached(prog,comargs);
+				});
+			trayIconContextMenu->addAction(restartAction);
+		}
+
+    quitAction=new QAction("Quit",nullptr);
     QObject::connect(quitAction, &QAction::triggered, qApp, &QCoreApplication::quit);
 	trayIconContextMenu->addAction(quitAction);
 

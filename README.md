@@ -39,8 +39,9 @@ Options:
   --timeout <0>                        Timeout to use for tray menu message in
                                        mS ( 0=no message ).
   --icon <system-run>                  Icon to use for tray menu.
-  --type <aboutqt>                     Box Type ( no type will display aboutbox
-                                       for Qt )
+  --allowrestart                       Add 'Restart' item to tray menu.
+
+  --type <aboutqt>                     Box Type ( no type will display aboutbox ).
                                        Types are:
                                        about aboutqt query info warn fatal input
                                        getitem form list textfile imagefile
@@ -197,6 +198,8 @@ yadqt --type=richtext --width=800 --height=400 '/tmp/KeithDHedger.github.io/docs
 **System tray icon examples**
 
 Left click for balloon message, right click for menu.
+
+If --allow restart is set and --data is a path to a file a 'Restart' item is added after the 'Quit' item in the context menu to restart the traynenu ( with possible different data in the file ).
 ````console
 yadqt --type=traymenu --title="Run Apps" --icon=system-run --data="XTerm|xterm|xterm|Open Google|google-chrome|xdg-open https://www.google.com|New Email|mail_new|xdg-email" --timeout=1000
 YadQt/resources/examples/trayexample.sh
