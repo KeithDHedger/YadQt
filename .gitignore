@@ -60,3 +60,4 @@ YadQt/app/yadqt
 config.h
 YadQt/sources
 *~
+YadQt/resources/examples/appsdata

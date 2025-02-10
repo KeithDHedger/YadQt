@@ -2,7 +2,6 @@
 
 while read
 	do
-		#echo $REPLY
 		NAME=
 		ICON=
 		EXEC=
@@ -15,4 +14,6 @@ while read
 		if [ ! "X$NAME" = "X" ] && [ ! "X$EXEC" = "X" ];then
 			echo -e "${NAME}\n${ICON}\n${EXEC}"
 		fi
-	done< <(find ~/.local/share/applications  -name "*.desktop")  |yadqt --type=traymenu --title="Run Apps" --fromstdin --ipseparator=newline --icon=start-here --timeout=1000  --body="Open local applications"
+	done< <(find ~/.local/share/applications  -name "*.desktop") > ./appsdata
+	
+yadqt --type=traymenu --title="Run Apps" --allowrestart --ipseparator=newline --icon=start-here --timeout=1000  --body="Open local applications" ./appsdata
