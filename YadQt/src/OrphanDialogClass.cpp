@@ -439,6 +439,11 @@ void OrphanDialogClass::loadTrayMenu(void)
 						trayIcon->showMessage(anAction->text(),QString("Launching %1 ...").arg(prog),anAction->icon(),this->data->timeOut);
 					comargs.removeFirst();
 					QProcess::startDetached(prog,comargs);
+					if(this->data->rememberItem==true)
+						{
+							this->trayIcon->	setIcon(anAction->icon());	
+							this->lastTrayMenuAction=anAction;
+						}
 				});
 			trayIconContextMenu->addAction(anAction);
 		}
@@ -476,6 +481,8 @@ void OrphanDialogClass::trayMenu(void)
 
 	this->loadTrayMenu();
 
+
+
 	if(this->data->body.compare(PACKAGE_NAME)!=0)
 		{
 			QObject::connect(trayIcon, &QSystemTrayIcon::activated,[=] (QSystemTrayIcon::ActivationReason reason)
@@ -489,6 +496,17 @@ void OrphanDialogClass::trayMenu(void)
 						}
 				});
 		}
+	QObject::connect(trayIcon, &QSystemTrayIcon::activated,[=] (QSystemTrayIcon::ActivationReason reason)
+		{
+			if(this->data->rememberItem==true)
+				{
+					if(reason==QSystemTrayIcon::MiddleClick)
+						{
+							if(this->lastTrayMenuAction!=NULL)
+								this->lastTrayMenuAction->triggered();
+						}
+				}	
+		});
 
     trayIcon->show();
 	this->app->exec();

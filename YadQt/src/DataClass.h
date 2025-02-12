@@ -49,6 +49,7 @@ class DataClass
 		bool								dataFromStdIn=false;
 		bool								allowRestart=false;
 		QString							runThisfirst="ARG";
+		bool								rememberItem=false;
 
 		void								setDButtons(void);
 		void								getBoxType(void);

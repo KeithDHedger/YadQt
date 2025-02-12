@@ -1,4 +1,5 @@
 1.0.0
+Added --remember option to remember last used tray menu context menuitem ( see help ).
 Fixed typos in help pages.
 Fixed example.
 Added screenshooter.sh to examples.

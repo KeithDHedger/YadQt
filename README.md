@@ -42,6 +42,9 @@ Options:
   --allowreload                        Add 'Reload' item to tray menu.
   --runfirst <ARG>                     Run application  ARG before
                                        starting/reloading traymenu.
+  --remember                           Remembers last tray menu context menu
+                                       item and sets main icon to menuitem icon,
+                                       middle click then reactives last item.
 
   --type <aboutqt>                     Box Type ( no type will display aboutbox ).
                                        Types are:
@@ -203,12 +206,15 @@ Left click for balloon message, right click for menu.
 
 If --allow restart is set and --data is a path to a file a 'Restart' item is added after the 'Quit' item in the context menu to restart the traynenu ( with possible different data in the file ).
 ````console
-yadqt --type=traymenu --title="Run Apps" --icon=system-run --data="XTerm|xterm|xterm|Open Google|google-chrome|xdg-open https://www.google.com|New Email|mail_new|xdg-email" --timeout=1000
+yadqt --type=traymenu --title="Run Apps" --icon=system-run --data="XTerm|xterm|xterm|Open Google|google-chrome|xdg-open https://www.google.com|New Email|mail_new|xdg-email" --timeout=1000 --remember
+
 YadQt/resources/examples/trayexample.sh
 ````
 ![ ](YadQt/resources/help/bubble.png "yadqt --type=traymenu")
 ####
 ![ ](YadQt/resources/help/apps.png "yadqt --type=traymenu")
+####
+![ ](YadQt/resources/help/remember.png "yadqt --type=traymenu")
 ####
 ![ ](YadQt/resources/help/places.png "yadqt --type=traymenu")
 ####

@@ -49,6 +49,7 @@
 				<dt>--timeout &lt;0&gt;</dt><dd>Timeout to use for tray menu message in mS ( 0=no message ).</dd>
 				<dt>--allowreload</dt><dd>Add 'Restart' item to tray menu.</dd>
 				<dt>--runfirst &lt;ARG&gt;</dt><dd>Run application ARG before starting/reloading traymenu.</dd>
+				<dt>--remember</dt><dd>Remembers last tray menu context menu item and sets main icon to menuitem icon, middle click then reactives last item.</dd>
 				<br>
 				<dt>--type &lt;aboutqt&gt;</dt><dd>Box Type ( no type will display aboutbox ).</dd>
                 <dd>Types are:<br>
@@ -175,11 +176,13 @@ yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>
 		<code>
 			Left click for balloon message, right click for menu.<br>
 			If --allow restart is set and --data is a path to a file a 'Restart' item is added after the 'Quit' item in the context menu to restart the traynenu ( with possible different data in the file ).<br>
-			yadqt --type=traymenu --title="Run Apps" --icon=system-run --data="XTerm|xterm|xterm|Open Google|google-chrome|xdg-open https://www.google.com|New Email|mail_new|xdg-email" --timeout=1000<br>
+			yadqt --type=traymenu --title="Run Apps" --icon=system-run --data="XTerm|xterm|xterm|Open Google|google-chrome|xdg-open https://www.google.com|New Email|mail_new|xdg-email" --timeout=1000 --remember
+<br>
 			YadQt/resources/examples/trayexample.sh
 		</code><br>
 		<img src="bubble.png" alt="bubble.png" title="type=traymenu"><br>
 		<img src="apps.png" alt="apps.png" title="type=traymenu"><br>
+		<img src="remember.png" alt="remember.png" title="type=traymenu"><br>
 		<img src="places.png" alt="places.png" title="type=traymenu"><br>
 		<img src="localapps.png" alt="localapps.png" title="type=traymenu"><br>
 		<br>

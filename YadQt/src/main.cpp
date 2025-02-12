@@ -63,6 +63,7 @@ int main(int argc, char **argv)
 			{"timeout","Timeout to use for tray menu message in mS( 0=no message ).","0"},
 			{"allowreload","Add 'Reload' item to tray menu."},
 			{"runfirst","Run application  ARG before starting/reloading traymenu.",data.runThisfirst},
+			{"remember","Remembers last tray menu context menu item and sets main icon to menuitem icon, middle click then reactives last item."},
 			{"type","Box Type ( no type will display aboutbox for Qt )\n\nTypes are:\nabout aboutqt query info warn fatal input getitem form list textfile imagefile colour font text tailbox notepad richtext openfile savefile prefsdialog tabbedprefsdialog traymenu help.\nMore info and examples here:\nhttps://keithdhedger.github.io/pages/yadqt/yadqt.html","aboutqt"},
 	});
 
@@ -74,6 +75,9 @@ int main(int argc, char **argv)
 
 	if(data.parser.isSet("allowreload")==true)
 		data.allowRestart=true;
+
+	if(data.parser.isSet("remember")==true)
+		data.rememberItem=true;
 
 	if(data.parser.isSet("fromstdin")==true)
 		{
