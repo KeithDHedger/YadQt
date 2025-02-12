@@ -19,6 +19,8 @@
 #
 #requires maim xdotool
 
+pushd $(dirname $0)
+
 OK=0
 while read
 	do
@@ -69,3 +71,5 @@ esac
 if [ $open_in_gimp -eq 1 ];then
 	gimp $save_file_as &
 fi
+
+popd

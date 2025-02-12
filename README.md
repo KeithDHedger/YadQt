@@ -39,7 +39,9 @@ Options:
   --timeout <0>                        Timeout to use for tray menu message in
                                        mS ( 0=no message ).
   --icon <system-run>                  Icon to use for tray menu.
-  --allowrestart                       Add 'Restart' item to tray menu.
+  --allowreload                        Add 'Reload' item to tray menu.
+  --runfirst <ARG>                     Run application  ARG before
+                                       starting/reloading traymenu.
 
   --type <aboutqt>                     Box Type ( no type will display aboutbox ).
                                        Types are:

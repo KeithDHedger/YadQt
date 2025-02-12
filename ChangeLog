@@ -1,4 +1,12 @@
 1.0.0
+Fixed typos in help pages.
+Fixed example.
+Added screenshooter.sh to examples.
+Tailbox now accepts a file name ( --default=/path/to/file ).
+Fixed tail box hogging cpu.
+Fixed richtext box hogging cpu.
+Added reload option for traymenu.
+Added run first option fo traymenu.
 Added message to traymenu when selecting menu item, ( use --timeout=NNN, where NNN is timout in mS, 0=no message ). 
 Added type=help for builtin help dialog.
 Tray menu icons can be either symbolic name or full path.

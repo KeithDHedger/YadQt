@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #directly eval
+pushd $(dirname $0)
 
 while read
 	do
@@ -21,3 +22,5 @@ echo folder_one=$folder_one
 echo fiile_one=$fiile_one
 echo spinner_one=$spinner_one
 echo prefs_spinner_2=$prefs_spinner_2
+
+popd

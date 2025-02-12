@@ -1,4 +1,5 @@
 #!/bin/bash
+pushd $(dirname $0)
 
 while read
 	do
@@ -16,3 +17,5 @@ while read
 			echo -e "${NAME}\n${ICON}\n${EXEC}"
 		fi
 	done< <(find /usr/share/applications  -name "*.desktop")  |yadqt --type=traymenu --title="Run Apps" --fromstdin --ipseparator=newline --icon=start-here
+
+popd

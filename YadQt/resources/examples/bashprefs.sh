@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #use tempfile
+pushd $(dirname $0)
 
 cat exampleprefs.data|yadqt --type=prefsdialog -t "Example Prefs" -a yadprefsexample --fromstdin --ipseparator=newline --opseparator=newline --buttons="ok|cancel|apply" >/tmp/prefs
 
@@ -23,3 +24,4 @@ echo fiile_one=$fiile_one
 echo spinner_one=$spinner_one
 echo prefs_spinner_2=$prefs_spinner_2
 
+popd

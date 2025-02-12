@@ -47,7 +47,8 @@
 				<dt>--buttons &lt;Ok&gt;</dt><dd>Buttons ( for info boxes ).</dd>
 				<dt>--icon &lt;system-run&gt;</dt><dd>Icon to use for tray menu.</dd>
 				<dt>--timeout &lt;0&gt;</dt><dd>Timeout to use for tray menu message in mS ( 0=no message ).</dd>
-				<dt>--allowrestart</dt><dd>Add 'Restart' item to tray menu.</dd>
+				<dt>--allowreload</dt><dd>Add 'Restart' item to tray menu.</dd>
+				<dt>--runfirst &lt;ARG&gt;</dt><dd>Run application ARG before starting/reloading traymenu.</dd>
 				<br>
 				<dt>--type &lt;aboutqt&gt;</dt><dd>Box Type ( no type will display aboutbox ).</dd>
                 <dd>Types are:<br>
@@ -202,7 +203,7 @@ yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>
 			<br>
 			pushd /usr/share/YadQt/examples<br>
 			./bashprefs.sh<br>
-			popd/code><br>
+			popd<br>
 		</code>
 		<img src="prefsexample.png" alt="prefsexample.png" title="type=prefsdialog"><br>
 		<code>

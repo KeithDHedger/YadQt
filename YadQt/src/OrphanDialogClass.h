@@ -54,11 +54,15 @@ class OrphanDialogClass
 
 	private:
 		void		loadData(QString uri);
+		void		loadTrayMenu(void);
 
 		DataClass		*data;
 		QApplication		*app;
 		QTextBrowser		*thedoc;
 		QUrl				baseurl;
+		QSystemTrayIcon	*trayIcon=NULL;
+		QString			menuData;
+		QMenu			*trayIconContextMenu=NULL;
 };
 
 #endif

@@ -87,6 +87,21 @@ void OrphanDialogClass::tailBox(void)
 	int				available_bytes=-1;
 	QTextStream		datastream(stdin);
 	QString			datain="";
+	QFile			data;
+	int				filehandle=0;
+
+	if(this->data->defaultText.length()>0)
+		{
+			data.setFileName(this->data->defaultText);
+			if(!data.open(QIODevice::ReadOnly | QIODevice::Text))
+				{
+					qDebug()<<"Can't open file "<<this->data->defaultText<<"...";
+					this->data->retval=1;
+					return;
+				}
+			datastream.setDevice(&data);
+			filehandle=data.handle();
+		}
 
 	this->data->theDialog=new QDialog();
 	thetext=new QPlainTextEdit(nullptr);
@@ -105,15 +120,14 @@ void OrphanDialogClass::tailBox(void)
 	this->data->theDialog->show();
 	this->data->retval=-1;
 
-	fcntl(0,F_SETFL,fcntl(0, F_GETFL) | O_NONBLOCK);
+	fcntl(filehandle,F_SETFL,fcntl(0, F_GETFL) | O_NONBLOCK);
 	while(this->data->retval<0)
 		{
-			this->app->processEvents();
+			this->app->processEvents(QEventLoop::WaitForMoreEvents);
 			if(this->data->theDialog->isVisible()==false)
 				this->data->retval=0;
 
-			usleep(10000);
-			ioctl(0,FIONREAD,&available_bytes);
+			ioctl(filehandle,FIONREAD,&available_bytes);
 			if(available_bytes>0)
 				{
     					datain=datastream.readAll();
@@ -128,6 +142,7 @@ void OrphanDialogClass::tailBox(void)
 						}    				
 				}
 		}
+	data.close();
 }
 
 void OrphanDialogClass::prefsDialog(bool istabbed)
@@ -362,7 +377,7 @@ void OrphanDialogClass::richText(void)
 
 	while(this->data->retval!=0)
 		{
-			this->app->processEvents();
+			this->app->processEvents(QEventLoop::WaitForMoreEvents);
 			if(this->data->theDialog->isVisible()==false)
 				this->data->retval=0;
 			pb->setEnabled(this->thedoc->isBackwardAvailable());
@@ -370,37 +385,41 @@ void OrphanDialogClass::richText(void)
 		}
 }
 
-void OrphanDialogClass::trayMenu(void)
+void OrphanDialogClass::loadTrayMenu(void)
 {
 	QStringList		items;
-    QSystemTrayIcon	*trayIcon=new QSystemTrayIcon(nullptr);
-    QMenu			*trayIconContextMenu=new QMenu(nullptr);
 	QAction			*anAction;
     QAction			*quitAction;
     QAction			*restartAction;
 	bool				flag=false;
 
-	ProxyStyle *mainThemeProxy=new ProxyStyle();
-	mainThemeProxy->setParent(this->app);
-	this->app->setStyle(mainThemeProxy);
+	this->trayIconContextMenu=new QMenu(nullptr);
 
-	trayIcon->setToolTip(data->title);
+	if(this->data->runThisfirst.length()>0)
+		{
+			QStringList	comargs=QProcess::splitCommand(this->data->runThisfirst);
+			QString		prog=comargs.at(0);
+			comargs.removeFirst();
+			QProcess::execute(prog,comargs);
+		}
 
 	if((this->data->dataFromStdIn==false) && (QFile::exists(this->data->defaultText)))
 		{
 			QFile file(this->data->defaultText);
 			file.open(QFile::ReadOnly | QFile::Text);
-			this->data->defaultText=file.readAll().trimmed();
+			this->menuData=file.readAll().trimmed();
 			file.close();
 			flag=true;
 		}
+	else
+		this->menuData=this->data->defaultText;
 
-	items=this->data->defaultText.split(this->data->ipsep,Qt::KeepEmptyParts,Qt::CaseInsensitive);
+	items=this->menuData.split(this->data->ipsep,Qt::KeepEmptyParts,Qt::CaseInsensitive);
 	if((items.count() % 3) !=0)//TODO//
 		{
 			qDebug()<<"Wrong number of arguments, MUST be NAME|ICON|PATH/TO/EXECUTABLE. exiting ...";
 			this->data->retval=1;
-			return;
+			exit(1);
 		}
 
 	for(int j=0;j<items.count();j+=3)
@@ -428,24 +447,34 @@ void OrphanDialogClass::trayMenu(void)
 
 	if((flag==true) && (this->data->allowRestart==true))
 		{
-		    restartAction=new QAction("Restart",nullptr);
+		    restartAction=new QAction("Reload",nullptr);
 			QObject::connect(restartAction, &QAction::triggered,[=] ()
 				{
-					QStringList	comargs=this->app->arguments();
-					QString		prog=comargs.at(0);
-					comargs.removeFirst();
-					this->app->quit();
-					QProcess::startDetached(prog,comargs);
+					delete this->trayIconContextMenu;
+					this->loadTrayMenu();
 				});
-			trayIconContextMenu->addAction(restartAction);
+			this->trayIconContextMenu->addAction(restartAction);
 		}
 
     quitAction=new QAction("Quit",nullptr);
     QObject::connect(quitAction, &QAction::triggered, qApp, &QCoreApplication::quit);
-	trayIconContextMenu->addAction(quitAction);
+	this->trayIconContextMenu->addAction(quitAction);
 
-	trayIcon->setContextMenu(trayIconContextMenu);
-	trayIcon->setIcon(QIcon::fromTheme(this->data->theIcon));	
+	this->trayIcon->setContextMenu(trayIconContextMenu);
+}
+
+void OrphanDialogClass::trayMenu(void)
+{
+	ProxyStyle *mainThemeProxy=new ProxyStyle();
+	mainThemeProxy->setParent(this->app);
+	this->app->setStyle(mainThemeProxy);
+
+	this->trayIcon=new QSystemTrayIcon(nullptr);
+
+	trayIcon->setToolTip(data->title);
+	this->trayIcon->setIcon(QIcon::fromTheme(this->data->theIcon));	
+
+	this->loadTrayMenu();
 
 	if(this->data->body.compare(PACKAGE_NAME)!=0)
 		{
