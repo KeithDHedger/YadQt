@@ -1,4 +1,6 @@
 1.0.0
+Rearranged traymenu context menu.
+Added "/usr/share/pixmaps" to traymenu menu items icons search path( qt 5 does not seem to look there by default).
 Added 'YadQt Help' item to context tray menu menu.
 Moved traymenu menu items to left click menu.
 Moved traymenu quit/reload to context menu ( right click ).

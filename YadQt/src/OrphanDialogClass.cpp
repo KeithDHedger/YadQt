@@ -426,6 +426,7 @@ void OrphanDialogClass::loadTrayMenu(void)
 
 	for(int j=0;j<items.count();j+=3)
 		{
+			QIcon::setFallbackSearchPaths(QIcon::fallbackSearchPaths() << "/usr/share/pixmaps");
 			anAction=new QAction(QIcon::fromTheme(items.at(j+1).trimmed()),items.at(j),nullptr);
 			anAction->setData(items.at(j+2));
 			QObject::connect(anAction, &QAction::triggered,[=] ()
@@ -460,10 +461,6 @@ void OrphanDialogClass::loadTrayMenu(void)
 			this->trayIconContextMenu->addAction(restartAction);
 		}
 
-    quitAction=new QAction(QIcon::fromTheme("application-exit"),"Quit",nullptr);
-    QObject::connect(quitAction, &QAction::triggered, qApp,&QCoreApplication::quit);
-	this->trayIconContextMenu->addAction(quitAction);
-	this->trayIconContextMenu->addSeparator();
 
 	helpAction=new QAction(QIcon::fromTheme("help-contents"),"YadQt Help",nullptr);
 	helpAction->setData("yadqt --type=help");
@@ -475,6 +472,11 @@ void OrphanDialogClass::loadTrayMenu(void)
 			QProcess::startDetached(prog,comargs);
 		});
 	trayIconContextMenu->addAction(helpAction);
+	this->trayIconContextMenu->addSeparator();
+
+    quitAction=new QAction(QIcon::fromTheme("application-exit"),"Quit",nullptr);
+    QObject::connect(quitAction, &QAction::triggered, qApp,&QCoreApplication::quit);
+	this->trayIconContextMenu->addAction(quitAction);
 
 	this->trayIcon->setContextMenu(trayIconContextMenu);
 }
