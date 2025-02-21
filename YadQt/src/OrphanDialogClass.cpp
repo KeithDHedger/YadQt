@@ -391,9 +391,11 @@ void OrphanDialogClass::loadTrayMenu(void)
 	QAction			*anAction;
     QAction			*quitAction;
     QAction			*restartAction;
+    QAction			*helpAction;
 	bool				flag=false;
 
 	this->trayIconContextMenu=new QMenu(nullptr);
+	this->trayIconMenu=new QMenu(nullptr);
 
 	if(this->data->runThisfirst.length()>0)
 		{
@@ -435,8 +437,6 @@ void OrphanDialogClass::loadTrayMenu(void)
 						}
 					QStringList	comargs=QProcess::splitCommand(anAction->data().toString());
 					QString		prog=comargs.at(0);
-					if(this->data->timeOut!=0)
-						trayIcon->showMessage(anAction->text(),QString("Launching %1 ...").arg(prog),anAction->icon(),this->data->timeOut);
 					comargs.removeFirst();
 					QProcess::startDetached(prog,comargs);
 					if(this->data->rememberItem==true)
@@ -445,25 +445,36 @@ void OrphanDialogClass::loadTrayMenu(void)
 							this->lastTrayMenuAction=anAction;
 						}
 				});
-			trayIconContextMenu->addAction(anAction);
+			trayIconMenu->addAction(anAction);
 		}
 
-	trayIconContextMenu->addSeparator();
-
-	if((flag==true) && (this->data->allowRestart==true))
+	if(this->data->allowRestart==true)
 		{
-		    restartAction=new QAction("Reload",nullptr);
+		    restartAction=new QAction(QIcon::fromTheme("view-refresh"),"Reload",nullptr);
 			QObject::connect(restartAction, &QAction::triggered,[=] ()
 				{
 					delete this->trayIconContextMenu;
+					delete this->trayIconMenu;
 					this->loadTrayMenu();
 				});
 			this->trayIconContextMenu->addAction(restartAction);
 		}
 
-    quitAction=new QAction("Quit",nullptr);
-    QObject::connect(quitAction, &QAction::triggered, qApp, &QCoreApplication::quit);
+    quitAction=new QAction(QIcon::fromTheme("application-exit"),"Quit",nullptr);
+    QObject::connect(quitAction, &QAction::triggered, qApp,&QCoreApplication::quit);
 	this->trayIconContextMenu->addAction(quitAction);
+	this->trayIconContextMenu->addSeparator();
+
+	helpAction=new QAction(QIcon::fromTheme("help-contents"),"YadQt Help",nullptr);
+	helpAction->setData("yadqt --type=help");
+	QObject::connect(helpAction, &QAction::triggered,[=] ()
+		{
+			QStringList	comargs=QProcess::splitCommand(helpAction->data().toString());
+			QString		prog=comargs.at(0);
+			comargs.removeFirst();
+			QProcess::startDetached(prog,comargs);
+		});
+	trayIconContextMenu->addAction(helpAction);
 
 	this->trayIcon->setContextMenu(trayIconContextMenu);
 }
@@ -481,21 +492,19 @@ void OrphanDialogClass::trayMenu(void)
 
 	this->loadTrayMenu();
 
-
-
 	if(this->data->body.compare(PACKAGE_NAME)!=0)
 		{
 			QObject::connect(trayIcon, &QSystemTrayIcon::activated,[=] (QSystemTrayIcon::ActivationReason reason)
 				{
 					if(reason==QSystemTrayIcon::Trigger)
 						{
-							int tout=this->data->timeOut;
-							if(tout==0)
-								tout=1500;
-							trayIcon->showMessage(this->data->title,this->data->body,QIcon::fromTheme(this->data->theIcon),tout);
+							QRect r=trayIcon->geometry();
+							QPoint p(r.left(),r.top()+r.height());
+							this->trayIconMenu->exec(p);
 						}
 				});
 		}
+
 	QObject::connect(trayIcon, &QSystemTrayIcon::activated,[=] (QSystemTrayIcon::ActivationReason reason)
 		{
 			if(this->data->rememberItem==true)
@@ -503,7 +512,14 @@ void OrphanDialogClass::trayMenu(void)
 					if(reason==QSystemTrayIcon::MiddleClick)
 						{
 							if(this->lastTrayMenuAction!=NULL)
-								this->lastTrayMenuAction->triggered();
+								{
+									QStringList	comargs=QProcess::splitCommand(this->lastTrayMenuAction->data().toString());
+									QString		prog=comargs.at(0);
+
+									if(this->data->timeOut!=0)
+										trayIcon->showMessage(this->lastTrayMenuAction->text(),QString("Launching %1 ...").arg(prog),this->lastTrayMenuAction->icon(),this->data->timeOut);
+									this->lastTrayMenuAction->triggered();
+								}
 						}
 				}	
 		});
@@ -513,6 +529,7 @@ void OrphanDialogClass::trayMenu(void)
 
 	delete trayIcon;
 	delete trayIconContextMenu;
+	delete trayIconMenu;
 }
 
 void OrphanDialogClass::yadQtHelp(void)

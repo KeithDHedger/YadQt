@@ -1,5 +1,8 @@
 1.0.0
-Added --remember option to remember last used tray menu context menuitem ( see help ).
+Added 'YadQt Help' item to context tray menu menu.
+Moved traymenu menu items to left click menu.
+Moved traymenu quit/reload to context menu ( right click ).
+Added --remember option to remember last used traymenu menuitem ( see help ).
 Fixed typos in help pages.
 Fixed example.
 Added screenshooter.sh to examples.
