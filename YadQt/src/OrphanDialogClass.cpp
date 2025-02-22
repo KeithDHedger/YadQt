@@ -479,6 +479,9 @@ void OrphanDialogClass::loadTrayMenu(void)
 	this->trayIconContextMenu->addAction(quitAction);
 
 	this->trayIcon->setContextMenu(trayIconContextMenu);
+	this->onScreen=this->trayIconMenu->screen();
+	this->trayIconMenu->show();
+	this->trayIconMenu->hide();
 }
 
 void OrphanDialogClass::trayMenu(void)
@@ -494,15 +497,19 @@ void OrphanDialogClass::trayMenu(void)
 
 	this->loadTrayMenu();
 
-	if(this->data->body.compare(PACKAGE_NAME)!=0)
+	if(this->menuData.length()>0)
 		{
 			QObject::connect(trayIcon, &QSystemTrayIcon::activated,[=] (QSystemTrayIcon::ActivationReason reason)
 				{
 					if(reason==QSystemTrayIcon::Trigger)
 						{
-							QRect r=trayIcon->geometry();
-							QPoint p(r.left(),r.top()+r.height());
-							this->trayIconMenu->exec(p);
+							QRect	r=trayIcon->geometry();
+							QPoint	p1;
+							if(r.top()+r.height()>=this->onScreen->geometry().height())
+								p1={r.left()+this->onScreen->geometry().left(),r.top()-this->trayIconMenu->height()};
+							else
+								p1={r.left()+this->onScreen->geometry().left(),r.top()+r.height()};
+							this->trayIconMenu->exec(p1);
 						}
 				});
 		}

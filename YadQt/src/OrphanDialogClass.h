@@ -65,6 +65,7 @@ class OrphanDialogClass
 		QMenu			*trayIconContextMenu=NULL;
 		QMenu			*trayIconMenu=NULL;
 		QAction			*lastTrayMenuAction=NULL;
+		QScreen			*onScreen=NULL;
 };
 
 #endif
