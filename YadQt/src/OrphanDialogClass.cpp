@@ -493,7 +493,7 @@ void OrphanDialogClass::trayMenu(void)
 	this->trayIcon=new QSystemTrayIcon(nullptr);
 
 	trayIcon->setToolTip(data->title);
-	this->trayIcon->setIcon(QIcon::fromTheme(this->data->theIcon));	
+	this->trayIcon->setIcon(QIcon::fromTheme(this->data->theIcon));
 
 	this->loadTrayMenu();
 
