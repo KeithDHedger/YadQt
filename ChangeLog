@@ -1,4 +1,5 @@
 1.0.0
+Fixed combo boxes in prefsdialog being to large.
 Fixed position of popup menus in traymenu when sytray not at top of screen etc.
 Rearranged traymenu context menu.
 Added "/usr/share/pixmaps" to traymenu menu items icons search path( qt 5 does not seem to look there by default).
