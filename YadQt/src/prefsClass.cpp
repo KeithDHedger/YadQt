@@ -305,9 +305,7 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 						}
 					this->dialogPrefs.comboBoxes[this->dialogPrefs.comboBoxCnt]->setCurrentText(defstr);
 					this->dialogPrefs.comboBoxes[this->dialogPrefs.comboBoxCnt]->setCurrentText(defaults.value(this->dialogPrefs.comboBoxesPrefsName[this->dialogPrefs.comboBoxCnt],items.at(j)).toString());
-
 					this->dialogPrefs.comboBoxes[this->dialogPrefs.comboBoxCnt]->setMinimumSize(1,1);
-
 					hlayout->addWidget(this->dialogPrefs.comboBoxes[this->dialogPrefs.comboBoxCnt],RITESTRETCH);
 					docvlayout->addWidget(hbox);
 					this->dialogPrefs.comboBoxCnt++;
