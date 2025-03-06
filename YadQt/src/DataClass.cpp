@@ -141,9 +141,11 @@ void DataClass::getBoxType()
 	if(str.compare("help",Qt::CaseInsensitive)==0)
 		this->boxType=YADQTHELP;
 
-//files
+//files dialogs
 	if(str.compare("openfile",Qt::CaseInsensitive)==0)
 		this->boxType=OPENFILE;
+	if(str.compare("openfolder",Qt::CaseInsensitive)==0)
+		this->boxType=OPENFOLDER;
 	if(str.compare("savefile",Qt::CaseInsensitive)==0)
 		this->boxType=SAVEFILE;
 

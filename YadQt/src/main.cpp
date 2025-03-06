@@ -66,7 +66,7 @@ int main(int argc, char **argv)
 			{"allowreload","Add 'Reload' item to tray menu."},
 			{"runfirst","Run application  ARG before starting/reloading traymenu.",data.runThisfirst},
 			{"remember","Remembers last tray menu context menu item and sets main icon to menuitem icon, middle click then reactives last item."},
-			{"type","Box Type ( no type will display aboutbox for Qt )\n\nTypes are:\nabout aboutqt query info warn fatal input getitem form list textfile imagefile colour font text tailbox notepad richtext openfile savefile prefsdialog tabbedprefsdialog traymenu help.\nMore info and examples here:\nhttps://keithdhedger.github.io/pages/yadqt/yadqt.html","aboutqt"},
+			{"type","Box Type ( no type will display aboutbox for Qt )\n\nTypes are:\nabout aboutqt query info warn fatal input getitem form list textfile imagefile colour font text tailbox notepad richtext openfile openfolder savefile prefsdialog tabbedprefsdialog traymenu help.\nMore info and examples here:\nhttps://keithdhedger.github.io/pages/yadqt/yadqt.html","aboutqt"},
 	});
 
 	app.setWindowIcon(QIcon::fromTheme("user-info"));
@@ -209,9 +209,12 @@ int main(int argc, char **argv)
 						orphans.richText();
 						break;
 						break;
-//files
+//file dialogs
 					case OPENFILE:
 						orphans.openFile();
+						break;
+					case OPENFOLDER:
+						orphans.openFolder();
 						break;
 					case SAVEFILE:
 						orphans.saveFile();

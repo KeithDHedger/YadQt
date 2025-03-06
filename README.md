@@ -51,7 +51,7 @@ Options:
                                        about aboutqt query info warn fatal input
                                        getitem form list textfile imagefile
                                        colour font text tailbox notepad richtext
-                                       openfile savefile prefsdialog
+                                       openfile openfolder savefile prefsdialog
                                        tabbedprefsdialog traymenu help.
 
                                        More info and examples here:
@@ -79,6 +79,7 @@ tailbox
 notepad  
 richtext
 openfile
+openfolder
 savefile
 prefsdialog
 tabbedprefsdialog
@@ -224,9 +225,12 @@ YadQt/resources/examples/trayexample.sh
 **File choosers**
 ````console
 yadqt --type=openfile
+yadqt --type=openfolder
 yadqt --type=savefile -d /tmp/somefile
 ````
 ![ ](YadQt/resources/help/openfile.png "yadqt --type=openfile")
+####
+![ ](YadQt/resources/help/openfolder.png "yadqt --type=openfolder")
 ####
 ![ ](YadQt/resources/help/savefile.png "yadqt --type=savefile")
 

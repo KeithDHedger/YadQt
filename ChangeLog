@@ -1,4 +1,7 @@
 1.0.0
+Typo fixes in examples.
+Addes 'save' type to prefsdialog type.
+Added --type=openfolder.
 Fixed combo boxes in prefsdialog being to large.
 Fixed position of popup menus in traymenu when sytray not at top of screen etc.
 Rearranged traymenu context menu.

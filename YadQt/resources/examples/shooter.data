@@ -14,10 +14,10 @@ Delay
 1
 
 #file select
-#type=file
+#type=save
 #prefs name, prefs sections seperated by /
 #default, will be overwitten when prefs are saved
-file
+save
 Save file as
 
 combostart

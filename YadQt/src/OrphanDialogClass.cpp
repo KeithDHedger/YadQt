@@ -188,6 +188,22 @@ void OrphanDialogClass::prefsDialog(bool istabbed)
 	delete newprefs;
 }
 
+void OrphanDialogClass::openFolder(void)
+{
+	QString filename=QFileDialog::getExistingDirectory(nullptr,"Open Folder",this->data->defaultText);
+	if(filename.isEmpty()==false)
+		{
+			QTextStream(stdout) <<filename<< Qt::endl;
+			this->data->retButton=QMessageBox::Ok;
+			this->data->retval=0;
+		}
+	else
+		{
+			this->data->retButton=QMessageBox::Cancel;
+			this->data->retval=1;
+		}
+}
+
 void OrphanDialogClass::openFile(void)
 {
 	QString filename=QFileDialog::getOpenFileName(nullptr,"Open File",this->data->defaultText);

@@ -47,6 +47,7 @@ class OrphanDialogClass
 		void		notePad(void);
 		void		richText(void);
 		void		openFile(void);
+		void		openFolder(void);
 		void		saveFile(void);
 		void		prefsDialog(bool istabbed=false);
 		void		trayMenu(void);

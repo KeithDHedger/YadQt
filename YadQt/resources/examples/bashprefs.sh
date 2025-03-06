@@ -21,7 +21,8 @@ echo second_col= $second_col
 echo prefs_main_font=$prefs_main_font
 echo secondary_font=$secondary_font
 echo folder_one=$folder_one
-echo fiile_one=$fiile_one
+echo load_file=$load_file
+echo save_file=$save_file
 echo spinner_one=$spinner_one
 echo prefs_spinner_2=$prefs_spinner_2
 

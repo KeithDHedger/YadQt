@@ -125,8 +125,16 @@ Folder One
 #prefs name, prefs sections seperated by /
 #default, will be overwitten when prefs are saved
 file
-Fiile One
+Load File
 /usr
+
+#save file
+#type=save
+#prefs name, prefs sections seperated by /
+#default, will be overwitten when prefs are saved
+save
+Save File
+/tmp/Untitled
 
 #spin box
 #type=spinner

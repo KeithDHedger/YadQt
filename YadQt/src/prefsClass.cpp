@@ -436,7 +436,7 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					this->dialogPrefs.fontBoxCnt++;
 				}
 
-			//files
+			//load files
 			if(items.at(j).compare("file")==0)
 				{
 					QWidget		*hbox2=new QWidget;
@@ -479,7 +479,7 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 					this->dialogPrefs.fileBoxCnt++;
 				}
 
-			//folders
+			//select folders
 			if(items.at(j).compare("folder")==0)
 				{
 					QWidget		*hbox2=new QWidget;
@@ -512,6 +512,49 @@ void prefsClass::createDialog(QString title,QStringList items,QSize sze)
 								{
 									this->dialogPrefs.fileBoxes[foldnum]->setText(foldername);
 									this->dialogPrefs.fileBoxes[foldnum]->setCursorPosition(0);
+								}
+						});
+					hlayout2->addWidget(this->dialogPrefs.fileBoxes[this->dialogPrefs.fileBoxCnt],2);
+					hbox2->setLayout(hlayout2);
+					hbox->setLayout(hlayout);
+					hlayout->addWidget(hbox2,RITESTRETCH);
+					docvlayout->addWidget(hbox);
+					this->dialogPrefs.fileBoxes[this->dialogPrefs.fileBoxCnt]->setCursorPosition(0);
+					this->dialogPrefs.fileBoxCnt++;
+				}
+
+			//save files
+			if(items.at(j).compare("save")==0)
+				{
+					QWidget		*hbox2=new QWidget;
+					QHBoxLayout	*hlayout2=new QHBoxLayout;
+					QPushButton	*pb=NULL;
+
+					hlayout=new QHBoxLayout;
+					hbox=new QWidget;
+					hlayout->setContentsMargins(0,0,0,0);
+					hlayout->setSpacing(0);
+					hlayout2->setContentsMargins(3,0,0,0);
+					hlayout2->setSpacing(0);
+					j++;
+					labelstr=items.at(j).trimmed();
+					prefsentry=labelstr;
+					labelstr=labelstr.mid(labelstr.lastIndexOf("/")+1,-1);
+					prefsentry.replace(" ","_");
+					hlayout->addWidget(new QLabel(labelstr),1);
+					this->dialogPrefs.fileBoxesPrefsName[this->dialogPrefs.fileBoxCnt]=prefsentry.toLower();
+					j++;
+					pb=new QPushButton(QIcon::fromTheme("text-x-generic"),"");
+					pb->setMaximumWidth(24);
+					hlayout2->addWidget(pb,1);
+					this->dialogPrefs.fileBoxes[this->dialogPrefs.fileBoxCnt]=new QLineEdit(defaults.value(this->dialogPrefs.fileBoxesPrefsName[this->dialogPrefs.fileBoxCnt],items.at(j)).toString());	
+					QObject::connect(pb,&QPushButton::clicked,[this,pb,filenum=this->dialogPrefs.fileBoxCnt]()
+						{
+							QString filename=QFileDialog::getSaveFileName(nullptr,"Save File",this->dialogPrefs.fileBoxes[filenum]->text());
+							if(filename.isEmpty()==false)
+								{
+									this->dialogPrefs.fileBoxes[filenum]->setText(filename);
+									this->dialogPrefs.fileBoxes[filenum]->setCursorPosition(0);
 								}
 						});
 					hlayout2->addWidget(this->dialogPrefs.fileBoxes[this->dialogPrefs.fileBoxCnt],2);

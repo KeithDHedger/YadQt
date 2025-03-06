@@ -55,7 +55,7 @@
                 <dd>Types are:<br>
 					about aboutqt query info warn fatal input getitem
 					form list textfile imagefile colour font text
-					tailbox notepad richtext openfile savefile prefsdialog tabbedprefsdialog traymenu help.<br><br>
+					tailbox notepad richtext openfile openfolder savefile prefsdialog tabbedprefsdialog traymenu help.<br><br>
 					More info and examples here:<br>
 					https://keithdhedger.github.io/pages/yadqt/yadqt.html<br>
 				</dd>
@@ -83,6 +83,7 @@
 		notepad<br>
 		richtext<br>
 		openfile<br>
+		openfolder<br>
 		savefile<br>
 		prefsdialog<br>
 		tabbedprefsdialog<br>
@@ -189,9 +190,11 @@ yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>
 
 		<b>File choosers:</b><br>
 		<code>yadqt --type=openfile<br>
+			yadqt --type=openfolder<br>
 			yadqt --type=savefile -d /tmp/somefile<br>
 		</code>
 		<img src="openfile.png" alt="openfile.png" title="type=openfile"><br>
+		<img src="openfolder.png" alt="openfolder.png" title="type=openfolder"><br>
 		<img src="savefile.png" alt="savefile.png" title="type=savefile"><br>
 		<br>
 
