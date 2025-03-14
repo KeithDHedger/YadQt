@@ -24,6 +24,7 @@ Options:
   -d, --default, --data <keithhedger>  Default text ( lists, forms etc, 1st
                                        positional arg passed will overide this
                                        ).
+  --cdto <ARG>                         CD to ARG before reading stdin.
   --fromstdin                          Read default data from stdin.
   --width <0>                          Dialog width ( set to 0 for default size
                                        for dialog ).

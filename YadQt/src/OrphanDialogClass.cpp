@@ -240,6 +240,7 @@ void OrphanDialogClass::notePad(void)
 {
 	QPlainTextEdit	*thetext;
 	QVBoxLayout		*docvlayout=new QVBoxLayout;
+	QHBoxLayout		*hlayout;
 
 	this->data->theDialog=new QDialog();
 	thetext=new QPlainTextEdit(nullptr);
@@ -252,32 +253,55 @@ void OrphanDialogClass::notePad(void)
 	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
 	docvlayout->addWidget(thetext);
 
-	this->data->dbutton=(QDialogButtonBox::StandardButton)((unsigned int)QDialogButtonBox::Save|(unsigned int)QDialogButtonBox::Discard);
-	this->data->bb->setStandardButtons(this->data->dbutton);
-	docvlayout->addWidget(this->data->bb);
-	this->data->theDialog->setLayout(docvlayout);
-
 	if(this->data->parser.isSet("title")==false)
 		this->data->title=QFileInfo(this->data->defaultText).fileName();
 
 	this->data->theDialog->setWindowTitle(this->data->title);	
 	this->data->theDialog->resize(this->data->adjustBoxSize(640,480));
 
-	this->data->theDialog->exec();
-	if(this->data->retval==0)
+	QPushButton *close=new QPushButton(QIcon::fromTheme("stock_close"),"Close");
+	QObject::connect(close,&QPushButton::clicked,[this]()
 		{
+			this->data->theDialog->accept();
+			this->data->retButton=QMessageBox::Close;
+		});
+
+	QPushButton *save=new QPushButton(QIcon::fromTheme("stock_save"),"Save");
+	QObject::connect(save,&QPushButton::clicked,[this,thetext]()
+		{
+			QFile file(this->data->defaultText);
 			if(file.open(QIODevice::ReadWrite))
 				{
 					QTextStream(&file) << thetext->toPlainText() << Qt::endl;
 					file.close();
 				}
-		}
+			this->data->retButton=QMessageBox::Save;
+		});
+
+	hlayout=new QHBoxLayout;
+	hlayout->setContentsMargins(0,0,0,0);
+	hlayout->addStretch(1);
+	hlayout->addWidget(save);
+	hlayout->addWidget(close);
+	docvlayout->addLayout(hlayout,Qt::AlignRight);
+
+	this->data->theDialog->setLayout(docvlayout);
+
+	this->data->retval=this->data->theDialog->exec();
+	this->data->retval=0;
+}
+
+void OrphanDialogClass::loadDataFromStdin(void)
+{
+	if(Qt::mightBeRichText(this->data->defaultText)==true)
+		this->thedoc->setHtml(this->data->defaultText);
+	else
+		this->thedoc->setMarkdown(this->data->defaultText);
 }
 
 void OrphanDialogClass::loadData(QString uri)
 {
 	QByteArray		qb;
-//	QTextCodec		*codec;
 	QString			str;
 	QMimeDatabase	db1;
 	QFile			file(uri);
@@ -333,7 +357,11 @@ void OrphanDialogClass::richText(void)
 			if(f1.exists()==true)
 				this->loadData(link.toLocalFile());
 		});
-	this->loadData(this->data->defaultText);
+
+	if(this->data->dataFromStdIn==false)
+		this->loadData(this->data->defaultText);
+	else
+		this->loadDataFromStdin();
 
 	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
 	docvlayout->addWidget(this->thedoc);

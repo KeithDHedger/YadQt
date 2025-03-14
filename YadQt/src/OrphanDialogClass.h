@@ -55,6 +55,7 @@ class OrphanDialogClass
 
 	private:
 		void		loadData(QString uri);
+		void		loadDataFromStdin(void);
 		void		loadTrayMenu(void);
 
 		DataClass		*data;

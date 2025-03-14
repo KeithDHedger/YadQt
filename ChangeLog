@@ -1,3 +1,9 @@
+1.0.1
+Minor text additions to about box when no type specified.
+'Save' on type=notepad now doesn't close dialog.
+Added --cdto=ARG to change dir to ARG before reading from stdin, mainly to set basefolder for images etc for richtext when reading from stdin.
+Can now read from stdin for type=richtext.
+
 1.0.0
 Typo fixes in examples.
 Addes 'save' type to prefsdialog type.

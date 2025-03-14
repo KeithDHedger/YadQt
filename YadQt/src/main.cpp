@@ -53,6 +53,7 @@ int main(int argc, char **argv)
 			{{"t","title"},"Title.",PACKAGE_NAME},
 			{{"b","body"},"Body.",data.body},
 			{{"d","default","data"},"Default text ( lists, forms etc, 1st positional arg passed will overide this ).",QDir::home().dirName()},
+			{"cdto","CD to ARG before reading stdin.","ARG"},
 			{"fromstdin","Read default data from stdin."},
 			{"width","Dialog width ( set to 0 for default size for dialog ).","0"},
 			{"height","Dialog height ( set to 0 for default size for dialog ).","0"},
@@ -80,6 +81,12 @@ int main(int argc, char **argv)
 
 	if(data.parser.isSet("remember")==true)
 		data.rememberItem=true;
+
+	if(data.parser.isSet("cdto")==true)
+		{
+			data.cdToHere=data.parser.value("cdto");
+			QDir::setCurrent(data.cdToHere);
+		}
 
 	if(data.parser.isSet("fromstdin")==true)
 		{
@@ -234,12 +241,12 @@ int main(int argc, char **argv)
 					case YADQTHELP:
 						orphans.yadQtHelp();
 						break;
-
 				}
 		}
 	else
 		{
-			data.body="<b>YadQt</b><br>Create Qt dialogs from shell scripts<br><br><a href=\"https://keithdhedger.github.io\">Website</a><br><br><a href=\"mailto:keithdhedger@gmail.com\">Mail Me</a>";
+			data.title="About YadQt";
+			data.body="<b>" PACKAGE_STRING "</b><br>Create Qt dialogs from shell scripts<br><br><a href=\"https://keithdhedger.github.io\">Website</a><br><br><a href=\"mailto:keithdhedger@gmail.com\">Mail Me</a>";
 			data.boxType=ABOUT ;
 			info.showDialog();
 		}

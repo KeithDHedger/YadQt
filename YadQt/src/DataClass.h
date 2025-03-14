@@ -42,11 +42,12 @@ class DataClass
 		int								width=-1;
 		int								height=-1;
 		bool								customSize=false;
-		int								boxType=-1;
+		int								boxType=NOTYPE;
 		int								retval=0;
 		QString							theIcon="system-run";
 		int								timeOut=0;
 		bool								dataFromStdIn=false;
+		QString							cdToHere="";
 		bool								allowRestart=false;
 		QString							runThisfirst="ARG";
 		bool								rememberItem=false;
