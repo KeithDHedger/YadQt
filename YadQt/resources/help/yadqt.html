@@ -131,10 +131,10 @@
 		<br>
 
 		<code>yadqt --type=text -t "Show Text" --default="some text@second line@third line" --ipseparator=@</code><br>
-		<img src="text1.png" alt="text1.png" title="type=text""><br>
+		<img src="text1.png" alt="text1.png" title="type=text"><br>
 		<br>
 
-		<code>while read;do echo $REPLY;done< <(cat /etc/fstab)|yadqt --type=text --fromstdin --width=800 -t "Show Text"</code><br>
+		<code>while read;do echo $REPLY;done&lt; &lt;(cat /etc/fstab)|yadqt --type=text --fromstdin --width=800 -t "Show Text"</code><br>
 		<img src="text2.png" alt="text2.png" title="type=text"><br>
 		<br>
 
@@ -148,7 +148,7 @@ yadqt --type=imagefile -d '/home/keithhedger/Backgrounds/bc3.png' --height=420 -
 		<br>
 
 		<code>yadqt --type=colour --default="#c080ff80" -t "Select a colour..."|yadqt --type=input -t "Results" -b "Colour Selected" --fromstdin<br>
-yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..."  2>/dev/pts/2;echo $?</code><br>
+yadqt --type=colour --default="#c080ff80" --btntoerr -t "Select a colour..." 2&gt;/dev/pts/2;echo $?</code><br>
 		<img src="colour.png" alt="colour.png" title="type=colour"><br>
 		<br>
 

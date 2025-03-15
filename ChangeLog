@@ -1,4 +1,6 @@
 1.0.1
+Fixed some typos in in help file.
+Quit with error msg when --fromstdin option set on some dialogs.
 Minor text additions to about box when no type specified.
 'Save' on type=notepad now doesn't close dialog.
 Added --cdto=ARG to change dir to ARG before reading from stdin, mainly to set basefolder for images etc for richtext when reading from stdin.

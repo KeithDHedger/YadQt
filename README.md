@@ -150,6 +150,7 @@ yadqt --type=text -t "Show Text" --default="some text@second line@third line" --
 
 while read;do echo $REPLY;done< <(cat /etc/fstab)|yadqt --type=text --fromstdin --width=800 -t "Show Text"
 ````
+
 ![ ](YadQt/resources/help/text2.png "yadqt --type=text")
 
 ````console

@@ -24,7 +24,7 @@
 
 int main(int argc, char **argv)
 {
-	QApplication			app(argc,argv);
+	QApplication		app(argc,argv);
 	QStringList			xtraargs;
 
 	DataClass			data;
@@ -178,11 +178,12 @@ int main(int argc, char **argv)
 					case GETINPUT:
 						input.getTextInput();
 						break;
-					case GETITEM:
+					case GETITEM://TODO//
 						input.getItem();
 						break;
 //forms
 					case GETFORM:
+						data.stupidReadFromStdin();
 						forms.getForm();
 						break;
 //list
@@ -191,25 +192,30 @@ int main(int argc, char **argv)
 						break;
 //files
 					case SHOWTEXTFILE:
+						data.stupidReadFromStdin();
 						files.showTextFile(true);
 						break;
 					case GETTEXT:
 						files.showTextFile(false);
 						break;
 					case SHOWIMAGEFILE:
+						data.stupidReadFromStdin();
 						files.showImageFile();
 						break;
 //orphans
 					case GETCOLOUR:
+						data.stupidReadFromStdin();
 						orphans.getColour();
 						break;
 					case GETFONT:
+						data.stupidReadFromStdin();
 						orphans.getFont();
 						break;
 					case TAILBOX:
 						orphans.tailBox();
 						break;
 					case NOTEPAD:
+						data.stupidReadFromStdin();
 						orphans.notePad();
 						break;
 					case RICHTEXT:
@@ -218,12 +224,15 @@ int main(int argc, char **argv)
 						break;
 //file dialogs
 					case OPENFILE:
+						data.stupidReadFromStdin();
 						orphans.openFile();
 						break;
 					case OPENFOLDER:
+						data.stupidReadFromStdin();
 						orphans.openFolder();
 						break;
 					case SAVEFILE:
+						data.stupidReadFromStdin();
 						orphans.saveFile();
 						break;
 //prefs
@@ -239,6 +248,7 @@ int main(int argc, char **argv)
 						break;
 //yadqt help
 					case YADQTHELP:
+						data.stupidReadFromStdin();
 						orphans.yadQtHelp();
 						break;
 				}

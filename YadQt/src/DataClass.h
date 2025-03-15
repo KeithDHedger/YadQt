@@ -52,6 +52,7 @@ class DataClass
 		QString							runThisfirst="ARG";
 		bool								rememberItem=false;
 
+		void								stupidReadFromStdin(void);
 		void								setDButtons(void);
 		void								getBoxType(void);
 		void								setReturnVals(void);

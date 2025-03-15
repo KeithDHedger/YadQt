@@ -87,6 +87,15 @@ void DataClass::setDButtons(void)//TODO//
 		}
 }
 
+void DataClass::stupidReadFromStdin()
+{
+	if(this->dataFromStdIn==true)
+		{
+			qDebug()<<"Reading from stdin makes no sense for this option ...";
+			exit(1);
+		}
+}
+
 void DataClass::getBoxType()
 {
 	QString	str=this->parser.value("type");
