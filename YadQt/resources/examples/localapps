@@ -17,6 +17,6 @@ while read
 		fi
 	done< <(find ~/.local/share/applications  -name "*.desktop") > ./appsdata
 	
-yadqt --type=traymenu --title="Run Apps" --allowreload --ipseparator=newline --icon=start-here --timeout=1000  --body="Open local applications" ./appsdata
+	yadqt --type=traymenu --title="Run Apps" --allowreload --ipseparator=newline --icon=start-here --timeout=1000  --body="Open local applications" ./appsdata
 
 popd

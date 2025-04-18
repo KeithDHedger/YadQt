@@ -25,7 +25,8 @@ OK=0
 while read
 	do
 		OK=1
-		eval $REPLY
+		XREPLY="${REPLY//\'/}"
+		printf -v ${XREPLY%%=?*} "${XREPLY##?*=}"
 	done< <(cat shooter.data|yadqt --type=prefsdialog -a YadQTScreenshooter -t "YadQT Screenshooter" --fromstdin --ipseparator=newline --opseparator=newline --buttons="ok|cancel" 2>/dev/null)
 
 if [ $OK -eq 0 ];then

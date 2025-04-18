@@ -17,5 +17,4 @@ while read
 			echo -e "${NAME}\n${ICON}\n${EXEC}"
 		fi
 	done< <(find /usr/share/applications  -name "*.desktop")  |yadqt --type=traymenu --title="Run Apps" --fromstdin --ipseparator=newline --icon=start-here
-
 popd
