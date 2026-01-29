@@ -1,4 +1,6 @@
 1.0.1
+Fixed minor compile warnings.
+Fixed saving notepad.
 Fixed some typos in in help file.
 Quit with error msg when --fromstdin option set on some dialogs.
 Minor text additions to about box when no type specified.

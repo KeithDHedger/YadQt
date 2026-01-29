@@ -246,9 +246,17 @@ void OrphanDialogClass::notePad(void)
 	thetext=new QPlainTextEdit(nullptr);
 
 	QFile file(this->data->defaultText);
-	file.open(QFile::ReadOnly | QFile::Text);
-	thetext->setPlainText(file.readAll());
-	file.close();
+	if(file.open(QFile::ReadOnly | QFile::Text))
+		{
+			thetext->setPlainText(file.readAll());
+			file.close();
+		}
+	else
+		{
+			qDebug()<<"No such file ...";
+			this->data->retButton=QMessageBox::Abort;
+			return;
+		}
 
 	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
 	docvlayout->addWidget(thetext);
@@ -270,9 +278,9 @@ void OrphanDialogClass::notePad(void)
 	QObject::connect(save,&QPushButton::clicked,[this,thetext]()
 		{
 			QFile file(this->data->defaultText);
-			if(file.open(QIODevice::ReadWrite))
+			if(file.open(QIODevice::WriteOnly|QIODeviceBase::Truncate|QIODeviceBase::Text))
 				{
-					QTextStream(&file) << thetext->toPlainText() << Qt::endl;
+					QTextStream(&file) << thetext->toPlainText();
 					file.close();
 				}
 			this->data->retButton=QMessageBox::Save;
@@ -331,9 +339,17 @@ void OrphanDialogClass::loadData(QString uri)
 	else
 		{
 			QFile file(realpath);
-			file.open(QFile::ReadOnly | QFile::Text);
-			thedoc->document()->setPlainText(file.readAll());
-			file.close();;
+			if(file.open(QFile::ReadOnly | QFile::Text))
+				{
+					thedoc->document()->setPlainText(file.readAll());
+					file.close();
+				}
+			else
+				{
+					qDebug()<<"No such file ...";
+					this->data->retButton=QMessageBox::Abort;
+					return;
+				}
 		}
 }
 
@@ -452,9 +468,17 @@ void OrphanDialogClass::loadTrayMenu(void)
 	if((this->data->dataFromStdIn==false) && (QFile::exists(this->data->defaultText)))
 		{
 			QFile file(this->data->defaultText);
-			file.open(QFile::ReadOnly | QFile::Text);
-			this->menuData=file.readAll().trimmed();
-			file.close();
+			if(file.open(QFile::ReadOnly | QFile::Text))
+				{
+					this->menuData=file.readAll().trimmed();
+					file.close();
+				}
+			else
+				{
+					qDebug()<<"No such file ...";
+					this->data->retButton=QMessageBox::Abort;
+					return;
+				}
 			flag=true;
 		}
 	else

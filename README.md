@@ -211,6 +211,7 @@ If --allow restart is set and --data is a path to a file a 'Restart' item is add
 ````console
 yadqt --type=traymenu --title="Run Apps" --icon=system-run --data="XTerm|xterm|xterm|Open Google|google-chrome|xdg-open https://www.google.com|New Email|mail_new|xdg-email" --timeout=1000 --remember
 
+See also:  
 YadQt/resources/examples/trayexample.sh
 ````
 ![ ](YadQt/resources/help/bubble.png "yadqt --type=traymenu")
