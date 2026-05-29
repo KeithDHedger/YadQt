@@ -61,3 +61,5 @@ config.h
 YadQt/sources
 *~
 YadQt/resources/examples/appsdata
+runtime-x86_64
+YadQt.AppImage
