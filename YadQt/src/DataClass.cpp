@@ -26,6 +26,8 @@ DataClass::~DataClass()
 
 DataClass::DataClass()
 {
+	this->realDataDir=QString("%1%2").arg(getenv("APPDIR")).arg(DATADIR);
+
 	this->bb=new QDialogButtonBox(QDialogButtonBox::NoButton);
 	QObject::connect(this->bb,&QDialogButtonBox::clicked,[this](QAbstractButton *button)
 		{

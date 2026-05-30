@@ -267,14 +267,14 @@ void OrphanDialogClass::notePad(void)
 	this->data->theDialog->setWindowTitle(this->data->title);	
 	this->data->theDialog->resize(this->data->adjustBoxSize(640,480));
 
-	QPushButton *close=new QPushButton(QIcon::fromTheme("stock_close"),"Close");
+	QPushButton *close=new QPushButton(QIcon::fromTheme("window-close"),"Close");
 	QObject::connect(close,&QPushButton::clicked,[this]()
 		{
 			this->data->theDialog->accept();
 			this->data->retButton=QMessageBox::Close;
 		});
 
-	QPushButton *save=new QPushButton(QIcon::fromTheme("stock_save"),"Save");
+	QPushButton *save=new QPushButton(QIcon::fromTheme("document-save"),"Save");
 	QObject::connect(save,&QPushButton::clicked,[this,thetext]()
 		{
 			QFile file(this->data->defaultText);
@@ -405,7 +405,7 @@ void OrphanDialogClass::richText(void)
 			this->thedoc->reload();
 		});
 
-	QPushButton *ok=new QPushButton(QIcon::fromTheme("stock_close"),"OK");
+	QPushButton *ok=new QPushButton(QIcon::fromTheme("window-close"),"Close");
 	QObject::connect(ok,&QPushButton::clicked,[this]()
 		{
 			this->data->theDialog->hide();
@@ -611,10 +611,10 @@ void OrphanDialogClass::trayMenu(void)
 
 void OrphanDialogClass::yadQtHelp(void)
 {
-	this->data->title="Yad~Qt Help";
+	this->data->title="YadQt Help";
 	this->data->width=830;
 	this->data->height=640;
-	this->data->defaultText=DATADIR "/help/yadqt.html";
+	this->data->defaultText=QString("%1/help/yadqt.html").arg(this->data->realDataDir);
 	this->richText();
 }
 

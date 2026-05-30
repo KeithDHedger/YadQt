@@ -24,6 +24,7 @@ man1_MANS = ../resources/man/yadqt.1
 install-exec-hook:
 	install -D ../resources/pixmaps/YadQt.png $(DESTDIR)${prefix}/share/pixmaps/YadQt.png
 	strip --strip-all $(DESTDIR)${bindir}/yadqt
+	cp -r "../resources/icons" "$(DESTDIR)$(pkgdatadir)"
 
 uninstall-hook:
 	rm -f $(DESTDIR)${prefix}/share/pixmaps/YadQt.png

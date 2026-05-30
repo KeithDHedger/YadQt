@@ -39,6 +39,7 @@ class DataClass
 		QString							ipsep="|";
 		QMessageBox::StandardButton		retButton=QMessageBox::NoButton;
 		QDialogButtonBox::StandardButton	dbutton=QDialogButtonBox::NoButton;
+		QString							realDataDir;
 		int								width=-1;
 		int								height=-1;
 		bool								customSize=false;
