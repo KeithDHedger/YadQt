@@ -1,4 +1,6 @@
 1.0.2
+Fixed no file name or unreachable file in notepad.
+Fixed qt5 compile.
 Fixed help page html.
 Fixed icon names.
 Added default icons to install.

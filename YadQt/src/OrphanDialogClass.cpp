@@ -253,9 +253,14 @@ void OrphanDialogClass::notePad(void)
 		}
 	else
 		{
-			qDebug()<<"No such file ...";
-			this->data->retButton=QMessageBox::Abort;
-			return;
+			system(qPrintable(QString("touch '%1' 2>/dev/null").arg(this->data->defaultText)));
+			//QProcess::execute("touch",QStringList()<<this->data->defaultText);
+			if(!file.open(QFile::ReadOnly | QFile::Text))
+				{
+					qDebug()<<"Can't open file"<<this->data->defaultText<<"...";
+					this->data->retButton=QMessageBox::Abort;
+					return;
+				}
 		}
 
 	docvlayout->setContentsMargins(MARGINS,MARGINS,MARGINS,MARGINS);
@@ -278,7 +283,11 @@ void OrphanDialogClass::notePad(void)
 	QObject::connect(save,&QPushButton::clicked,[this,thetext]()
 		{
 			QFile file(this->data->defaultText);
+#ifdef _USEQT6_
 			if(file.open(QIODevice::WriteOnly|QIODeviceBase::Truncate|QIODeviceBase::Text))
+#else
+			if(file.open(QIODevice::WriteOnly|QIODevice::Truncate|QIODevice::Text))
+#endif
 				{
 					QTextStream(&file) << thetext->toPlainText();
 					file.close();
