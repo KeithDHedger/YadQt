@@ -37,6 +37,9 @@ cp --parents -rp /usr/lib64/qt6/plugins/platformthemes/libqt6ct.so  ${WHERE}
 cp --parents -rp /usr/lib64/qt6/plugins/styles/libqt6ct-style.so  ${WHERE}
 cp --parents -rp /lib/qt6/plugins/imageformats ${WHERE}
 
+cp --parents -rp /usr/lib/qt6/plugins/assetimporters ${WHERE}
+cp --parents -rp /usr/lib/qt6/plugins/sqldrivers ${WHERE}
+
 while read
 	do
 		if file "$REPLY"|grep --quiet -i "ELF" ;then

@@ -254,7 +254,6 @@ void OrphanDialogClass::notePad(void)
 	else
 		{
 			system(qPrintable(QString("touch '%1' 2>/dev/null").arg(this->data->defaultText)));
-			//QProcess::execute("touch",QStringList()<<this->data->defaultText);
 			if(!file.open(QFile::ReadOnly | QFile::Text))
 				{
 					qDebug()<<"Can't open file"<<this->data->defaultText<<"...";
