@@ -36,8 +36,10 @@ int main(int argc, char **argv)
 	OrphanDialogClass	orphans(&app,&data);
 	unsigned				retval=0;
 
-	QIcon::setThemeSearchPaths(QStringList()<<QString("%1/usr/share/icons").arg(getenv("APPDIR"))<<QString("/usr/share/icons")<<QString("%1/.icons").arg(getenv("HOME")) <<QString("%1/icons").arg(data.realDataDir) );
-	QIcon::setFallbackSearchPaths(QStringList()<<QString("%1/usr/share/icons").arg(getenv("APPDIR"))<<QString("/usr/share/icons")<<QString("%1/.icons").arg(getenv("HOME"))  <<QString("%1/icons").arg(data.realDataDir));
+	QIcon::setThemeSearchPaths(QStringList()<<QString("%1/usr/share/icons").arg(getenv("APPDIR"))<<QString("/usr/share/icons")<<QString("%1/.icons").arg(getenv("HOME")) <<QString("%1/icons").arg(data.realDataDir)<<QString("../resources/icons"));
+
+	QIcon::setFallbackSearchPaths(QStringList()<<QString("%1/usr/share/icons").arg(getenv("APPDIR"))<<QString("/usr/share/icons")<<QString("%1/.icons").arg(getenv("HOME"))<<QString("%1/icons").arg(data.realDataDir)<<QString("../resources/icons"));
+
 	QIcon::setFallbackThemeName("yadqticons");
 
 	app.setQuitOnLastWindowClosed(true);

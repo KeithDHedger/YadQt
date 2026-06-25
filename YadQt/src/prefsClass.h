@@ -21,14 +21,7 @@
 #ifndef _PREFSCLASS_
 #define _PREFSCLASS_
 
-#include <QApplication>
-#include <QtWidgets>
-#include <QLineEdit>
-#include <QComboBox>
-#include <QDialogButtonBox>
-#include <QDialog>
-
-#include <stdio.h>
+#include "globals.h"
 
 #define RITESTRETCH 2
 
@@ -66,28 +59,32 @@ struct prefsReturnStruct
 class prefsClass
 {
 	public:
-		prefsClass();
+		prefsClass(QString pname="");
 		~prefsClass();
 
-	prefsReturnStruct		dialogPrefs;
-	QHash<int,QVariant>		prefsData;
-	QStringList				prefsNames;
-	bool						paged=false;
-	QString					opSep="\n";
-	QDialogButtonBox			*bb;
+		prefsReturnStruct	dialogPrefs;
+		QHash<int,QVariant>	prefsData;
+		QStringList			prefsNames;
+		bool					paged=false;
+		QString				opSep="\n";
+		QDialogButtonBox		*bb;
+		QStringList			extraCliArgs;
 
-	void						createDialog(QString title,QStringList items,QSize sze=QSize(-1,-1));
-	void						setPrefs(QStringList items);
-	void						setPrefValue(QString name,QVariant val);
-	QVariant					getPrefValue(QString name);
-	void						writePrefs(void);
-	void						readPrefs(void);
-	void						printCurrentPrefs(void);
+		bool					doCliArgs(int argc,char **argv,option longoptions[]);
+		void					createDialog(QString title,QStringList items,QSize sze=QSize(-1,-1));
+		void					writePrefs(void);
+		void					writeManualPrefs(void);
+		void					printCurrentPrefs(void);
+		void					addPref(QString name,QVariant qvar);
+		void					setPrefValue(QString name,QVariant val);
+		unsigned long		hashFromKey(QString key);
+		QVariant				getPrefValue(QString name);
+		QVariant				getSavedPrefValue(QString name);
 
 	protected:
 	private:
-		unsigned long		hashFromKey(QString key);
 		QString				bestFontColour(QString colour);
+		QString				prefsFileName;
 };
 
 #endif

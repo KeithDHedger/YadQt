@@ -21,6 +21,7 @@
 #include <sys/select.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
+#include <getopt.h>
 
 #define MARGINS 4
 
