@@ -35,10 +35,16 @@ void OrphanDialogClass::getColour(void)
 	QColor	initcol(this->data->defaultText);
 	QColor	colour;
 
-	if(this->data->defaultText.length()>7)
-		colour=QColorDialog::getColor(initcol,nullptr,this->data->title,QColorDialog::ShowAlphaChannel);
+	if(this->data->defaultText.isEmpty()==false)
+		{
+			if(this->data->defaultText.length()>7)
+				colour=QColorDialog::getColor(initcol,nullptr,this->data->title,QColorDialog::ShowAlphaChannel|QColorDialog::DontUseNativeDialog);
+			else
+				colour=QColorDialog::getColor(initcol,nullptr,this->data->title,QColorDialog::DontUseNativeDialog);
+		}
 	else
-		colour=QColorDialog::getColor(initcol,nullptr,this->data->title);
+		colour=QColorDialog::getColor(initcol,nullptr,this->data->title,QColorDialog::ShowAlphaChannel|QColorDialog::DontUseNativeDialog);
+		
 
 	if(colour.isValid()==true)
 		{

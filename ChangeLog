@@ -1,4 +1,6 @@
 1.0.2
+If no default colour supplied to colour diallog then show alpha channel.
+Added missing default icons.
 Fixed button icons.
 Fixed no file name or unreachable file in notepad.
 Fixed qt5 compile.
